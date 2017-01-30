@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Gui gui = new Gui(System.out);
-        gui.printBoard();
+        BoardPrinter boardPrinter = new BoardPrinter(System.out);
+        boardPrinter.printBoard();
     }
 }

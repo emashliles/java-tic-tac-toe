@@ -1,22 +1,27 @@
-import com.TTT.Gui;
+import com.TTT.Board;
+import com.TTT.BoardPrinter;
 import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class GuiTests {
+public class BoardPrinterTests {
+    @Test
+    public void boardIsEmpty() throws Exception {
+
+
+    }
 
     @Test
     public void printsBoard() throws Exception {
         ByteArrayOutputStream stdOutStream = new ByteArrayOutputStream();
         PrintStream stdOut = new PrintStream(stdOutStream);
-        Gui gui = new Gui(stdOut);
-        gui.printBoard();
+        BoardPrinter boardPrinter = new BoardPrinter(stdOut);
+        boardPrinter.printBoard();
 
-        assertEquals(stdOutStream.toString(), "123\n456\n789");
+        assertEquals(stdOutStream.toString(), " 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9 ");
 
     }
 }

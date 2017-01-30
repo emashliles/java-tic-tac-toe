@@ -3,10 +3,10 @@ package com.TTT;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class Gui {
+public class BoardPrinter {
     private PrintStream out;
 
-    public Gui(PrintStream stdOut) {
+    public BoardPrinter(PrintStream stdOut) {
         out = stdOut;
     }
 
