@@ -1,23 +1,26 @@
 import com.TTT.Board;
-import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.TestCase.assertEquals;
+
 
 public class BoardTests {
 
     @Test
-    public void createsEmptyBoard() {
+    public void emptyBoardHasSize() {
         Board board = new Board();
-
-        assertEquals(board.getString(), "123\n456\n789");
+        assertEquals(board.size(), 2);
     }
 
     @Test
-    public void placeMark() {
+    public void returnContentsOfSpace() {
         Board board = new Board();
-        board.placeMark(0, "X");
-        Assert.assertEquals( "X23\n456\n789", board.getString());
+        assertEquals(board.getContents(2), 3);
     }
 
+    @Test
+    public void spaceIsOccupied() {
+        Board board = new Board();
+        assertEquals(board.isOccupied(1), false);
+    }
 }

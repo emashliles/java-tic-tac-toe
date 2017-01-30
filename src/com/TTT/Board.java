@@ -1,10 +1,16 @@
 package com.TTT;
 
 public class Board {
-    public String getString() {
-        return "123\n456\n789";
+
+    public int size() {
+        return 2;
     }
 
-    public void placeMark(int space, String marker) {
+    public int getContents(int space) {
+        return 3;
+    }
+
+    public boolean isOccupied(int space) {
+        return false;
     }
 }
