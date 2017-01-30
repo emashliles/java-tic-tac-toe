@@ -23,4 +23,11 @@ public class BoardTests {
         Board board = new Board();
         assertEquals(board.isOccupied(1), false);
     }
+
+    @Test
+    public void placeMarkerMakesSpaceOccupied() {
+        Board board = new Board();
+        board.placeMarker(3, "X");
+        assertEquals(board.isOccupied(3), true);
+    }
 }
