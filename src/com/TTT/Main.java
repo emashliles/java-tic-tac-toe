@@ -1,8 +1,11 @@
 package com.TTT;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
-	// write your code here
+    public static void main(String[] args) throws IOException {
+        Gui gui = new Gui(System.out);
+        gui.printBoard();
     }
 }
