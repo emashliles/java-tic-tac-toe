@@ -30,4 +30,13 @@ public class BoardTests {
         board.placeMarker(3, "X");
         assertEquals(board.isOccupied(3), true);
     }
+
+    @Test
+    public void placeMarkerAddsMarkerToCorrectSpace() {
+        Board board = new Board();
+        board.placeMarker(1, "X");
+        assertEquals(board.markerAt(1), "X");
+
+
+    }
 }

@@ -23,4 +23,8 @@ public class Board {
     public void placeMarker(int space, String marker) {
         spaces[space] = marker;
     }
+
+    public String markerAt(int space) {
+        return spaces[space];
+    }
 }
