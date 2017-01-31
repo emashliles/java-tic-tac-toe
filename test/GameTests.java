@@ -9,14 +9,24 @@ public class GameTests {
     public void startsNewGame() {
         Board board = new Board();
         Game game = new Game(board);
-        assertEquals(game.isOver(), false);
+        assertEquals(false, game.isOver());
     }
 
     @Test
     public void handlesTurn() {
         Board board  = new Board();
         Game game = new Game(board);
-        game.doTurn(1, "X");
-        assertEquals(board.isOccupied(1), true);
+        game.doTurn(1);
+        assertEquals("X", board.markerAt(1));
+    }
+
+    @Test
+    public void handlesSecondPlayerTurn()
+    {
+        Board board = new Board();
+        Game game = new Game(board);
+        game.doTurn(1);
+        game.doTurn(5);
+        assertEquals("O", board.markerAt(5));
     }
 }
