@@ -9,13 +9,7 @@ public class BoardTests {
     @Test
     public void emptyBoardHasSize() {
         Board board = new Board();
-        assertEquals(board.size(), 2);
-    }
-
-    @Test
-    public void returnContentsOfSpace() {
-        Board board = new Board();
-        assertEquals(board.getContents(2), 3);
+        assertEquals(board.size(), 9);
     }
 
     @Test
@@ -36,7 +30,5 @@ public class BoardTests {
         Board board = new Board();
         board.placeMarker(1, "X");
         assertEquals(board.markerAt(1), "X");
-
-
     }
 }
