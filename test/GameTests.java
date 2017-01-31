@@ -3,7 +3,6 @@ import com.TTT.Game;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class GameTests {
     @Test
@@ -30,6 +29,4 @@ public class GameTests {
         game.doTurn(5);
         assertEquals("O", board.markerAt(5));
     }
-
-
 }
