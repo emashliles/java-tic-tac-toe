@@ -7,11 +7,9 @@ public class BoardPrinter {
 
     public BoardPrinter(PrintStream out) {
         this.out = out;
-
     }
 
     public void printBoard(Board board) {
-
         for(int i = 0;i < board.size(); i++)
         {
             out.print(board.markerAt(i));

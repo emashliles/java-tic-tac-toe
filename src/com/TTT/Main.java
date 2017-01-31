@@ -6,6 +6,5 @@ public class Main {
         Board board = new Board();
         BoardPrinter printer = new BoardPrinter(System.out);
         printer.printBoard(board);
-
     }
 }
