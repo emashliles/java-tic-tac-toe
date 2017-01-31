@@ -1,4 +1,5 @@
 import com.TTT.Board;
+import com.TTT.Game;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-import com.TTT.Board;
+package com.TTT;
 
 public class Game {
 
