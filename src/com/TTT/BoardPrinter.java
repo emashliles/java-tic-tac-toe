@@ -10,7 +10,7 @@ public class BoardPrinter {
     }
 
     public void printBoard(Board board) {
-        for(int i = 0;i < board.size(); i++)
+        for(int i = 0; i < board.size(); i++)
         {
             out.print(board.markerAt(i));
 

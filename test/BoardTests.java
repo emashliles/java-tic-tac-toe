@@ -13,7 +13,7 @@ public class BoardTests {
     }
 
     @Test
-    public void spaceIsOccupied() {
+    public void spaceIsNotOccupied() {
         Board board = new Board();
         assertEquals(board.isOccupied(1), false);
     }
