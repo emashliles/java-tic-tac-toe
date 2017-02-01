@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TurnUITests {
 
@@ -82,7 +83,18 @@ public class TurnUITests {
         turns.takeTurn(board, game);
 
         assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
+    }
 
+    @Test
+    public void zeroIndexSelection() {
+        ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(outputStream);
+        TurnUI turns = new TurnUI(printer, out, in);
+
+        turns.takeTurn(board, game);
+
+        assertEquals(board.isOccupied(4), true);
 
     }
 }

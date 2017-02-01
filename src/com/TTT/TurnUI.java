@@ -38,7 +38,7 @@ public class TurnUI {
 
     private int parseSelection(String selection) {
         try{
-            return Integer.parseInt(selection);
+            return Integer.parseInt(selection) - 1;
         }
         catch(Exception e){
             return -1;
