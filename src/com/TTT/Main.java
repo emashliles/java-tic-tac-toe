@@ -1,7 +1,5 @@
 package com.TTT;
 
-import java.io.InputStream;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -12,14 +10,14 @@ public class Main {
         Board board = new Board();
         BoardPrinter printer = new BoardPrinter(System.out);
         Game game = new Game(board);
-        TurnUI turns = new TurnUI(printer);
+        TurnUI turns = new TurnUI(printer, System.out, System.in);
 
-        takeTurns(board, game, System.in, turns);
+        takeTurns(board, game, turns);
     }
 
-    public static void takeTurns(Board board, Game game, InputStream in, TurnUI turns) {
+    public static void takeTurns(Board board, Game game, TurnUI turns) {
         while(!game.isOver()) {
-            turns.takeTurn(board, game, in);
+            turns.takeTurn(board, game);
         }
     }
 
