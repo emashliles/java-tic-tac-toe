@@ -1,7 +1,6 @@
 package com.TTT;
 
 import java.io.InputStream;
-import java.util.Scanner;
 
 public class Main {
 
@@ -13,16 +12,15 @@ public class Main {
         Board board = new Board();
         BoardPrinter printer = new BoardPrinter(System.out);
         Game game = new Game(board);
+        TurnUI turns = new TurnUI();
 
-        takeTurns(board, printer, game, System.in);
+        takeTurns(board, printer, game, System.in, turns);
     }
 
-    private static void takeTurns(Board board, BoardPrinter printer, Game game, InputStream in) {
+    public static void takeTurns(Board board, BoardPrinter printer, Game game, InputStream in, TurnUI turns) {
         while(!game.isOver()) {
-            printer.printBoard(board);
-            Scanner sc = new Scanner(in);
-            String selection = sc.nextLine();
-            game.doTurn(Integer.parseInt(selection));
+            turns.takeTurn(board, printer, game, in);
         }
     }
+
 }

@@ -7,7 +7,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class UITests {
+public class BoardPrinterTests {
     @Test
     public void canPrintBoard() {
         Board board = new Board();
