@@ -33,7 +33,7 @@ public class TurnUITests {
         turns.takeTurn(board, game);
         turns.takeTurn(board, game);
 
-        assertEquals(board.markerAt(2), "O");
+        assertEquals(board.markerAt(1), "O");
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TurnUITests {
         ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outputStream);
-        board.placeMarker(5, "X");
+        board.placeMarker(4, "X");
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
