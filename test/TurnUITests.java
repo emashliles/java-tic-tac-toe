@@ -11,16 +11,16 @@ import static org.junit.Assert.assertEquals;
 public class TurnUITests {
     @Test
     public void canAlternateTurns() {
-        TurnUI turns = new TurnUI();
-        Board board = new Board();
         BoardPrinter printer = new BoardPrinter(System.out);
+        TurnUI turns = new TurnUI(printer);
+        Board board = new Board();
         Game game = new Game(board);
         ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
 
-        turns.takeTurn(board, printer, game, in);
+        turns.takeTurn(board, game, in);
 
         in = new ByteArrayInputStream("2".getBytes());
-        turns.takeTurn(board, printer, game, in);
+        turns.takeTurn(board, game, in);
 
         assertEquals(board.markerAt(2), "O");
 

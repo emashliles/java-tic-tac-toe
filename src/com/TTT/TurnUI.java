@@ -5,7 +5,13 @@ import java.util.Scanner;
 
 public class TurnUI {
 
-    public void takeTurn(Board board, BoardPrinter printer, Game game, InputStream in) {
+    private BoardPrinter printer;
+
+    public TurnUI(BoardPrinter printer) {
+        this.printer = printer;
+    }
+
+    public void takeTurn(Board board, Game game, InputStream in) {
         printer.printBoard(board);
         Scanner sc = new Scanner(in);
         String selection = sc.nextLine();

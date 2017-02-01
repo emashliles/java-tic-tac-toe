@@ -12,14 +12,14 @@ public class Main {
         Board board = new Board();
         BoardPrinter printer = new BoardPrinter(System.out);
         Game game = new Game(board);
-        TurnUI turns = new TurnUI();
+        TurnUI turns = new TurnUI(printer);
 
-        takeTurns(board, printer, game, System.in, turns);
+        takeTurns(board, game, System.in, turns);
     }
 
-    public static void takeTurns(Board board, BoardPrinter printer, Game game, InputStream in, TurnUI turns) {
+    public static void takeTurns(Board board, Game game, InputStream in, TurnUI turns) {
         while(!game.isOver()) {
-            turns.takeTurn(board, printer, game, in);
+            turns.takeTurn(board, game, in);
         }
     }
 
