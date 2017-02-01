@@ -10,11 +10,17 @@ public class BoardPrinter {
     }
 
     public void printBoard(Board board) {
-        for(int i = 0; i < board.size(); i++)
+        for(int spaceIndex = 0; spaceIndex < board.size(); spaceIndex++)
         {
-            out.print(board.markerAt(i));
+            out.print(" " + board.markerAt(spaceIndex)+ " ");
 
-            if(i == 2 || i == 5 || i == 8)
+            if((spaceIndex + 1) % 3 != 0)
+                out.print("|");
+
+            if(spaceIndex == 2 || spaceIndex == 5)
+                out.print("\n===========\n");
+
+            if(spaceIndex == 8)
                 out.print("\n");
         }
     }
