@@ -21,7 +21,7 @@ public class TurnUI {
     public void takeTurn(Board board, Game game) {
         int selectedSpace = getPlayerInput(board, inputPrompt);
 
-        while(selectedSpace < 1 || selectedSpace > board.size())
+        while(selectedSpace < 1 || selectedSpace > board.size() || board.isOccupied(selectedSpace))
         {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }

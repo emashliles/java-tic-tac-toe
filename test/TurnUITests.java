@@ -70,4 +70,19 @@ public class TurnUITests {
 
         assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
     }
+
+    @Test
+    public void asksForInputAgainIfSelectionTaken() {
+        ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(outputStream);
+        board.placeMarker(5, "X");
+        TurnUI turns = new TurnUI(printer, out, in);
+
+        turns.takeTurn(board, game);
+
+        assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
+
+
+    }
 }
