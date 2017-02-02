@@ -20,7 +20,7 @@ public class TurnUITests {
     private ByteArrayOutputStream outputStream;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
        board = new Board();
        game = new Game(board);
        printer = new BoardPrinter(System.out);
