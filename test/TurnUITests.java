@@ -71,7 +71,7 @@ public class TurnUITests {
     }
 
     @Test
-    public void zeroIndexSelection() {
+    public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
