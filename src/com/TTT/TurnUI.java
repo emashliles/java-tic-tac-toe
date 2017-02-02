@@ -40,7 +40,7 @@ public class TurnUI {
         try{
             return Integer.parseInt(selection) - 1;
         }
-        catch(Exception e){
+        catch(NumberFormatException e){
             return -1;
         }
     }
