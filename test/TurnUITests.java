@@ -10,19 +10,22 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class TurnUITests {
 
     private Board board;
     private Game game;
     private BoardPrinter printer;
+    private PrintStream out;
+    private ByteArrayOutputStream outputStream;
 
     @Before
     public void setUp() throws Exception {
        board = new Board();
        game = new Game(board);
        printer = new BoardPrinter(System.out);
+       outputStream = new ByteArrayOutputStream();
+       out = new PrintStream(outputStream);
     }
 
     @Test
@@ -39,8 +42,6 @@ public class TurnUITests {
     @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
@@ -51,8 +52,6 @@ public class TurnUITests {
     @Test
     public void asksForInputAgainIfInputIsTooLarge() {
         ByteArrayInputStream in = new ByteArrayInputStream(("9999999999999999999999999999\n7").getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
@@ -63,8 +62,6 @@ public class TurnUITests {
     @Test
     public void asksForInputAgainIfInputIsNotOnBoard() {
         ByteArrayInputStream in = new ByteArrayInputStream(("10\n7").getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
@@ -75,8 +72,6 @@ public class TurnUITests {
     @Test
     public void asksForInputAgainIfSelectionTaken() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         board.placeMarker(4, "X");
         TurnUI turns = new TurnUI(printer, out, in);
 
@@ -88,8 +83,6 @@ public class TurnUITests {
     @Test
     public void zeroIndexSelection() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
