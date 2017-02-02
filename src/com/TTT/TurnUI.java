@@ -21,8 +21,7 @@ public class TurnUI {
     public void takeTurn(Board board, Game game) {
         int selectedSpace = getPlayerInput(board, inputPrompt);
 
-        while(selectedSpace < 0 || selectedSpace > (board.size() - 1) || board.isOccupied(selectedSpace))
-        {
+        while(selectedSpace < 0 || selectedSpace > (board.size() - 1) || board.isOccupied(selectedSpace)) {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }
 
@@ -37,7 +36,7 @@ public class TurnUI {
     }
 
     private int parseSelection(String selection) {
-        try{
+        try {
             return Integer.parseInt(selection) - 1;
         }
         catch(NumberFormatException e){

@@ -12,8 +12,7 @@ public class BoardPrinter {
     public void printBoard(Board board) {
         int rowSize = 3;
 
-        for(int spaceIndex = 0; spaceIndex < board.size(); spaceIndex++)
-        {
+        for(int spaceIndex = 0; spaceIndex < board.size(); spaceIndex++) {
             out.print(" " + board.markerAt(spaceIndex)+ " ");
 
             if((spaceIndex + 1) % rowSize != 0)
