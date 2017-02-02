@@ -50,16 +50,6 @@ public class TurnUITests {
     }
 
     @Test
-    public void asksForInputAgainIfInputIsTooLarge() {
-        ByteArrayInputStream in = new ByteArrayInputStream(("9999999999999999999999999999\n7").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
-
-        turns.takeTurn(board, game);
-
-        assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
-    }
-
-    @Test
     public void asksForInputAgainIfInputIsNotOnBoard() {
         ByteArrayInputStream in = new ByteArrayInputStream(("10\n7").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);

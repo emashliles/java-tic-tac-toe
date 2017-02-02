@@ -48,4 +48,19 @@ public class GameTests {
     public void checksSelectionIsValidInteger() {
         assertEquals(false, game.validSelection("9999999999999999999999999999999999999"));
     }
+
+    @Test
+    public void checksSelectionIsNotOffTheBoard() {
+        assertEquals(false, game.selectionOnBoard(10));
+    }
+
+    @Test
+    public void checksSelectionIsAbove1() {
+        assertEquals(false, game.selectionOnBoard(-1));
+    }
+
+    @Test
+    public void checkSelectionIsOnTheBoard() {
+        assertEquals(true, game.selectionOnBoard(5));
+    }
 }

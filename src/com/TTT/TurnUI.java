@@ -32,10 +32,10 @@ public class TurnUI {
         printer.printBoard(board);
         out.print(text);
         String selection = scanner.nextLine();
-        return validSelection(selection);
+        return parseSelection(selection);
     }
 
-    public int validSelection(String selection) {
+    public int parseSelection(String selection) {
         try {
             return Integer.parseInt(selection) - 1;
         }

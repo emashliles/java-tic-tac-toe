@@ -23,7 +23,6 @@ public class Game {
             board.placeMarker(space, "O");
             currentPlayer = 1;
         }
-
     }
 
     public boolean validSelection(String selection) {
@@ -34,5 +33,12 @@ public class Game {
         catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public boolean selectionOnBoard(int selection) {
+       if(selection > board.size() || selection < 1) {
+           return false;
+       }
+       return true;
     }
 }
