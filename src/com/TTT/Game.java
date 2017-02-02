@@ -25,4 +25,14 @@ public class Game {
         }
 
     }
+
+    public boolean validSelection(String selection) {
+        try {
+            Integer.parseInt(selection);
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
+    }
 }
