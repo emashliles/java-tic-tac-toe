@@ -36,7 +36,7 @@ public class Game {
     }
 
     public boolean selectionOnBoard(int selection) {
-       if(selection > board.size() || selection < 1) {
+       if(selection > (board.size() - 1) || selection < 0) {
            return false;
        }
        return true;

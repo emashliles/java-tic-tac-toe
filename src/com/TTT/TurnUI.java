@@ -19,28 +19,28 @@ public class TurnUI {
     }
 
     public void takeTurn(Board board, Game game) {
-        int selectedSpace = getPlayerInput(board, inputPrompt);
+        String selectedSpace = getPlayerInput(board, inputPrompt);
 
-        while(selectedSpace < 0 || selectedSpace > (board.size() - 1) || board.isOccupied(selectedSpace)) {
+        while(!game.validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }
 
-        game.doTurn(selectedSpace);
+        game.doTurn(parseSelection(selectedSpace));
     }
 
-    private Integer getPlayerInput(Board board, String text) {
+    private String getPlayerInput(Board board, String text) {
         printer.printBoard(board);
         out.print(text);
         String selection = scanner.nextLine();
-        return parseSelection(selection);
+        return selection;
     }
 
     public int parseSelection(String selection) {
-        try {
-            return Integer.parseInt(selection) - 1;
-        }
-        catch(NumberFormatException e){
-            return -1;
-        }
+        int selectedSpace = Integer.parseInt(selection);
+        return zeroIndexSelection(selectedSpace);
+    }
+
+    public int zeroIndexSelection(int selection){
+        return selection - 1;
     }
 }
