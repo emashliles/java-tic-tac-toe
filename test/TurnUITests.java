@@ -81,7 +81,26 @@ public class TurnUITests {
         turns.takeTurn(board, game);
 
         assertEquals(outputStream.toString(), "Please enter a size number: Player X is the winner.");
+    }
 
+    @Test
+    public void declaresATie() {
+        board.placeMarker(0, "X");
+        board.placeMarker(1, "O");
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "X");
+        board.placeMarker(4, "O");
+        board.placeMarker(5, "X");
+        board.placeMarker(6, "O");
+        board.placeMarker(7, "X");
+        board.placeMarker(8, "O");
+
+        ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
+        TurnUI turns = new TurnUI(printer, out, in);
+
+        turns.takeTurn(board, game);
+
+        assertEquals(outputStream.toString(), "Please enter a size number: This game is a tie.");
     }
 
     @Test

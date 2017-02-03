@@ -31,6 +31,10 @@ public class TurnUI {
         if(game.isOver() == GameState.Win) {
             out.print("Player " + winningMarker + " is the winner.");
         }
+
+        if (game.isOver() == GameState.Tie){
+            out.print("This game is a tie.");
+        }
     }
 
     private String getPlayerInput(Board board, String text) {
