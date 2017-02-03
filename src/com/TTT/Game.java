@@ -4,10 +4,14 @@ public class Game {
 
     private Board board;
     private int currentPlayer;
+    private String player1Marker;
+    private String player2Marker;
 
     public Game(Board board) {
         this.board = board;
         currentPlayer = 1;
+        player1Marker = "X";
+        player2Marker = "O";
     }
 
     public GameState isOver() {
@@ -17,11 +21,11 @@ public class Game {
 
     public void doTurn(int space) {
         if(currentPlayer == 1) {
-            board.placeMarker(space, "X");
+            board.placeMarker(space, player1Marker);
             currentPlayer = 2;
         }
         else {
-            board.placeMarker(space, "O");
+            board.placeMarker(space, player2Marker);
             currentPlayer = 1;
         }
     }
@@ -41,5 +45,16 @@ public class Game {
            return false;
        }
        return true;
+    }
+
+    public int currentPlayer() {
+        return currentPlayer;
+    }
+
+    public String getPlayerMarker(int playerNumber) {
+        if(currentPlayer == 1)
+            return player1Marker;
+
+        return player2Marker;
     }
 }

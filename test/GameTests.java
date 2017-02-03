@@ -74,4 +74,14 @@ public class GameTests {
         board.placeMarker(6, "X");
         assertThat(game.isOver(), is(GameState.Win));
     }
+
+    @Test
+    public void canReturnMarkerForCurrentPlayer() {
+        assertEquals(game.getPlayerMarker(1), "X");
+    }
+
+    @Test
+    public void canReturnCurrentPlayer() {
+        assertEquals(game.currentPlayer(), 1);
+    }
 }

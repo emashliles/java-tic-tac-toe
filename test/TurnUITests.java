@@ -71,6 +71,20 @@ public class TurnUITests {
     }
 
     @Test
+    public void declaresAWinner() {
+        board.placeMarker(0, "X");
+        board.placeMarker(3, "X");
+
+        ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
+        TurnUI turns = new TurnUI(printer, out, in);
+
+        turns.takeTurn(board, game);
+
+        assertEquals(outputStream.toString(), "Please enter a size number: Player X is the winner.");
+
+    }
+
+    @Test
     public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);

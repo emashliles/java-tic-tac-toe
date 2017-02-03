@@ -20,12 +20,17 @@ public class TurnUI {
 
     public void takeTurn(Board board, Game game) {
         String selectedSpace = getPlayerInput(board, inputPrompt);
+        String winningMarker = game.getPlayerMarker(game.currentPlayer());
 
         while(!game.validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }
 
         game.doTurn(parseSelection(selectedSpace));
+
+        if(game.isOver() == GameState.Win) {
+            out.print("Player " + winningMarker + " is the winner.");
+        }
     }
 
     private String getPlayerInput(Board board, String text) {
