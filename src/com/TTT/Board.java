@@ -67,7 +67,7 @@ public class Board {
     public TTTLine getRightToLeftDiagonal() {
         List<Integer> row = new ArrayList<>();
 
-        for(int i = (sideLength() - 1); i < size(); i += (sideLength()) + -1) {
+        for(int i = (sideLength() - 1); i < (size() -1); i += (sideLength()) + -1) {
             row.add(i);
         }
         return new TTTLine(row);

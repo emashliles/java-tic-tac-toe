@@ -45,19 +45,19 @@ public class BoardEvaluatorTests{
         assertThat(evaluator.checkLineIsWin(row), is(true));
     }
 
-//    @Test
-//    public void canDetectAWinningDiagonalFromIndexes() {
-//        Board board = new Board();
-//
-//        board.placeMarker(0, "X");
-//        board.placeMarker(3, "X" );
-//        board.placeMarker(6, "X" );
-//
-//        BoardEvaluator evaluator = new BoardEvaluator(board);
-//        TTTLine diagonal = board.getLeftToRightDiagonal(2);
-//
-//        assertThat(evaluator.checkLineIsWin(row), is(true));
-//    }
+    @Test
+    public void canDetectAWinningDiagonalFromIndexes() {
+        Board board = new Board();
+
+        board.placeMarker(0, "X");
+        board.placeMarker(4, "X" );
+        board.placeMarker(8, "X" );
+
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+        TTTLine diagonal = board.getLeftToRightDiagonal();
+
+        assertThat(evaluator.checkLineIsWin(diagonal), is(true));
+    }
 
     @Test
     public void canDetectWhenAPlayerHasWonAColumn() {
@@ -79,6 +79,19 @@ public class BoardEvaluatorTests{
         board.placeMarker(6, "X");
         board.placeMarker(7, "X" );
         board.placeMarker(8, "X" );
+
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        assertThat(evaluator.evaluate(), is(GameState.Win));
+    }
+
+    @Test
+    public void canDetectWhenAPlayerHasWonADiagonal() {
+        Board board = new Board();
+
+        board.placeMarker(2, "X");
+        board.placeMarker(4, "X" );
+        board.placeMarker(6, "X" );
 
         BoardEvaluator evaluator = new BoardEvaluator(board);
 

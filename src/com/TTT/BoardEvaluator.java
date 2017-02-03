@@ -14,6 +14,22 @@ public class BoardEvaluator {
 
         gameState = evaluateColumns(gameState);
 
+        gameState = evaluateDiagonals(gameState);
+
+        return gameState;
+    }
+
+    private GameState evaluateDiagonals(GameState gameState) {
+            TTTLine leftToRightDiagonal = board.getLeftToRightDiagonal();
+
+            if(checkLineIsWin(leftToRightDiagonal))
+                return GameState.Win;
+
+            TTTLine rightToLeftDiagonal = board.getRightToLeftDiagonal();
+
+            if(checkLineIsWin(rightToLeftDiagonal))
+                gameState = GameState.Win;
+
         return gameState;
     }
 
