@@ -10,8 +10,9 @@ public class Game {
         currentPlayer = 1;
     }
 
-    public boolean isOver() {
-        return false;
+    public GameState isOver() {
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+        return evaluator.evaluate();
     }
 
     public void doTurn(int space) {

@@ -42,34 +42,34 @@ public class Board {
     }
 
     public TTTLine getColumn(int columnNumber) {
-        List<Integer> row = new ArrayList<>();
+        List<Integer> column = new ArrayList<>();
         int maximumColumnValue = maximumColumnValue(columnNumber);
 
         for(int i = columnNumber; i < maximumColumnValue + 1; i += sideLength()) {
-            row.add(i);
+            column.add(i);
         }
-        return new TTTLine(row);
+        return new TTTLine(column);
+    }
+
+    public TTTLine getLeftToRightDiagonal() {
+        List<Integer> diagonal = new ArrayList<>();
+
+        for(int i = 0; i < size() + 1; i += (sideLength()) + 1) {
+            diagonal.add(i);
+        }
+        return new TTTLine(diagonal);
+    }
+
+    public TTTLine getRightToLeftDiagonal() {
+        List<Integer> diagonal = new ArrayList<>();
+
+        for(int i = (sideLength() - 1); i < (size() -1); i += (sideLength()) + -1) {
+            diagonal.add(i);
+        }
+        return new TTTLine(diagonal);
     }
 
     private int maximumColumnValue(int columnNumber) {
         return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
-    }
-
-    public TTTLine getLeftToRightDiagonal() {
-        List<Integer> row = new ArrayList<>();
-
-        for(int i = 0; i < size() + 1; i += (sideLength()) + 1) {
-            row.add(i);
-        }
-        return new TTTLine(row);
-    }
-
-    public TTTLine getRightToLeftDiagonal() {
-        List<Integer> row = new ArrayList<>();
-
-        for(int i = (sideLength() - 1); i < (size() -1); i += (sideLength()) + -1) {
-            row.add(i);
-        }
-        return new TTTLine(row);
     }
 }

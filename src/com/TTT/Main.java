@@ -16,7 +16,7 @@ public class Main {
     }
 
     public static void takeTurns(Board board, Game game, TurnUI turns) {
-        while(!game.isOver()) {
+        while(game.isOver() == GameState.NoWinner) {
             turns.takeTurn(board, game);
         }
     }

@@ -1,9 +1,12 @@
 import com.TTT.Board;
 import com.TTT.Game;
+import com.TTT.GameState;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class GameTests {
 
@@ -18,7 +21,7 @@ public class GameTests {
 
     @Test
     public void startsNewGame() {
-        assertEquals(false, game.isOver());
+        assertThat(game.isOver(), is(GameState.NoWinner));
     }
 
     @Test
@@ -62,5 +65,13 @@ public class GameTests {
     @Test
     public void checkSelectionIsOnTheBoard() {
         assertEquals(true, game.selectionOnBoard(5));
+    }
+
+    @Test
+    public void detectsAWinner() {
+        board.placeMarker(0, "X");
+        board.placeMarker(3, "X");
+        board.placeMarker(6, "X");
+        assertThat(game.isOver(), is(GameState.Win));
     }
 }

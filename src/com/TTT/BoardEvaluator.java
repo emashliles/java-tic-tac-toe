@@ -19,15 +19,34 @@ public class BoardEvaluator {
         return gameState;
     }
 
-    private GameState evaluateDiagonals(GameState gameState) {
-            TTTLine leftToRightDiagonal = board.getLeftToRightDiagonal();
+    public boolean checkLineIsWin(TTTLine line) {
+        boolean win = false;
+        String marker = "";
 
-            if(checkLineIsWin(leftToRightDiagonal))
+        for(int i = 0; i < line.size(); i ++){
+            if(board.markerAt(line.getSpaceIndex(i)) == marker && marker != "" ) {
+                win = true;
+            }
+            else {
+                win = false;
+            }
+
+            if(marker == "") {
+                marker = board.markerAt(line.getSpaceIndex(i));
+            }
+        }
+        return win;
+    }
+
+    private GameState evaluateDiagonals(GameState gameState) {
+        TTTLine leftToRightDiagonal = board.getLeftToRightDiagonal();
+
+        if(checkLineIsWin(leftToRightDiagonal))
                 return GameState.Win;
 
-            TTTLine rightToLeftDiagonal = board.getRightToLeftDiagonal();
+        TTTLine rightToLeftDiagonal = board.getRightToLeftDiagonal();
 
-            if(checkLineIsWin(rightToLeftDiagonal))
+        if(checkLineIsWin(rightToLeftDiagonal))
                 gameState = GameState.Win;
 
         return gameState;
@@ -51,24 +70,5 @@ public class BoardEvaluator {
                 gameState = GameState.Win;
         }
         return gameState;
-    }
-
-    public boolean checkLineIsWin(TTTLine row) {
-        boolean win = false;
-        String marker = "";
-
-        for(int i = 0; i < row.size(); i ++){
-            if(board.markerAt(row.getSpaceIndex(i)) == marker && marker != "" ) {
-                win = true;
-            }
-            else {
-                win = false;
-            }
-
-            if(marker == "") {
-                marker = board.markerAt(row.getSpaceIndex(i));
-            }
-        }
-        return win;
     }
 }
