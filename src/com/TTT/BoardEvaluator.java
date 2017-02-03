@@ -10,16 +10,17 @@ public class BoardEvaluator {
     public GameState evaluate() {
         GameState gameState = GameState.NoWinner;
 
-        gameState = evaluateRows(gameState);
+        for (Line line :
+                board.allLines()) {
+            if(checkLineIsWin(line)){
+                return GameState.Win;
+            }
 
-        gameState = evaluateColumns(gameState);
-
-        gameState = evaluateDiagonals(gameState);
-
+        }
         return gameState;
     }
 
-    public boolean checkLineIsWin(TTTLine line) {
+    public boolean checkLineIsWin(Line line) {
         boolean win = false;
         String marker = "";
 
@@ -36,39 +37,5 @@ public class BoardEvaluator {
             }
         }
         return win;
-    }
-
-    private GameState evaluateDiagonals(GameState gameState) {
-        TTTLine leftToRightDiagonal = board.getLeftToRightDiagonal();
-
-        if(checkLineIsWin(leftToRightDiagonal))
-                return GameState.Win;
-
-        TTTLine rightToLeftDiagonal = board.getRightToLeftDiagonal();
-
-        if(checkLineIsWin(rightToLeftDiagonal))
-                gameState = GameState.Win;
-
-        return gameState;
-    }
-
-    private GameState evaluateRows(GameState gameState) {
-        for(int i = 0; i < board.sideLength(); i++) {
-           TTTLine row = board.getRow(i);
-
-           if(checkLineIsWin(row))
-               gameState = GameState.Win;
-        }
-        return gameState;
-    }
-
-    private GameState evaluateColumns(GameState gameState) {
-        for(int i = 0; i < board.sideLength(); i++) {
-            TTTLine column = board.getColumn(i);
-
-            if(checkLineIsWin(column))
-                gameState = GameState.Win;
-        }
-        return gameState;
     }
 }

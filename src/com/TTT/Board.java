@@ -31,45 +31,59 @@ public class Board {
         return spaces[space];
     }
 
-    public TTTLine getRow(int rowNumber) {
+    public Line getRow(int rowNumber) {
         List<Integer> row= new ArrayList<>();
         int rowStartIndex = rowNumber * sideLength();
 
         for(int i = rowStartIndex; i < rowStartIndex + sideLength() ; i++) {
             row.add(i);
         }
-        return new TTTLine(row);
+        return new Line(row);
     }
 
-    public TTTLine getColumn(int columnNumber) {
+    public Line getColumn(int columnNumber) {
         List<Integer> column = new ArrayList<>();
         int maximumColumnValue = maximumColumnValue(columnNumber);
 
         for(int i = columnNumber; i < maximumColumnValue + 1; i += sideLength()) {
             column.add(i);
         }
-        return new TTTLine(column);
+        return new Line(column);
     }
 
-    public TTTLine getLeftToRightDiagonal() {
+    public Line getLeftToRightDiagonal() {
         List<Integer> diagonal = new ArrayList<>();
 
         for(int i = 0; i < size() + 1; i += (sideLength()) + 1) {
             diagonal.add(i);
         }
-        return new TTTLine(diagonal);
+        return new Line(diagonal);
     }
 
-    public TTTLine getRightToLeftDiagonal() {
+    public Line getRightToLeftDiagonal() {
         List<Integer> diagonal = new ArrayList<>();
 
         for(int i = (sideLength() - 1); i < (size() -1); i += (sideLength()) + -1) {
             diagonal.add(i);
         }
-        return new TTTLine(diagonal);
+        return new Line(diagonal);
     }
 
     private int maximumColumnValue(int columnNumber) {
         return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
     }
+
+    public List<Line> allLines() {
+        List<Line> lines = new ArrayList<>();
+        lines.add(getRow(0));
+        lines.add(getRow(1));
+        lines.add(getRow(2));
+        lines.add(getColumn(0));
+        lines.add(getColumn(1));
+        lines.add(getColumn(2));
+        lines.add(getLeftToRightDiagonal());
+        lines.add(getRightToLeftDiagonal());
+        return lines;
+    }
+
 }

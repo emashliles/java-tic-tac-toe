@@ -1,7 +1,7 @@
 import com.TTT.Board;
 import com.TTT.BoardEvaluator;
 import com.TTT.GameState;
-import com.TTT.TTTLine;
+import com.TTT.Line;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class BoardEvaluatorTests{
         board.placeMarker(3, "X");
         board.placeMarker(6, "X");
 
-        TTTLine column = board.getColumn(0);
+        Line column = board.getColumn(0);
 
         assertEquals(evaluator.checkLineIsWin(column), true);
     }
@@ -42,7 +42,7 @@ public class BoardEvaluatorTests{
         board.placeMarker(7, "X" );
         board.placeMarker(8, "X" );
 
-        TTTLine row = board.getRow(2);
+        Line row = board.getRow(2);
 
         assertThat(evaluator.checkLineIsWin(row), is(true));
     }
@@ -53,7 +53,7 @@ public class BoardEvaluatorTests{
         board.placeMarker(4, "X" );
         board.placeMarker(8, "X" );
 
-        TTTLine diagonal = board.getLeftToRightDiagonal();
+        Line diagonal = board.getLeftToRightDiagonal();
 
         assertThat(evaluator.checkLineIsWin(diagonal), is(true));
     }

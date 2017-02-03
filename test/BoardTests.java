@@ -1,9 +1,15 @@
 import com.TTT.Board;
-import com.TTT.TTTLine;
+import com.TTT.Line;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static junit.framework.TestCase.assertEquals;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
 
 public class BoardTests {
@@ -39,25 +45,25 @@ public class BoardTests {
 
     @Test
     public void canReturnARow() {
-        TTTLine row = board.getRow(0);
+        Line row = board.getRow(0);
         assertEquals(2,row.getSpaceIndex(2));
     }
 
     @Test
     public void canReturnAColumn() {
-        TTTLine column = board.getColumn(1);
+        Line column = board.getColumn(1);
         assertEquals(7, column.getSpaceIndex(2));
     }
 
     @Test
     public void canReturnLeftToRightDiagonal() {
-        TTTLine diagonal = board.getLeftToRightDiagonal();
+        Line diagonal = board.getLeftToRightDiagonal();
         assertEquals(8, diagonal.getSpaceIndex(2));
     }
 
     @Test
     public void canReturnRightToLeftDiagonal() {
-        TTTLine diagonal = board.getRightToLeftDiagonal();
+        Line diagonal = board.getRightToLeftDiagonal();
         assertEquals(6, diagonal.getSpaceIndex(2));
     }
 
@@ -65,4 +71,25 @@ public class BoardTests {
     public void canReturnSideLength(){
         assertEquals(3, board.sideLength());
     }
+
+    @Test
+    public void returnAListOfAllLines() {
+        List<Line> lines = board.allLines();
+        assertEquals(8, lines.size());
+    }
+
+    @Test
+    public void returnAllLinesCorrectly() {
+        List<Line> lines = board.allLines();
+
+        Line diagonal = lines.get(7);
+        Line row = lines.get(2);
+        Line column = lines.get(5);
+
+        assertEquals(lines.contains(diagonal), true);
+        assertEquals(lines.contains(row), true);
+        assertEquals(lines.contains(column), true);
+    }
+
+
 }
