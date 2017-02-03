@@ -2,8 +2,6 @@ import com.TTT.Board;
 import com.TTT.TTTRow;
 import org.junit.Test;
 
-import java.util.List;
-
 import static junit.framework.TestCase.assertEquals;
 
 

@@ -20,22 +20,19 @@ public class BoardEvaluatorTests{
         assertThat(evaluator.evaluate(), is(GameState.NoWinner));
     }
 
-//    @Test
-//    public void canDetectAWinningColumnFromIndexes() {
-//        Board board = new Board();
-//        board.placeMarker(0, "X");
-//        board.placeMarker(3, "X");
-//        board.placeMarker(6, "X");
-//
-//        BoardEvaluator evaluator = new BoardEvaluator(board);
-//
-//        TTTRow column = board.
-//
-//        evaluator.checkRowIsWin()
-//
-//        assertEquals();
-//
-//    }
+    @Test
+    public void canDetectAWinningColumnFromIndexes() {
+        Board board = new Board();
+        board.placeMarker(0, "X");
+        board.placeMarker(3, "X");
+        board.placeMarker(6, "X");
+
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        TTTRow column = board.getColumn(0);
+
+        assertEquals(evaluator.checkRowIsWin(column), true);
+    }
 
     @Test
     public void canDetectAWinningRowFromIndexes() {

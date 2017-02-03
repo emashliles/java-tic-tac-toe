@@ -39,4 +39,8 @@ public class BoardEvaluator {
         }
         return win;
     }
+
+    public boolean checkColumnIsWin(TTTRow column) {
+        return false;
+    }
 }
