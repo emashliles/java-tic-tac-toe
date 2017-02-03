@@ -40,4 +40,15 @@ public class Board {
     public int sideLength() {
         return 3;
     }
+
+    public TTTRow getColumn(int columnNumber) {
+        List<Integer> row = new ArrayList<>();
+        int columnStartIndex = columnNumber;
+        int maximumColumnValue =((sideLength() * sideLength()) - sideLength()) + (columnStartIndex + 1);
+
+        for(int i = columnStartIndex; i < maximumColumnValue; i += sideLength()) {
+            row.add(i);
+        }
+        return new TTTRow(row);
+    }
 }

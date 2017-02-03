@@ -45,6 +45,14 @@ public class BoardTests {
     }
 
     @Test
+    public void canRetrunAColumn() {
+        Board board = new Board();
+        TTTRow column = board.getColumn(1);
+
+        assertEquals(7, column.getSpaceIndex(2));
+    }
+
+    @Test
     public void canReturnSideLength(){
         Board board = new Board();
         assertEquals(3, board.sideLength());

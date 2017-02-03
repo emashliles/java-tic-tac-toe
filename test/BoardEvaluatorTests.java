@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class BoardEvaluatorTests{
@@ -19,6 +20,23 @@ public class BoardEvaluatorTests{
         assertThat(evaluator.evaluate(), is(GameState.NoWinner));
     }
 
+//    @Test
+//    public void canDetectAWinningColumnFromIndexes() {
+//        Board board = new Board();
+//        board.placeMarker(0, "X");
+//        board.placeMarker(3, "X");
+//        board.placeMarker(6, "X");
+//
+//        BoardEvaluator evaluator = new BoardEvaluator(board);
+//
+//        TTTRow column = board.
+//
+//        evaluator.checkRowIsWin()
+//
+//        assertEquals();
+//
+//    }
+
     @Test
     public void canDetectAWinningRowFromIndexes() {
         Board board = new Board();
@@ -28,12 +46,7 @@ public class BoardEvaluatorTests{
         board.placeMarker(8, "X" );
 
         BoardEvaluator evaluator = new BoardEvaluator(board);
-        List<Integer> spaces = new ArrayList<>();
-        spaces.add(6);
-        spaces.add(7);
-        spaces.add(8);
-
-        TTTRow row = new TTTRow(spaces);
+        TTTRow row = board.getRow(2);
 
         assertThat(evaluator.checkRowIsWin(row), is(true));
     }

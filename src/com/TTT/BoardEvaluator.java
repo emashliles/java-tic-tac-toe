@@ -26,7 +26,6 @@ public class BoardEvaluator {
         String marker = "";
 
         for(int i = 0; i < row.size(); i ++){
-
             if(board.markerAt(row.getSpaceIndex(i)) == marker && marker != "" ) {
                 win = true;
             }
