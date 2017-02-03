@@ -1,4 +1,4 @@
-import com.TTT.TTTRow;
+import com.TTT.TTTLine;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class RowTests {
        spaces.add(1);
        spaces.add(1);
 
-        TTTRow row = new TTTRow(spaces);
+        TTTLine row = new TTTLine(spaces);
 
         assertEquals(3, row.size());
     }
@@ -31,7 +31,7 @@ public class RowTests {
     public void canRetriveSpaceIndexOnBoard() {
         spaces.add(5);
 
-        TTTRow row = new TTTRow(spaces);
+        TTTLine row = new TTTLine(spaces);
 
         assertEquals(5, row.getSpaceIndex(0));
     }

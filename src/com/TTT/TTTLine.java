@@ -2,10 +2,10 @@ package com.TTT;
 
 import java.util.List;
 
-public class TTTRow {
+public class TTTLine {
     private List<Integer> spaces;
 
-    public TTTRow(List<Integer> spaces) {
+    public TTTLine(List<Integer> spaces) {
 
         this.spaces = spaces;
     }

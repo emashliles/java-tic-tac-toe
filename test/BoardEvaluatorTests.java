@@ -1,11 +1,8 @@
 import com.TTT.Board;
 import com.TTT.BoardEvaluator;
 import com.TTT.GameState;
-import com.TTT.TTTRow;
+import com.TTT.TTTLine;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
@@ -29,9 +26,9 @@ public class BoardEvaluatorTests{
 
         BoardEvaluator evaluator = new BoardEvaluator(board);
 
-        TTTRow column = board.getColumn(0);
+        TTTLine column = board.getColumn(0);
 
-        assertEquals(evaluator.checkRowIsWin(column), true);
+        assertEquals(evaluator.checkLineIsWin(column), true);
     }
 
     @Test
@@ -43,9 +40,36 @@ public class BoardEvaluatorTests{
         board.placeMarker(8, "X" );
 
         BoardEvaluator evaluator = new BoardEvaluator(board);
-        TTTRow row = board.getRow(2);
+        TTTLine row = board.getRow(2);
 
-        assertThat(evaluator.checkRowIsWin(row), is(true));
+        assertThat(evaluator.checkLineIsWin(row), is(true));
+    }
+
+//    @Test
+//    public void canDetectAWinningDiagonalFromIndexes() {
+//        Board board = new Board();
+//
+//        board.placeMarker(0, "X");
+//        board.placeMarker(3, "X" );
+//        board.placeMarker(6, "X" );
+//
+//        BoardEvaluator evaluator = new BoardEvaluator(board);
+//        TTTLine diagonal = board.getLeftToRightDiagonal(2);
+//
+//        assertThat(evaluator.checkLineIsWin(row), is(true));
+//    }
+
+    @Test
+    public void canDetectWhenAPlayerHasWonAColumn() {
+        Board board = new Board();
+
+        board.placeMarker(2, "X");
+        board.placeMarker(5, "X" );
+        board.placeMarker(8, "X" );
+
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        assertThat(evaluator.evaluate(), is(GameState.Win));
     }
 
     @Test

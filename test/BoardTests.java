@@ -1,5 +1,5 @@
 import com.TTT.Board;
-import com.TTT.TTTRow;
+import com.TTT.TTTLine;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -37,17 +37,35 @@ public class BoardTests {
     public void canReturnARow() {
         Board board = new Board();
 
-        TTTRow row = board.getRow(0);
+        TTTLine row = board.getRow(0);
 
         assertEquals(2,row.getSpaceIndex(2));
     }
 
     @Test
-    public void canRetrunAColumn() {
+    public void canReturnAColumn() {
         Board board = new Board();
-        TTTRow column = board.getColumn(1);
+        TTTLine column = board.getColumn(1);
 
         assertEquals(7, column.getSpaceIndex(2));
+    }
+
+    @Test
+    public void canReturnLeftToRightDiagonal() {
+        Board board = new Board();
+
+        TTTLine diagonal = board.getLeftToRightDiagonal();
+
+        assertEquals(8, diagonal.getSpaceIndex(2));
+    }
+
+    @Test
+    public void canReturnRightToLeftDiagonal() {
+        Board board = new Board();
+
+        TTTLine diagonal = board.getRightToLeftDiagonal();
+
+        assertEquals(6, diagonal.getSpaceIndex(2));
     }
 
     @Test

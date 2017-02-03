@@ -8,20 +8,36 @@ public class BoardEvaluator {
     }
 
     public GameState evaluate() {
-        int rows = board.sideLength();
         GameState gameState = GameState.NoWinner;
 
-        for(int i = 0; i < rows; i++) {
-           TTTRow row = board.getRow(i);
+        gameState = evaluateRows(gameState);
 
-           if(checkRowIsWin(row))
-               gameState = GameState.Win;
-        }
+        gameState = evaluateColumns(gameState);
 
         return gameState;
     }
 
-    public boolean checkRowIsWin(TTTRow row) {
+    private GameState evaluateRows(GameState gameState) {
+        for(int i = 0; i < board.sideLength(); i++) {
+           TTTLine row = board.getRow(i);
+
+           if(checkLineIsWin(row))
+               gameState = GameState.Win;
+        }
+        return gameState;
+    }
+
+    private GameState evaluateColumns(GameState gameState) {
+        for(int i = 0; i < board.sideLength(); i++) {
+            TTTLine column = board.getColumn(i);
+
+            if(checkLineIsWin(column))
+                gameState = GameState.Win;
+        }
+        return gameState;
+    }
+
+    public boolean checkLineIsWin(TTTLine row) {
         boolean win = false;
         String marker = "";
 
@@ -38,9 +54,5 @@ public class BoardEvaluator {
             }
         }
         return win;
-    }
-
-    public boolean checkColumnIsWin(TTTRow column) {
-        return false;
     }
 }
