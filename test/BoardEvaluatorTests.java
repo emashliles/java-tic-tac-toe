@@ -12,16 +12,16 @@ import static org.junit.Assert.assertThat;
 public class BoardEvaluatorTests{
 
     private Board board;
+    private BoardEvaluator evaluator;
 
     @Before
     public void setUp() {
         board = new Board();
+        evaluator = new BoardEvaluator(board);
     }
 
     @Test
     public void canDetectNoPlayerHasWon() {
-        BoardEvaluator evaluator = new BoardEvaluator(board);
-
         assertThat(evaluator.evaluate(), is(GameState.NoWinner));
     }
 
@@ -30,8 +30,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(0, "X");
         board.placeMarker(3, "X");
         board.placeMarker(6, "X");
-
-        BoardEvaluator evaluator = new BoardEvaluator(board);
 
         TTTLine column = board.getColumn(0);
 
@@ -44,7 +42,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(7, "X" );
         board.placeMarker(8, "X" );
 
-        BoardEvaluator evaluator = new BoardEvaluator(board);
         TTTLine row = board.getRow(2);
 
         assertThat(evaluator.checkLineIsWin(row), is(true));
@@ -56,7 +53,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(4, "X" );
         board.placeMarker(8, "X" );
 
-        BoardEvaluator evaluator = new BoardEvaluator(board);
         TTTLine diagonal = board.getLeftToRightDiagonal();
 
         assertThat(evaluator.checkLineIsWin(diagonal), is(true));
@@ -68,8 +64,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(5, "X" );
         board.placeMarker(8, "X" );
 
-        BoardEvaluator evaluator = new BoardEvaluator(board);
-
         assertThat(evaluator.evaluate(), is(GameState.Win));
     }
 
@@ -79,8 +73,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(7, "X" );
         board.placeMarker(8, "X" );
 
-        BoardEvaluator evaluator = new BoardEvaluator(board);
-
         assertThat(evaluator.evaluate(), is(GameState.Win));
     }
 
@@ -89,8 +81,6 @@ public class BoardEvaluatorTests{
         board.placeMarker(2, "X");
         board.placeMarker(4, "X" );
         board.placeMarker(6, "X" );
-
-        BoardEvaluator evaluator = new BoardEvaluator(board);
 
         assertThat(evaluator.evaluate(), is(GameState.Win));
     }
