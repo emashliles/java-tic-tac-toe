@@ -113,4 +113,18 @@ public class TurnUITests {
         assertEquals(board.isOccupied(4), true);
 
     }
+    @Test
+    public void checkSelectionIsValid() {
+        assertEquals(true, TurnUI.validSelection("1"));
+    }
+
+    @Test
+    public void checksSelectionIsNotString() {
+        assertEquals(false, TurnUI.validSelection("one"));
+    }
+
+    @Test
+    public void checksSelectionIsValidInteger() {
+        assertEquals(false, TurnUI.validSelection("9999999999999999999999999999999999999"));
+    }
 }

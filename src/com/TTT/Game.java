@@ -30,16 +30,6 @@ public class Game {
         }
     }
 
-    public boolean validSelection(String selection) {
-        try {
-            Integer.parseInt(selection);
-            return true;
-        }
-        catch(NumberFormatException e){
-            return false;
-        }
-    }
-
     public boolean selectionOnBoard(int selection) {
        if(selection > (board.size() - 1) || selection < 0) {
            return false;

@@ -22,7 +22,7 @@ public class TurnUI {
         String selectedSpace = getPlayerInput(board, inputPrompt);
         String winningMarker = game.getPlayerMarker(game.currentPlayer());
 
-        while(!game.validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
+        while(!validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }
 
@@ -51,5 +51,15 @@ public class TurnUI {
 
     public int zeroIndexSelection(int selection){
         return selection - 1;
+    }
+
+    public static boolean validSelection(String selection) {
+        try {
+            Integer.parseInt(selection);
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
     }
 }
