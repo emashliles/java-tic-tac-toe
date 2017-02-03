@@ -46,7 +46,7 @@ public class TurnUITests {
 
         turns.takeTurn(board, game);
 
-        assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
+        assertEquals(outputStream.toString(), "Please enter a size number: Invalid input. Please enter a size number: ");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TurnUITests {
 
         turns.takeTurn(board, game);
 
-        assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
+        assertEquals(outputStream.toString(), "Please enter a size number: Invalid input. Please enter a size number: ");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class TurnUITests {
 
         turns.takeTurn(board, game);
 
-        assertEquals(outputStream.toString(), "Please enter a space number: Invalid input. Please enter a space number: ");
+        assertEquals(outputStream.toString(), "Please enter a size number: Invalid input. Please enter a size number: ");
     }
 
     @Test
