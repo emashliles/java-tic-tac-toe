@@ -84,4 +84,19 @@ public class BoardEvaluatorTests{
 
         assertThat(evaluator.evaluate(), is(GameState.Win));
     }
+
+    @Test
+    public void canDetectATie() {
+        board.placeMarker(0, "X");
+        board.placeMarker(1, "O");
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "X");
+        board.placeMarker(4, "O");
+        board.placeMarker(5, "X");
+        board.placeMarker(6, "O");
+        board.placeMarker(7, "X");
+        board.placeMarker(8, "O");
+
+        assertThat(evaluator.evaluate(), is(GameState.Tie));
+    }
 }

@@ -1,5 +1,8 @@
 package com.TTT;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class BoardEvaluator {
     private Board board;
 
@@ -13,9 +16,23 @@ public class BoardEvaluator {
         for (Line line :
                 board.allLines()) {
             if(checkLineIsWin(line)){
-                return GameState.Win;
+                gameState = GameState.Win;
             }
+        }
 
+        gameState = checkBoardIsTied(gameState);
+
+        return gameState;
+    }
+
+    private GameState checkBoardIsTied(GameState gameState) {
+        Set spaceMarkers = new HashSet();
+        for (int i = 0; i < board.size(); i++){
+            spaceMarkers.add(board.markerAt(i));
+        }
+
+        if(spaceMarkers.size() == 2) {
+            gameState = GameState.Tie;
         }
         return gameState;
     }
