@@ -62,4 +62,10 @@ public class TurnUI {
             return false;
         }
     }
+
+    public void takeTurns(Board board, Game game) {
+        while(game.isOver() == GameState.NoWinner) {
+            takeTurn(board, game);
+        }
+    }
 }

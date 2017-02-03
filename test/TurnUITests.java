@@ -40,6 +40,16 @@ public class TurnUITests {
     }
 
     @Test
+    public void canPlayAFullGame() {
+        ByteArrayInputStream in = new ByteArrayInputStream(("1\n2\n3\n4\n5\n6\n7\n").getBytes());
+        TurnUI turns = new TurnUI(printer, out, in);
+
+        turns.takeTurns(board, game);
+
+        assertEquals(outputStream.toString().contains("winner"), true);
+    }
+
+    @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);

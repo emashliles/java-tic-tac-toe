@@ -12,13 +12,6 @@ public class Main {
         Game game = new Game(board);
         TurnUI turns = new TurnUI(printer, System.out, System.in);
 
-        takeTurns(board, game, turns);
+        turns.takeTurns(board, game);
     }
-
-    public static void takeTurns(Board board, Game game, TurnUI turns) {
-        while(game.isOver() == GameState.NoWinner) {
-            turns.takeTurn(board, game);
-        }
-    }
-
 }
