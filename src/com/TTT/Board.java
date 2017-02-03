@@ -43,12 +43,15 @@ public class Board {
 
     public TTTRow getColumn(int columnNumber) {
         List<Integer> row = new ArrayList<>();
-        int columnStartIndex = columnNumber;
-        int maximumColumnValue =((sideLength() * sideLength()) - sideLength()) + (columnStartIndex + 1);
+        int maximumColumnValue = maximumColumnValue(columnNumber);
 
-        for(int i = columnStartIndex; i < maximumColumnValue; i += sideLength()) {
+        for(int i = columnNumber; i < maximumColumnValue + 1; i += sideLength()) {
             row.add(i);
         }
         return new TTTRow(row);
+    }
+
+    private int maximumColumnValue(int columnNumber) {
+        return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
     }
 }
