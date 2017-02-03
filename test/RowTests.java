@@ -21,16 +21,14 @@ public class RowTests {
        spaces.add(1);
        spaces.add(1);
        spaces.add(1);
+       TTTLine row = new TTTLine(spaces);
 
-        TTTLine row = new TTTLine(spaces);
-
-        assertEquals(3, row.size());
+       assertEquals(3, row.size());
     }
 
     @Test
     public void canRetriveSpaceIndexOnBoard() {
         spaces.add(5);
-
         TTTLine row = new TTTLine(spaces);
 
         assertEquals(5, row.getSpaceIndex(0));
