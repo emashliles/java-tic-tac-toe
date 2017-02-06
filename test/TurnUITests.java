@@ -103,9 +103,8 @@ public class TurnUITests {
         board.placeMarker(5, "X");
         board.placeMarker(6, "O");
         board.placeMarker(7, "X");
-        board.placeMarker(8, "O");
 
-        ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(("9").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
