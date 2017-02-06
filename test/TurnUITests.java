@@ -23,7 +23,7 @@ public class TurnUITests {
     public void setUp() {
        board = new Board();
        game = new Game(board);
-       printer = new BoardPrinter(System.out);
+       printer = new BoardPrinter(new PrintStream(new ByteArrayOutputStream()));
        outputStream = new ByteArrayOutputStream();
        out = new PrintStream(outputStream);
     }
