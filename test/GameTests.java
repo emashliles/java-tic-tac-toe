@@ -69,4 +69,22 @@ public class GameTests {
     public void canReturnCurrentPlayer() {
         assertEquals(game.currentPlayer(), 1);
     }
+
+    @Test
+    public void canPlayAFullGame() {
+        game.doTurn(0);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(1);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(2);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(3);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(4);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(5);
+        assertThat(game.isOver(), is(GameState.NoWinner));
+        game.doTurn(6);
+        assertThat(game.isOver(), is(GameState.Win));
+    }
 }

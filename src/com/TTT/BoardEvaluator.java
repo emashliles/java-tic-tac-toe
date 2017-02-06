@@ -39,19 +39,15 @@ public class BoardEvaluator {
 
     public boolean checkLineIsWin(Line line) {
         boolean win = false;
-        String marker = "";
+        Set spaceMarkers = new HashSet();
 
-        for(int i = 0; i < line.size(); i ++){
-            if(board.markerAt(line.getSpaceIndex(i)) == marker && marker != "" ) {
-                win = true;
-            }
-            else {
-                win = false;
-            }
+        for(int i = 0; i < line.size(); i++){
+            spaceMarkers.add(board.markerAt(line.getSpaceIndex(i)));
+        }
 
-            if(marker == "") {
-                marker = board.markerAt(line.getSpaceIndex(i));
-            }
+        if (spaceMarkers.size() == 1)
+        {
+            win = true;
         }
         return win;
     }
