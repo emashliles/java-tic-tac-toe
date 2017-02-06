@@ -28,9 +28,13 @@ public class MiniMax {
             BoardEvaluator evaluator = new BoardEvaluator(clonedBoard);
             GameState moveOutcome = evaluator.evaluate();
 
-            addMoveOutcome(move, moveOutcome);
+            addMoveOutcome(move, moveOutcome, marker);
 
             marker = changePlayer(marker);
+
+            if(moveOutcome == GameState.Win || moveOutcome ==GameState.Tie){
+                return;
+            }
         }
     }
 
@@ -43,15 +47,17 @@ public class MiniMax {
         }
     }
 
-    private void addMoveOutcome(Integer move, GameState moveOutcome) {
-        if(moveOutcome == GameState.Win){
-            moves.add(new Move(move, 10));
-        }
-        if(moveOutcome == GameState.Tie){
-            moves.add(new Move(move, 0));
-        }
-        if(moveOutcome == GameState.NoWinner){
-            moves.add(new Move(move, -10));
+    private void addMoveOutcome(Integer move, GameState moveOutcome, String marker) {
+        if (marker == "X") {
+            if (moveOutcome == GameState.Win) {
+                moves.add(new Move(move, 10));
+            }
+            if (moveOutcome == GameState.Tie) {
+                moves.add(new Move(move, 0));
+            }
+            if (moveOutcome == GameState.NoWinner) {
+                moves.add(new Move(move, -10));
+            }
         }
     }
 
