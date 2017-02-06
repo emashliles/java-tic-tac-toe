@@ -86,4 +86,14 @@ public class BoardTests {
         assertEquals(lines.contains(row), true);
         assertEquals(lines.contains(column), true);
     }
+
+    @Test
+    public void cloneSelf() {
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "O");
+        Board clonedBoard = (Board)board.clone();
+        assertEquals((clonedBoard == board), false);
+        assertEquals(clonedBoard.markerAt(2), "X");
+        assertEquals(clonedBoard.markerAt(3), "O");
+    }
 }

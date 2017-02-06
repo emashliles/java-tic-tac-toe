@@ -91,4 +91,15 @@ public class Board {
         return lines;
     }
 
+    @Override
+    public Object clone() {
+        Board clone = new Board();
+        for (int i = 0; i < this.size(); i++){
+            if(isOccupied(i)){
+                clone.placeMarker(i, spaces[i]);
+            }
+        }
+
+        return clone;
+    }
 }
