@@ -86,6 +86,4 @@ public class BoardTests {
         assertEquals(lines.contains(row), true);
         assertEquals(lines.contains(column), true);
     }
-
-
 }

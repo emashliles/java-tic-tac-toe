@@ -20,7 +20,12 @@ public class Board {
     }
 
     public boolean isOccupied(int space) {
-        return spaces[space] == "X";
+        if(spaces[space] == "X" || spaces[space] == "O"){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void placeMarker(int space, String marker) {
