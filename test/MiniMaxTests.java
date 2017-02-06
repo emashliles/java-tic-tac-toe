@@ -22,7 +22,8 @@ public class MiniMaxTests {
 
         MiniMax miniMax = new MiniMax(board);
         List<Integer> availableMoves = board.availableMoves();
-        int tieMove = miniMax.evaluateMoves(availableMoves);
+        miniMax.evaluateMoves("X");
+        int tieMove = miniMax.selectBestMove();
 
         assertEquals(8, tieMove);
     }
@@ -39,8 +40,22 @@ public class MiniMaxTests {
         board.placeMarker(6, "O");
         MiniMax minimax = new MiniMax(board);
         List<Integer> availableMoves = board.availableMoves();
-        int winningMove = minimax.evaluateMoves(availableMoves);
+        minimax.evaluateMoves("X");
+        int winningMove = minimax.selectBestMove();
+
 
         assertEquals(7, winningMove);
+    }
+
+    @Test
+    public void pickFirstAvailableMoveIfNoWinAvailable() {
+        Board board = new Board();
+        board.placeMarker(5, "O");
+        MiniMax miniMax = new MiniMax(board);
+        List<Integer> availableMoves = board.availableMoves();
+        miniMax.evaluateMoves( "X");
+        int firstMove = miniMax.selectBestMove();
+
+        assertEquals(8, firstMove);
     }
 }
