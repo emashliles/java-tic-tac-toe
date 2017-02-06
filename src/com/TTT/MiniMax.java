@@ -22,34 +22,48 @@ public class MiniMax {
     public void evaluateMoves(List<Integer> availableMoves, String marker) {
         for (Integer move: availableMoves) {
 
-            if(clonedBoard == null){
-                clonedBoard = (Board) board.clone();
-            }
-            else {
-                clonedBoard = (Board) clonedBoard.clone();
-            }
+            cloneBoard();
 
             clonedBoard.placeMarker(move, marker);
             BoardEvaluator evaluator = new BoardEvaluator(clonedBoard);
             GameState moveOutcome = evaluator.evaluate();
-            if(moveOutcome == GameState.Win){
-                moves.add(new Move(move, 10));
-            }
-            if(moveOutcome == GameState.Tie){
-                moves.add(new Move(move, 0));
-            }
-            if(moveOutcome == GameState.NoWinner){
-                moves.add(new Move(move, -10));
-            }
 
-            if(marker == "X")
-            {
-                marker = "O";
-            }
-            else {
-                marker = "X";
-            }
+            addMoveOutcome(move, moveOutcome);
+
+            marker = changePlayer(marker);
         }
+    }
+
+    private void cloneBoard() {
+        if(clonedBoard == null){
+            clonedBoard = (Board) board.clone();
+        }
+        else {
+            clonedBoard = (Board) clonedBoard.clone();
+        }
+    }
+
+    private void addMoveOutcome(Integer move, GameState moveOutcome) {
+        if(moveOutcome == GameState.Win){
+            moves.add(new Move(move, 10));
+        }
+        if(moveOutcome == GameState.Tie){
+            moves.add(new Move(move, 0));
+        }
+        if(moveOutcome == GameState.NoWinner){
+            moves.add(new Move(move, -10));
+        }
+    }
+
+    private String changePlayer(String marker) {
+        if(marker == "X")
+        {
+            marker = "O";
+        }
+        else {
+            marker = "X";
+        }
+        return marker;
     }
 
     public int selectBestMove() {
