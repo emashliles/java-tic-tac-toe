@@ -102,4 +102,15 @@ public class Board {
 
         return clone;
     }
+
+    public List<Integer> availableMoves() {
+        List<Integer> availableMoves = new ArrayList<>();
+
+        for(int i = 0; i < size(); i++) {
+            if(!isOccupied(i)){
+                availableMoves.add(i);
+            }
+        }
+        return availableMoves;
+    }
 }

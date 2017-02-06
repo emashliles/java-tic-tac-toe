@@ -10,17 +10,6 @@ public class MiniMax {
         this.board = board;
     }
 
-    public List<Integer> availableMoves() {
-        List<Integer> availableMoves = new ArrayList<>();
-
-        for(int i = 0; i < board.size(); i++) {
-            if(!board.isOccupied(i)){
-                availableMoves.add(i);
-            }
-        }
-        return availableMoves;
-    }
-
     public int evaluateMoves(List<Integer> availableMoves) {
         for (Integer move: availableMoves) {
             Board clonedBoard = (Board) board.clone();

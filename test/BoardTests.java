@@ -1,5 +1,7 @@
 import com.TTT.Board;
 import com.TTT.Line;
+import com.TTT.MiniMax;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -85,6 +87,15 @@ public class BoardTests {
         assertEquals(lines.contains(diagonal), true);
         assertEquals(lines.contains(row), true);
         assertEquals(lines.contains(column), true);
+    }
+    @Test
+    public void findAllAvailableMoves() {
+        Board board = new Board();
+        board.placeMarker(1, "X");
+        board.placeMarker(5, "O");
+        List<Integer> availableMoves = board.availableMoves();
+
+        Assert.assertEquals(7, availableMoves.size());
     }
 
     @Test
