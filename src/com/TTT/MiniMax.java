@@ -26,8 +26,13 @@ public class MiniMax {
             Board clonedBoard = (Board) board.clone();
             clonedBoard.placeMarker(move, "X");
             BoardEvaluator evaluator = new BoardEvaluator(clonedBoard);
-            if(evaluator.evaluate() == GameState.Win)
+            GameState moveOutcome = evaluator.evaluate();
+            if(moveOutcome == GameState.Win){
                 return move;
+            }
+            if(moveOutcome == GameState.Tie){
+                return move;
+            }
         }
 
         return 0;
