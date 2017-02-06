@@ -5,71 +5,94 @@ import java.util.List;
 
 public class MiniMax {
     private Board board;
-    private Board clonedBoard;
     private List<Move> moves;
     private List<Integer> availableMoves;
+    private String maxMarker;
+    private String miniMarker;
 
     public MiniMax(Board board) {
         this.board = board;
-        this.availableMoves = board.availableMoves();
         moves = new ArrayList<>();
+        maxMarker = "X";
+        miniMarker = "O";
     }
 
-    public void evaluateMoves(String marker){
-        evaluateMoves(availableMoves, marker);
-    };
+    public void evaluateMoves() {
+        availableMoves = board.availableMoves();
+        for (Integer move: availableMoves){
+            Move currentMove = new Move(move, 0);
+            currentMove.isParent = true;
+            evaluateMoves(maxMarker, board, currentMove);
+        }
+    }
 
-    public void evaluateMoves(List<Integer> availableMoves, String marker) {
-        for (Integer move: availableMoves) {
+    public void evaluateMoves(String marker, Board board, Move previousMove) {
+        List<Integer> availableMoves = board.availableMoves();
+        for (Integer move : availableMoves) {
 
-            cloneBoard();
+            Board clonedBoard = (Board) board.clone();
 
             clonedBoard.placeMarker(move, marker);
             BoardEvaluator evaluator = new BoardEvaluator(clonedBoard);
             GameState moveOutcome = evaluator.evaluate();
-
-            addMoveOutcome(move, moveOutcome, marker);
+            Move newMove = addMoveOutcome(move, moveOutcome, marker, previousMove);
+            if(moveOutcome == GameState.Tie || moveOutcome == GameState.Win){
+                return;
+            }
 
             marker = changePlayer(marker);
 
-            if(moveOutcome == GameState.Win || moveOutcome ==GameState.Tie){
-                return;
-            }
+            evaluateMoves(marker, clonedBoard, newMove);
         }
     }
 
-    private void cloneBoard() {
-        if(clonedBoard == null){
-            clonedBoard = (Board) board.clone();
-        }
-        else {
-            clonedBoard = (Board) clonedBoard.clone();
-        }
-    }
-
-    private void addMoveOutcome(Integer move, GameState moveOutcome, String marker) {
-        if (marker == "X") {
+    private Move addMoveOutcome(Integer move, GameState moveOutcome, String marker, Move previousMove) {
+        Move newMove = new Move(move, 0);
+        if (marker == maxMarker) {
             if (moveOutcome == GameState.Win) {
-                moves.add(new Move(move, 10));
+                newMove.moveScore = 10;
+                addMoveToMoves(newMove, previousMove);
             }
             if (moveOutcome == GameState.Tie) {
-                moves.add(new Move(move, 0));
+                addMoveToMoves(newMove, previousMove);
             }
             if (moveOutcome == GameState.NoWinner) {
-                moves.add(new Move(move, -10));
+                addMoveToMoves(newMove, previousMove);
             }
         }
+        if (marker == miniMarker){
+            if (moveOutcome == GameState.Win) {
+                newMove.moveScore = -10;
+                addMoveToMoves(newMove, newMove);
+            }
+            if (moveOutcome == GameState.Tie) {
+                addMoveToMoves(newMove, previousMove);
+            }
+            if (moveOutcome == GameState.NoWinner) {
+                addMoveToMoves(newMove, previousMove);
+
+            }
+        }
+        return newMove;
+    }
+
+    private void addMoveToMoves(Move move, Move previousMove) {
+       if(previousMove.isParent) {
+           previousMove.childMoves.add(move);
+       }
+       else{
+           moves.add(move);
+       }
     }
 
     private String changePlayer(String marker) {
-        if(marker == "X")
+        if(marker == maxMarker)
         {
-            marker = "O";
+            return miniMarker;
         }
         else {
-            marker = "X";
+            return maxMarker;
         }
-        return marker;
     }
 
     public int selectBestMove() {

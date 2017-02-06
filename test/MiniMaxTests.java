@@ -19,7 +19,7 @@ public class MiniMaxTests {
         board.placeMarker(7, "O");
 
         MiniMax miniMax = new MiniMax(board);
-        miniMax.evaluateMoves("X");
+        miniMax.evaluateMoves();
         int tieMove = miniMax.selectBestMove();
 
         assertEquals(8, tieMove);
@@ -36,7 +36,7 @@ public class MiniMaxTests {
         board.placeMarker(5, "X");
         board.placeMarker(6, "O");
         MiniMax minimax = new MiniMax(board);
-        minimax.evaluateMoves("X");
+        minimax.evaluateMoves();
         int winningMove = minimax.selectBestMove();
 
 
@@ -48,9 +48,22 @@ public class MiniMaxTests {
         Board board = new Board();
         board.placeMarker(5, "O");
         MiniMax miniMax = new MiniMax(board);
-        miniMax.evaluateMoves( "X");
+        miniMax.evaluateMoves();
         int firstMove = miniMax.selectBestMove();
 
         assertEquals(0, firstMove);
+    }
+
+    @Test
+    public void pickCentreSpaceIfAvailable() {
+        Board board = new Board();
+        board.placeMarker(3, "O");
+        MiniMax miniMax = new MiniMax(board);
+        miniMax.evaluateMoves();
+
+        int move = miniMax.selectBestMove();
+
+        assertEquals(4, move);
+
     }
 }
