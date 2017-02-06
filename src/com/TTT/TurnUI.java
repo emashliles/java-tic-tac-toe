@@ -9,7 +9,7 @@ public class TurnUI {
     private PrintStream out;
     private BoardPrinter printer;
     private Scanner scanner;
-    private String inputPrompt ="Please enter a space number: ";
+    private String inputPrompt ="Please enter a size number: ";
 
     public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
@@ -19,29 +19,28 @@ public class TurnUI {
     }
 
     public void takeTurn(Board board, Game game) {
-        int selectedSpace = getPlayerInput(board, inputPrompt);
+        String selectedSpace = getPlayerInput(board, inputPrompt);
 
-        while(selectedSpace < 0 || selectedSpace > (board.size() - 1) || board.isOccupied(selectedSpace))
-        {
+        while(!game.validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
         }
 
-        game.doTurn(selectedSpace);
+        game.doTurn(parseSelection(selectedSpace));
     }
 
-    private Integer getPlayerInput(Board board, String text) {
+    private String getPlayerInput(Board board, String text) {
         printer.printBoard(board);
         out.print(text);
         String selection = scanner.nextLine();
-        return parseSelection(selection);
+        return selection;
     }
 
-    private int parseSelection(String selection) {
-        try{
-            return Integer.parseInt(selection) - 1;
-        }
-        catch(Exception e){
-            return -1;
-        }
+    public int parseSelection(String selection) {
+        int selectedSpace = Integer.parseInt(selection);
+        return zeroIndexSelection(selectedSpace);
+    }
+
+    public int zeroIndexSelection(int selection){
+        return selection - 1;
     }
 }

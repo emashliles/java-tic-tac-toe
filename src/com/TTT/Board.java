@@ -1,5 +1,8 @@
 package com.TTT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
     private String[] spaces;
@@ -22,5 +25,19 @@ public class Board {
 
     public String markerAt(int space) {
         return spaces[space];
+    }
+
+    public TTTRow getRow(int rowNumber) {
+        List<Integer> row= new ArrayList<>();
+        int rowStartIndex = rowNumber * sideLength();
+
+        for(int i = rowStartIndex; i < rowStartIndex + sideLength() ; i++) {
+            row.add(i);
+        }
+        return new TTTRow(row);
+    }
+
+    public int sideLength() {
+        return 3;
     }
 }

@@ -16,6 +16,6 @@ public class BoardPrinterTests {
         BoardPrinter ui = new BoardPrinter(out);
         ui.printBoard(board);
 
-        assertEquals(outBytes.toString(), "123\n456\n789\n");
+        assertEquals(outBytes.toString(), " 1 | 2 | 3 \n===========\n 4 | 5 | 6 \n===========\n 7 | 8 | 9 \n");
     }
 }

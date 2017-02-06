@@ -1,32 +1,66 @@
 import com.TTT.Board;
 import com.TTT.Game;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class GameTests {
+
+    private Board board;
+    private Game game;
+
+    @Before
+    public void setUp() {
+       board = new Board();
+       game = new Game(board);
+    }
+
     @Test
     public void startsNewGame() {
-        Board board = new Board();
-        Game game = new Game(board);
         assertEquals(false, game.isOver());
     }
 
     @Test
     public void handlesTurn() {
-        Board board  = new Board();
-        Game game = new Game(board);
         game.doTurn(1);
         assertEquals("X", board.markerAt(1));
     }
 
     @Test
-    public void handlesSecondPlayerTurn()
-    {
-        Board board = new Board();
-        Game game = new Game(board);
+    public void handlesSecondPlayerTurn() {
         game.doTurn(1);
         game.doTurn(5);
         assertEquals("O", board.markerAt(5));
+    }
+
+    @Test
+    public void checkSelectionIsValid() {
+        assertEquals(true, game.validSelection("1"));
+    }
+
+    @Test
+    public void checksSelectionIsNotString() {
+        assertEquals(false, game.validSelection("one"));
+    }
+
+    @Test
+    public void checksSelectionIsValidInteger() {
+        assertEquals(false, game.validSelection("9999999999999999999999999999999999999"));
+    }
+
+    @Test
+    public void checksSelectionIsNotOffTheBoard() {
+        assertEquals(false, game.selectionOnBoard(10));
+    }
+
+    @Test
+    public void checksSelectionIsAbove1() {
+        assertEquals(false, game.selectionOnBoard(-1));
+    }
+
+    @Test
+    public void checkSelectionIsOnTheBoard() {
+        assertEquals(true, game.selectionOnBoard(5));
     }
 }
