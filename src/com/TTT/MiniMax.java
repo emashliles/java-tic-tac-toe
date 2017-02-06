@@ -20,4 +20,16 @@ public class MiniMax {
         }
         return availableMoves;
     }
+
+    public int evaluateMoves(List<Integer> availableMoves) {
+        for (Integer move: availableMoves) {
+            Board clonedBoard = (Board) board.clone();
+            clonedBoard.placeMarker(move, "X");
+            BoardEvaluator evaluator = new BoardEvaluator(clonedBoard);
+            if(evaluator.evaluate() == GameState.Win)
+                return move;
+        }
+
+        return 0;
+    }
 }
