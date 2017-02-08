@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class RowTests {
+public class LineTests {
 
     private List<Integer> spaces;
 
