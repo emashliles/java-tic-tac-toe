@@ -79,12 +79,12 @@ public class Board {
 
     public List<Line> allLines() {
         List<Line> lines = new ArrayList<>();
-        lines.add(getRow(0));
-        lines.add(getRow(1));
-        lines.add(getRow(2));
-        lines.add(getColumn(0));
-        lines.add(getColumn(1));
-        lines.add(getColumn(2));
+
+        for(int i = 0; i < sideLength(); i ++) {
+            lines.add(getRow(i));
+            lines.add(getColumn(i));
+        }
+
         lines.add(getLeftToRightDiagonal());
         lines.add(getRightToLeftDiagonal());
         return lines;

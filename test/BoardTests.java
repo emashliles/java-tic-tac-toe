@@ -94,4 +94,11 @@ public class BoardTests {
         assertEquals(16, board.size());
         assertEquals(4, board.sideLength());
     }
+
+    @Test
+    public void boardCanReturnAllLinesIf4x4() {
+        Board board = new Board(4);
+
+        assertEquals(board.allLines().size(), 10);
+    }
 }
