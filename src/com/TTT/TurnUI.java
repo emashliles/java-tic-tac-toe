@@ -9,7 +9,7 @@ public class TurnUI {
     private PrintStream out;
     private BoardPrinter printer;
     private Scanner scanner;
-    private String inputPrompt ="Please enter a size number: ";
+    private String inputPrompt = "Please choose a space: ";
 
     public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
