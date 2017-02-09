@@ -23,7 +23,19 @@ public class TurnUI {
         String winningMarker = game.getPlayerMarker(game.currentPlayer());
 
         while(!validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
-            selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
+
+            if (!validSelection(selectedSpace)) {
+                selectedSpace = getPlayerInput(board, "Invalid input - you must enter a number. " + inputPrompt);
+            }
+            else if (!game.selectionOnBoard(parseSelection(selectedSpace))) {
+                selectedSpace = getPlayerInput(board, "Invalid input - your choice must be a number on the board. " + inputPrompt);
+            }
+            else if (board.isOccupied(parseSelection(selectedSpace))) {
+                selectedSpace = getPlayerInput(board, "Invalid input - your choice must not be already taken. " + inputPrompt);
+            }
+            else {
+                selectedSpace = getPlayerInput(board, "Invalid input." + inputPrompt);
+            }
         }
 
         game.doTurn(parseSelection(selectedSpace));
