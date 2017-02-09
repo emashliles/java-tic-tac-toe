@@ -2,15 +2,15 @@ package com.TTT;
 
 public enum PlayerMarkers {
     X ("\u001B[31m " + "X" + " \u001B[0m"),
-    O("\u001B[34m " + "O" + " \u001B[0m");
+    O ("\u001B[34m " + "O" + " \u001B[0m");
 
-    private String printString;
+    private String display;
 
-    PlayerMarkers(String printString) {
-        this.printString = printString;
+    PlayerMarkers(String display) {
+        this.display = display;
     }
 
-    public String printString(){
-        return printString;
+    public String display(){
+        return display;
     }
 }

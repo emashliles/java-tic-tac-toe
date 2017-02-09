@@ -37,10 +37,10 @@ public class BoardPrinter {
         String space = board.markerAt(spaceIndex);
 
         if (space.equals("X")) {
-            out.print(PlayerMarkers.X.printString());
+            out.print(PlayerMarkers.X.display());
         }
         else if (space.equals("O")) {
-            out.print(PlayerMarkers.O.printString());
+            out.print(PlayerMarkers.O.display());
         }
         else {
             out.print(" " + space + " ");
