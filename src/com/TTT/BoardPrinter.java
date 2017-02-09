@@ -19,17 +19,31 @@ public class BoardPrinter {
         int rowSize = 3;
         int finalNewLine = (board.size() - 1);
 
-        for(int spaceIndex = 0; spaceIndex < board.size(); spaceIndex++) {
-            out.print(" " + board.markerAt(spaceIndex)+ " ");
+        for (int spaceIndex = 0; spaceIndex < board.size(); spaceIndex++) {
+            printSpace(board, spaceIndex);
 
-            if((spaceIndex + 1) % rowSize != 0)
+            if ((spaceIndex + 1) % rowSize != 0)
                 out.print("|");
 
-            if(separatorRows.contains(spaceIndex))
+            if (separatorRows.contains(spaceIndex))
                 out.print("\n===========\n");
 
-            if(spaceIndex == finalNewLine)
+            if (spaceIndex == finalNewLine)
                 out.print("\n");
+        }
+    }
+
+    private void printSpace(Board board, int spaceIndex) {
+        String space = board.markerAt(spaceIndex);
+
+        if (space.equals("X")) {
+            out.print("\u001B[31m " + space + " \u001B[0m");
+        }
+        else if (space.equals("O")) {
+            out.print("\u001B[34m " + space + " \u001B[0m");
+        }
+        else {
+            out.print(" " + space + " ");
         }
     }
 }
