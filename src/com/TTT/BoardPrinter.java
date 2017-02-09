@@ -1,8 +1,6 @@
 package com.TTT;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BoardPrinter {
     private final PrintStream out;

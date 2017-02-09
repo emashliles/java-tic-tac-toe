@@ -1,4 +1,5 @@
 import com.TTT.GameOptionsUI;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -8,11 +9,20 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertEquals;
 
 public class GameOptionsUITests {
+
+    private ByteArrayOutputStream outputStream;
+    private PrintStream out;
+    private ByteArrayInputStream in;
+
+    @Before
+    public void setUp() {
+        outputStream = new ByteArrayOutputStream();
+        out = new PrintStream(outputStream);
+    }
+
     @Test
     public void askUserForBoardSizeSelection() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
-        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
+        in = new ByteArrayInputStream("4".getBytes());
         GameOptionsUI ui = new GameOptionsUI(out, in);
 
         ui.boardSize();
@@ -22,8 +32,6 @@ public class GameOptionsUITests {
 
     @Test
     public void getUserBoardSizeSelection() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outputStream);
         ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
         GameOptionsUI ui = new GameOptionsUI(out, in);
 
