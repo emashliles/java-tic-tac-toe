@@ -7,7 +7,8 @@ public class Main {
     }
 
     private static void run() {
-        Board board = new Board();
+        GameOptionsUI optionsUI = new GameOptionsUI(System.out, System.in);
+        Board board = new Board(optionsUI.boardSize());
         BoardPrinter printer = new BoardPrinter(System.out);
         Game game = new Game(board);
         TurnUI turns = new TurnUI(printer, System.out, System.in);

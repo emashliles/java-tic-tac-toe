@@ -12,7 +12,12 @@ public class Board {
     }
 
     public Board(int size) {
-        spaces = new String[]{"1","2","3","4","5","6","7","8","9","10","11", "12", "13", "14", "15", "16"};
+        if(size == 4) {
+            spaces = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
+        }
+        else {
+            spaces = new String[]{"1","2","3","4","5","6","7","8","9"};
+        }
     }
 
     public int size() {
