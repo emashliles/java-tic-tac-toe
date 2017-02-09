@@ -19,15 +19,25 @@ public class GameOptionsUI {
     public int boardSize() {
         out.print("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: ");
 
-        int selection = getBoardSizeSelection();
-        while(selection != 3 && selection != 4) {
+        String selection = getBoardSizeSelection();
+        while(!validSelection(selection) || ((Integer.parseInt(selection) != 3) && (Integer.parseInt(selection) != 4))) {
             out.print("You must choose 3 for a 3x3 board or 4 for a 4x4 board.");
             selection = getBoardSizeSelection();
         }
-        return selection;
+        return Integer.parseInt(selection);
     }
 
-    private int getBoardSizeSelection() {
-        return Integer.parseInt(scanner.nextLine());
+    private String getBoardSizeSelection() {
+        return scanner.nextLine();
+    }
+
+    private boolean validSelection(String selection) {
+        try {
+            Integer.parseInt(selection);
+            return true;
+        }
+        catch(NumberFormatException e){
+            return false;
+        }
     }
 }
