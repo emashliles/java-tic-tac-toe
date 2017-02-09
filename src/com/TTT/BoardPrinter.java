@@ -36,10 +36,10 @@ public class BoardPrinter {
     private void printSpace(Board board, int spaceIndex) {
         String space = board.markerAt(spaceIndex);
 
-        if (space.equals("X")) {
+        if (space.equals(PlayerMarkers.X.symbol())) {
             out.print(PlayerMarkers.X.display());
         }
-        else if (space.equals("O")) {
+        else if (space.equals(PlayerMarkers.O.symbol())) {
             out.print(PlayerMarkers.O.display());
         }
         else {

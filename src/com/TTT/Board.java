@@ -24,7 +24,7 @@ public class Board {
     }
 
     public boolean isOccupied(int space) {
-        return spaces[space] == "X";
+        return spaces[space].equals(PlayerMarkers.O.symbol()) || spaces[space].equals(PlayerMarkers.X.symbol());
     }
 
     public void placeMarker(int space, String marker) {

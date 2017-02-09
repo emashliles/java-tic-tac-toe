@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 
 public class BoardTests {
@@ -30,7 +31,9 @@ public class BoardTests {
     @Test
     public void placeMarkerMakesSpaceOccupied() {
         board.placeMarker(3, "X");
+        board.placeMarker(4, "O");
         assertEquals(board.isOccupied(3), true);
+        assertEquals(board.isOccupied(4), true);
     }
 
     @Test
