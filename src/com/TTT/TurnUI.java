@@ -9,7 +9,7 @@ public class TurnUI {
     private PrintStream out;
     private BoardPrinter printer;
     private Scanner scanner;
-    private String inputPrompt ="Please enter a size number: ";
+    private String inputPrompt = "Please choose a space: ";
 
     public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
@@ -23,17 +23,34 @@ public class TurnUI {
         String winningMarker = game.getPlayerMarker(game.currentPlayer());
 
         while(!validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
-            selectedSpace = getPlayerInput(board, "Invalid input. " + inputPrompt);
+            selectedSpace = getPlayerInput(board,  invalidReasonText(board, game, selectedSpace) + inputPrompt);
         }
 
         game.doTurn(parseSelection(selectedSpace));
 
         if(game.isOver() == GameState.Win) {
-            out.print("Player " + winningMarker + " is the winner.");
+            printer.printBoard(board);
+            out.print("Player " + winningMarker + " is the winner.\n");
         }
 
         if (game.isOver() == GameState.Tie){
-            out.print("This game is a tie.");
+            printer.printBoard(board);
+            out.print("This game is a tie.\n");
+        }
+    }
+
+    private String invalidReasonText(Board board, Game game, String selectedSpace) {
+        if (!validSelection(selectedSpace)) {
+            return "Invalid input - you must enter a number. ";
+        }
+        else if (!game.selectionOnBoard(parseSelection(selectedSpace))) {
+            return "Invalid input - your choice must be a number on the board. ";
+        }
+        else if (board.isOccupied(parseSelection(selectedSpace))) {
+            return "Invalid input - your choice must not be already taken. ";
+        }
+        else {
+            return "Invalid input";
         }
     }
 
