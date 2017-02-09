@@ -15,7 +15,7 @@ public class GameTests {
 
     @Before
     public void setUp() {
-       board = new Board();
+       board = new Board(3);
        game = new Game(board);
     }
 

@@ -16,7 +16,7 @@ public class BoardEvaluatorTests{
 
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(3);
         evaluator = new BoardEvaluator(board);
     }
 

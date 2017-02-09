@@ -21,7 +21,7 @@ public class TurnUITests {
 
     @Before
     public void setUp() {
-       board = new Board();
+       board = new Board(3);
        game = new Game(board);
        printer = new BoardPrinter(new PrintStream(new ByteArrayOutputStream()));
        outputStream = new ByteArrayOutputStream();

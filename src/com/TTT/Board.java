@@ -7,10 +7,6 @@ public class Board {
 
     private String[] spaces;
 
-    public Board() {
-        spaces = new String[]{"1","2","3","4","5","6","7","8","9"};
-    }
-
     public Board(int size) {
         if(size == 4) {
             spaces = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};

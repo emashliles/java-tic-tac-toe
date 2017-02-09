@@ -18,7 +18,7 @@ public class BoardPrinterTests {
 
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(3);
         outBytes = new ByteArrayOutputStream();
         out = new PrintStream(outBytes);
         ui = new BoardPrinter(out);

@@ -13,7 +13,7 @@ public class BoardTests {
 
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(3);
     }
 
     @Test
