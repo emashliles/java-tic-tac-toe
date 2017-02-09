@@ -90,7 +90,7 @@ public class TurnUITests {
 
         turns.takeTurn(board, game);
 
-        assertEquals(outputStream.toString(), "Please choose a space: Player X is the winner.");
+        assertEquals(outputStream.toString(), "Please choose a space: Player X is the winner.\n");
     }
 
     @Test
@@ -110,7 +110,7 @@ public class TurnUITests {
 
         turns.takeTurn(board, game);
 
-        assertEquals(outputStream.toString(), "Please choose a space: This game is a tie.");
+        assertEquals(outputStream.toString(), "Please choose a space: This game is a tie.\n");
     }
 
     @Test

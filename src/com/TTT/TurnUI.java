@@ -29,11 +29,13 @@ public class TurnUI {
         game.doTurn(parseSelection(selectedSpace));
 
         if(game.isOver() == GameState.Win) {
-            out.print("Player " + winningMarker + " is the winner.");
+            printer.printBoard(board);
+            out.print("Player " + winningMarker + " is the winner.\n");
         }
 
         if (game.isOver() == GameState.Tie){
-            out.print("This game is a tie.");
+            printer.printBoard(board);
+            out.print("This game is a tie.\n");
         }
     }
 
