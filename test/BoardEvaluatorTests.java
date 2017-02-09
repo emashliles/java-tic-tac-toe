@@ -99,4 +99,17 @@ public class BoardEvaluatorTests{
 
         assertThat(evaluator.evaluate(), is(GameState.Tie));
     }
+
+    @Test
+    public void canEvaluate4x4Board() {
+        Board board = new Board(4);
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        board.placeMarker(0, "X");
+        board.placeMarker(5, "X");
+        board.placeMarker(10, "X");
+        board.placeMarker(15, "X");
+
+        assertThat(evaluator.evaluate(), is(GameState.Win));
+    }
 }

@@ -36,10 +36,10 @@ public class Board {
     }
 
     public Line getRow(int rowNumber) {
-        List<Integer> row= new ArrayList<>();
-        int rowStartIndex = rowNumber * sideLength();
+        List<Integer> row = new ArrayList<>();
+        int lineStartIndex = rowNumber * sideLength();
 
-        for(int i = rowStartIndex; i < rowStartIndex + sideLength() ; i++) {
+        for(int i = lineStartIndex; i < lineStartIndex + sideLength() ; i++) {
             row.add(i);
         }
         return new Line(row);
@@ -73,10 +73,6 @@ public class Board {
         return new Line(diagonal);
     }
 
-    private int maximumColumnValue(int columnNumber) {
-        return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
-    }
-
     public List<Line> allLines() {
         List<Line> lines = new ArrayList<>();
 
@@ -88,6 +84,10 @@ public class Board {
         lines.add(getLeftToRightDiagonal());
         lines.add(getRightToLeftDiagonal());
         return lines;
+    }
+
+    private int maximumColumnValue(int columnNumber) {
+        return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
     }
 
 }
