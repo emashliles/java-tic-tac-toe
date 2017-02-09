@@ -87,5 +87,10 @@ public class BoardTests {
         assertEquals(lines.contains(column), true);
     }
 
-
+    @Test
+    public void boardCanBe4x4() {
+        Board board = new Board(4);
+        assertEquals(16, board.size());
+        assertEquals(4, board.sideLength());
+    }
 }
