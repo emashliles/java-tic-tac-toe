@@ -21,6 +21,14 @@ public class GameOptionsUITests {
     }
 
     @Test
+    public void getUserBoardSizeSelection() {
+        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
+        GameOptionsUI ui = new GameOptionsUI(out, in);
+
+        assertEquals(4 ,ui.boardSize());
+    }
+
+    @Test
     public void askUserForBoardSizeSelection() {
         in = new ByteArrayInputStream("4".getBytes());
         GameOptionsUI ui = new GameOptionsUI(out, in);
@@ -28,14 +36,6 @@ public class GameOptionsUITests {
         ui.boardSize();
 
         assertEquals("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: ", outputStream.toString());
-    }
-
-    @Test
-    public void getUserBoardSizeSelection() {
-        ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
-        GameOptionsUI ui = new GameOptionsUI(out, in);
-
-        assertEquals(4 ,ui.boardSize());
     }
 
     @Test

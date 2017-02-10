@@ -36,7 +36,8 @@ public class BoardPrinter {
     }
 
     private String lineSeparator(int rowSize) {
-        return new String(new char[(5 * rowSize)-1]).replace("\0", "=") + "\n";
+        int lineLength = (5 * rowSize) - 1;
+        return new String(new char[lineLength]).replace("\0", "=") + "\n";
     }
 
     private void printSpace(Board board, int spaceIndex) {
