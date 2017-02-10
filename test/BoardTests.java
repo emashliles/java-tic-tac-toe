@@ -7,14 +7,13 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-
 public class BoardTests {
 
     private Board board;
 
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(3);
     }
 
     @Test
@@ -30,7 +29,9 @@ public class BoardTests {
     @Test
     public void placeMarkerMakesSpaceOccupied() {
         board.placeMarker(3, "X");
+        board.placeMarker(4, "O");
         assertEquals(board.isOccupied(3), true);
+        assertEquals(board.isOccupied(4), true);
     }
 
     @Test
@@ -87,5 +88,17 @@ public class BoardTests {
         assertEquals(lines.contains(column), true);
     }
 
+    @Test
+    public void boardCanBe4x4() {
+        Board board = new Board(4);
+        assertEquals(16, board.size());
+        assertEquals(4, board.sideLength());
+    }
 
+    @Test
+    public void boardCanReturnAllLinesIf4x4() {
+        Board board = new Board(4);
+
+        assertEquals(board.allLines().size(), 10);
+    }
 }

@@ -7,8 +7,13 @@ public class Board {
 
     private String[] spaces;
 
-    public Board() {
-        spaces = new String[]{"1","2","3","4","5","6","7","8","9"};
+    public Board(int size) {
+        if(size == 4) {
+            spaces = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
+        }
+        else {
+            spaces = new String[]{"1","2","3","4","5","6","7","8","9"};
+        }
     }
 
     public int size() {
@@ -16,11 +21,11 @@ public class Board {
     }
 
     public int sideLength() {
-        return 3;
+        return (int) Math.sqrt(spaces.length);
     }
 
     public boolean isOccupied(int space) {
-        return spaces[space] == "X";
+        return spaces[space].equals(PlayerMarkers.O.symbol()) || spaces[space].equals(PlayerMarkers.X.symbol());
     }
 
     public void placeMarker(int space, String marker) {
@@ -32,10 +37,10 @@ public class Board {
     }
 
     public Line getRow(int rowNumber) {
-        List<Integer> row= new ArrayList<>();
-        int rowStartIndex = rowNumber * sideLength();
+        List<Integer> row = new ArrayList<>();
+        int lineStartIndex = rowNumber * sideLength();
 
-        for(int i = rowStartIndex; i < rowStartIndex + sideLength() ; i++) {
+        for(int i = lineStartIndex; i < lineStartIndex + sideLength() ; i++) {
             row.add(i);
         }
         return new Line(row);
@@ -69,21 +74,21 @@ public class Board {
         return new Line(diagonal);
     }
 
-    private int maximumColumnValue(int columnNumber) {
-        return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
-    }
-
     public List<Line> allLines() {
         List<Line> lines = new ArrayList<>();
-        lines.add(getRow(0));
-        lines.add(getRow(1));
-        lines.add(getRow(2));
-        lines.add(getColumn(0));
-        lines.add(getColumn(1));
-        lines.add(getColumn(2));
+
+        for(int i = 0; i < sideLength(); i ++) {
+            lines.add(getRow(i));
+            lines.add(getColumn(i));
+        }
+
         lines.add(getLeftToRightDiagonal());
         lines.add(getRightToLeftDiagonal());
         return lines;
+    }
+
+    private int maximumColumnValue(int columnNumber) {
+        return ((sideLength() * sideLength()) - sideLength()) + columnNumber;
     }
 
 }

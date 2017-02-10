@@ -16,7 +16,7 @@ public class BoardEvaluatorTests{
 
     @Before
     public void setUp() {
-        board = new Board();
+        board = new Board(3);
         evaluator = new BoardEvaluator(board);
     }
 
@@ -98,5 +98,18 @@ public class BoardEvaluatorTests{
         board.placeMarker(8, "O");
 
         assertThat(evaluator.evaluate(), is(GameState.Tie));
+    }
+
+    @Test
+    public void canEvaluate4x4Board() {
+        Board board = new Board(4);
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        board.placeMarker(0, "X");
+        board.placeMarker(5, "X");
+        board.placeMarker(10, "X");
+        board.placeMarker(15, "X");
+
+        assertThat(evaluator.evaluate(), is(GameState.Win));
     }
 }

@@ -10,8 +10,8 @@ public class Game {
     public Game(Board board) {
         this.board = board;
         currentPlayer = 1;
-        player1Marker = "X";
-        player2Marker = "O";
+        player1Marker = PlayerMarkers.X.symbol();
+        player2Marker = PlayerMarkers.O.symbol();
     }
 
     public GameState isOver() {

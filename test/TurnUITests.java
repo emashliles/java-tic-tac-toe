@@ -21,7 +21,7 @@ public class TurnUITests {
 
     @Before
     public void setUp() {
-       board = new Board();
+       board = new Board(3);
        game = new Game(board);
        printer = new BoardPrinter(new PrintStream(new ByteArrayOutputStream()));
        outputStream = new ByteArrayOutputStream();
@@ -102,10 +102,9 @@ public class TurnUITests {
         board.placeMarker(4, "O");
         board.placeMarker(5, "X");
         board.placeMarker(6, "O");
-        board.placeMarker(7, "X");
         board.placeMarker(8, "O");
 
-        ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream(("8").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
         turns.takeTurn(board, game);
