@@ -41,4 +41,14 @@ public class MiniMaxAcceptanceTests {
 
         assertEquals(6, miniMax.nextMove(board));
     }
+
+    @Test
+    public void blockOpponentWinning() {
+        board.placeMarker(0, "O");
+        board.placeMarker(1, "O");
+        board.placeMarker(4, "X");
+        board.placeMarker(7, "X");
+
+        assertEquals(2, miniMax.nextMove(board));
+    }
 }
