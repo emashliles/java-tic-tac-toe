@@ -14,6 +14,5 @@ public class Main {
         Game game = new Game(board, turns);
 
        game.play();
-      // turns.takeTurns(board);
     }
 }

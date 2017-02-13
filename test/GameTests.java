@@ -20,20 +20,7 @@ public class GameTests {
 
     @Test
     public void startsNewGame() {
-        assertThat(game.isOver(), is(GameState.NoWinner));
-    }
-
-    @Test
-    public void handlesTurn() {
-        game.doTurn(1);
-        assertEquals("X", board.markerAt(1));
-    }
-
-    @Test
-    public void handlesSecondPlayerTurn() {
-        game.doTurn(1);
-        game.doTurn(5);
-        assertEquals("O", board.markerAt(5));
+        assertThat(game.isOver(board), is(GameState.NoWinner));
     }
 
     @Test
@@ -56,7 +43,7 @@ public class GameTests {
         board.placeMarker(0, "X");
         board.placeMarker(3, "X");
         board.placeMarker(6, "X");
-        assertThat(game.isOver(), is(GameState.Win));
+        assertThat(game.isOver(board), is(GameState.Win));
     }
 
     @Test
@@ -67,23 +54,5 @@ public class GameTests {
     @Test
     public void canReturnCurrentPlayer() {
         assertEquals(game.currentPlayer(), 1);
-    }
-
-    @Test
-    public void canPlayAFullGame() {
-        game.doTurn(0);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(1);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(2);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(3);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(4);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(5);
-        assertThat(game.isOver(), is(GameState.NoWinner));
-        game.doTurn(6);
-        assertThat(game.isOver(), is(GameState.Win));
     }
 }

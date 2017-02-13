@@ -24,7 +24,7 @@ public class TurnUI {
         player2Marker = PlayerMarkers.O.symbol();
     }
 
-    public void takeTurn(Board board) {
+    public int takeTurn(Board board) {
         String selectedSpace = getPlayerInput(board, inputPrompt);
         String winningMarker = getPlayerMarker(currentPlayer);
 
@@ -32,8 +32,10 @@ public class TurnUI {
             selectedSpace = getPlayerInput(board,  invalidReasonText(board, selectedSpace) + inputPrompt);
         }
 
-        doTurn(parseSelection(selectedSpace), board);
+        return parseSelection(selectedSpace);
+    }
 
+    public void checkForEndOfGame(Board board, String winningMarker) {
         if(isOver(board) == GameState.Win) {
             printer.printBoard(board);
             out.print("Player " + winningMarker + " is the winner.\n");
@@ -118,9 +120,5 @@ public class TurnUI {
         }
     }
 
-    public void takeTurns(Board board) {
-        while(isOver(board) == GameState.NoWinner) {
-            takeTurn(board);
-        }
-    }
+
 }

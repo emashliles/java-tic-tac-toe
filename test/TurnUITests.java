@@ -30,9 +30,10 @@ public class TurnUITests {
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
         TurnUI turns = new TurnUI(printer, System.out, in);
+        Game game = new Game(board, turns);
 
-        turns.takeTurn(board);
-        turns.takeTurn(board);
+        game.doTurn();
+        game.doTurn();
 
         assertEquals(board.markerAt(1), "O");
     }
@@ -41,8 +42,9 @@ public class TurnUITests {
     public void canPlayAFullGame() {
         ByteArrayInputStream in = new ByteArrayInputStream(("1\n2\n3\n4\n5\n6\n7\n").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
+        Game game = new Game(board, turns);
 
-        turns.takeTurns(board);
+        game.takeTurns(board);
 
         assertEquals(outputStream.toString().contains("winner"), true);
     }
@@ -86,7 +88,9 @@ public class TurnUITests {
         ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
-        turns.takeTurn(board);
+        Game game = new Game(board, turns);
+
+        game.doTurn();
 
         assertEquals(outputStream.toString(), "Please choose a space: Player X is the winner.\n");
     }
@@ -105,7 +109,8 @@ public class TurnUITests {
         ByteArrayInputStream in = new ByteArrayInputStream(("8").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
-        turns.takeTurn(board);
+        Game game = new Game(board, turns);
+        game.doTurn();
 
         assertEquals(outputStream.toString(), "Please choose a space: This game is a tie.\n");
     }
@@ -115,10 +120,10 @@ public class TurnUITests {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
-        turns.takeTurn(board);
+        Game game = new Game(board, turns);
+        game.doTurn();
 
         assertEquals(board.isOccupied(4), true);
-
     }
 
     @Test
