@@ -101,4 +101,14 @@ public class BoardTests {
 
         assertEquals(board.allLines().size(), 10);
     }
+
+    @Test
+    public void findAllAvailableMoves() {
+        Board board = new Board(3);
+        board.placeMarker(1, "X");
+        board.placeMarker(5, "O");
+        List<Integer> availableMoves = board.availableMoves();
+
+        assertEquals(7, availableMoves.size());
+    }
 }
