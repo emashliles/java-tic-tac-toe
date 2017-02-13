@@ -2,7 +2,19 @@ package com.TTT;
 
 public class MiniMax {
     public int nextMove(Board board) {
-        return -1;
+        int bestScore = 0;
+        int bestMove = -1;
+
+        Board clonedBoard = (Board) board.clone();
+
+        for(int move : board.availableMoves()) {
+            if (getScoreForMove(move, clonedBoard) > bestScore){
+                bestMove = move;
+                bestScore = getScoreForMove(move, clonedBoard);
+            }
+        }
+
+        return bestMove;
     }
 
     public int getScoreForMove(int move, Board board) {
