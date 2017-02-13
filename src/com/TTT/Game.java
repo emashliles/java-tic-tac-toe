@@ -3,7 +3,6 @@ package com.TTT;
 public class Game {
 
     private Board board;
-    private TurnUI turns;
     private int currentPlayer;
     private String player1Marker;
     private String player2Marker;
@@ -13,7 +12,6 @@ public class Game {
 
     public Game(Board board, TurnUI turns) {
         this.board = board;
-        this.turns = turns;
         currentPlayer = 1;
         player1Marker = PlayerMarkers.X.symbol();
         player2Marker = PlayerMarkers.O.symbol();
@@ -23,7 +21,8 @@ public class Game {
     }
 
     public GameState isOver(Board board) {
-        return turns.isOver(board);
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+        return evaluator.evaluate();
     }
 
     public void doTurn() {
