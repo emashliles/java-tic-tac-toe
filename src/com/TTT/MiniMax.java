@@ -4,10 +4,9 @@ public class MiniMax {
 
     private String currentPlayerSymbol;
 
-    public int nextMove(Board board) {
+    public int nextMove(Board board, String currentPlayerSymbol) {
         int bestScore = -20;
         int bestMove = -1;
-        currentPlayerSymbol = PlayerMarkers.X.symbol();
 
         for(int move : board.availableMoves()) {
             Board clonedBoard = (Board) board.clone();
