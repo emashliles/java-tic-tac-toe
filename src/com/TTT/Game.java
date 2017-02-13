@@ -10,14 +10,14 @@ public class Game {
     private Player player1;
     private Player player2;
 
-    public Game(Board board, TurnUI turns) {
+    public Game(Board board, Player player1, Player player2) {
         this.board = board;
         currentPlayer = 1;
         player1Marker = PlayerMarkers.X.symbol();
         player2Marker = PlayerMarkers.O.symbol();
 
-        player1 = new HumanPlayer(turns);
-        player2 = new HumanPlayer(turns);
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     public GameState isOver(Board board) {

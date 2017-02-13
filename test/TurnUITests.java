@@ -1,7 +1,4 @@
-import com.TTT.Board;
-import com.TTT.BoardPrinter;
-import com.TTT.Game;
-import com.TTT.TurnUI;
+import com.TTT.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,7 +27,9 @@ public class TurnUITests {
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
         TurnUI turns = new TurnUI(printer, System.out, in);
-        Game game = new Game(board, turns);
+        HumanPlayer player1 = new HumanPlayer(turns);
+        HumanPlayer player2 = new HumanPlayer(turns);
+        Game game = new Game(board, player1, player2);
 
         game.doTurn();
         game.doTurn();
@@ -42,7 +41,9 @@ public class TurnUITests {
     public void canPlayAFullGame() {
         ByteArrayInputStream in = new ByteArrayInputStream(("1\n2\n3\n4\n5\n6\n7\n").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
-        Game game = new Game(board, turns);
+        HumanPlayer player1 = new HumanPlayer(turns);
+        HumanPlayer player2 = new HumanPlayer(turns);
+        Game game = new Game(board, player1, player2);
 
         game.takeTurns(board);
 
@@ -87,8 +88,10 @@ public class TurnUITests {
 
         ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
+        HumanPlayer player1 = new HumanPlayer(turns);
+        HumanPlayer player2 = new HumanPlayer(turns);
 
-        Game game = new Game(board, turns);
+        Game game = new Game(board, player1, player2);
 
         game.doTurn();
 
@@ -109,7 +112,10 @@ public class TurnUITests {
         ByteArrayInputStream in = new ByteArrayInputStream(("8").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
 
-        Game game = new Game(board, turns);
+        HumanPlayer player1 = new HumanPlayer(turns);
+        HumanPlayer player2 = new HumanPlayer(turns);
+
+        Game game = new Game(board, player1, player2);
         game.doTurn();
 
         assertEquals(outputStream.toString(), "Please choose a space: This game is a tie.\n");
@@ -119,8 +125,11 @@ public class TurnUITests {
     public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
         TurnUI turns = new TurnUI(printer, out, in);
+        HumanPlayer player1 = new HumanPlayer(turns);
+        HumanPlayer player2 = new HumanPlayer(turns);
 
-        Game game = new Game(board, turns);
+        Game game = new Game(board, player1, player2);
+
         game.doTurn();
 
         assertEquals(board.isOccupied(4), true);
