@@ -8,7 +8,7 @@ public class Game {
     private String player1Marker;
     private String player2Marker;
 
-    public Game(Board board) {
+    public Game(Board board, TurnUI turns) {
         this.board = board;
         this.turns = turns;
         currentPlayer = 1;
@@ -22,32 +22,19 @@ public class Game {
     }
 
     public void doTurn(int space) {
-        if(currentPlayer == 1) {
-            board.placeMarker(space, player1Marker);
-            currentPlayer = 2;
-        }
-        else {
-            board.placeMarker(space, player2Marker);
-            currentPlayer = 1;
-        }
+        turns.doTurn(space, board);
     }
 
     public boolean selectionOnBoard(int selection) {
-       if(selection > (board.size() - 1) || selection < 0) {
-           return false;
-       }
-       return true;
+      return turns.selectionOnBoard(selection, board);
     }
 
     public int currentPlayer() {
-        return currentPlayer;
+        return turns.currentPlayer();
     }
 
     public String getPlayerMarker(int playerNumber) {
-        if(currentPlayer == 1)
-            return player1Marker;
-
-        return player2Marker;
+        return turns.getPlayerMarker(playerNumber);
     }
 
     public void play() {

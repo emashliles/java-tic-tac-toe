@@ -88,6 +88,10 @@ public class TurnUI {
         }
     }
 
+    public int currentPlayer() {
+        return currentPlayer;
+    }
+
     private String getPlayerInput(Board board, String text) {
         printer.printBoard(board);
         out.print(text);

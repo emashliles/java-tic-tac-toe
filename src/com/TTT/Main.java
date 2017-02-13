@@ -11,9 +11,9 @@ public class Main {
         Board board = new Board(optionsUI.boardSize());
         BoardPrinter printer = new BoardPrinter(System.out);
         TurnUI turns = new TurnUI(printer, System.out, System.in);
-        Game game = new Game(board);
+        Game game = new Game(board, turns);
 
-        game.play();
-//        turns.takeTurns(board, game);
+       game.play();
+      // turns.takeTurns(board);
     }
 }

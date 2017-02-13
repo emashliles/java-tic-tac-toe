@@ -1,6 +1,4 @@
-import com.TTT.Board;
-import com.TTT.Game;
-import com.TTT.GameState;
+import com.TTT.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +14,8 @@ public class GameTests {
     @Before
     public void setUp() {
        board = new Board(3);
-       game = new Game(board);
+       TurnUI turnUI = new TurnUI(new BoardPrinter(System.out),System.out, System.in);
+       game = new Game(board, turnUI);
     }
 
     @Test
