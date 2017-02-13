@@ -128,4 +128,8 @@ public class BoardTests {
         assertEquals(true, board.selectionOnBoard(5));
     }
 
+    @Test
+    public void checksSelectionIsGreaterThan0() {
+        assertEquals(false, board.selectionOnBoard(-1));
+    }
 }

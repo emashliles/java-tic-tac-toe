@@ -3,7 +3,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class GameTests {
@@ -23,16 +22,6 @@ public class GameTests {
     @Test
     public void startsNewGame() {
         assertThat(game.isOver(board), is(GameState.NoWinner));
-    }
-
-    @Test
-    public void checksSelectionIsNotOffTheBoard() {
-        assertEquals(false, game.selectionOnBoard(10));
-    }
-
-    @Test
-    public void checksSelectionIsAbove1() {
-        assertEquals(false, game.selectionOnBoard(-1));
     }
 
     @Test
