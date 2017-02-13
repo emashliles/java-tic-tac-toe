@@ -19,7 +19,7 @@ public class TurnUI {
         this.out = out;
         scanner = new Scanner(in);
         scanner.useDelimiter("\n");
-        currentPlayer =1;
+        currentPlayer = 1;
         player1Marker = PlayerMarkers.X.symbol();
         player2Marker = PlayerMarkers.O.symbol();
     }
@@ -46,13 +46,6 @@ public class TurnUI {
         }
     }
 
-    public String getPlayerMarker() {
-        if(currentPlayer == 1)
-            return player1Marker;
-
-        return player2Marker;
-    }
-
     public GameState isOver(Board board) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         return evaluator.evaluate();
@@ -71,10 +64,6 @@ public class TurnUI {
         else {
             return "Invalid input";
         }
-    }
-
-    public int currentPlayer() {
-        return currentPlayer;
     }
 
     private String getPlayerInput(Board board, String text) {

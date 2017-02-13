@@ -40,9 +40,4 @@ public class GameTests {
         board.placeMarker(6, "X");
         assertThat(game.isOver(board), is(GameState.Win));
     }
-
-    @Test
-    public void canReturnCurrentPlayer() {
-        assertEquals(game.currentPlayer(), 1);
-    }
 }

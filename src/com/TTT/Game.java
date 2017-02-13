@@ -41,10 +41,6 @@ public class Game {
       return board.selectionOnBoard(selection);
     }
 
-    public int currentPlayer() {
-        return turns.currentPlayer();
-    }
-
     public void takeTurns(Board board) {
         while(isOver(board) == GameState.NoWinner) {
             doTurn();
