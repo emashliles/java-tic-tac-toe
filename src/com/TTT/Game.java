@@ -36,10 +36,6 @@ public class Game {
         }
     }
 
-    public boolean selectionOnBoard(int selection) {
-      return board.selectionOnBoard(selection);
-    }
-
     public void takeTurns(Board board) {
         while(isOver(board) == GameState.NoWinner) {
             doTurn();

@@ -10,18 +10,12 @@ public class TurnUI {
     private BoardPrinter printer;
     private Scanner scanner;
     private String inputPrompt = "Please choose a space: ";
-    private int currentPlayer;
-    private String player1Marker;
-    private String player2Marker;
 
     public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
         this.out = out;
         scanner = new Scanner(in);
         scanner.useDelimiter("\n");
-        currentPlayer = 1;
-        player1Marker = PlayerMarkers.X.symbol();
-        player2Marker = PlayerMarkers.O.symbol();
     }
 
     public int takeTurn(Board board) {
@@ -91,6 +85,4 @@ public class TurnUI {
             return false;
         }
     }
-
-
 }
