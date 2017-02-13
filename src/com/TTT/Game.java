@@ -38,7 +38,7 @@ public class Game {
     }
 
     public boolean selectionOnBoard(int selection) {
-      return turns.selectionOnBoard(selection, board);
+      return board.selectionOnBoard(selection);
     }
 
     public int currentPlayer() {

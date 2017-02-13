@@ -28,7 +28,7 @@ public class TurnUI {
         String selectedSpace = getPlayerInput(board, inputPrompt);
         String winningMarker = getPlayerMarker(currentPlayer);
 
-        while(!validSelection(selectedSpace) || !selectionOnBoard(parseSelection(selectedSpace), board) || board.isOccupied(parseSelection(selectedSpace))) {
+        while(!validSelection(selectedSpace) || !board.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board,  invalidReasonText(board, selectedSpace) + inputPrompt);
         }
 
@@ -47,17 +47,6 @@ public class TurnUI {
         }
     }
 
-    public void doTurn(int space, Board board) {
-        if(currentPlayer == 1) {
-            board.placeMarker(space, player1Marker);
-            currentPlayer = 2;
-        }
-        else {
-            board.placeMarker(space, player2Marker);
-            currentPlayer = 1;
-        }
-    }
-
     public String getPlayerMarker(int playerNumber) {
         if(currentPlayer == 1)
             return player1Marker;
@@ -69,17 +58,11 @@ public class TurnUI {
         return evaluator.evaluate();
     }
 
-    public boolean selectionOnBoard(int selection, Board board) {
-        if(selection > (board.size() - 1) || selection < 0) {
-            return false;
-        }
-        return true;
-    }
     private String invalidReasonText(Board board, String selectedSpace) {
         if (!validSelection(selectedSpace)) {
             return "Invalid input - you must enter a number. ";
         }
-        else if (!selectionOnBoard(parseSelection(selectedSpace), board)) {
+        else if (!board.selectionOnBoard(parseSelection(selectedSpace))) {
             return "Invalid input - your choice must be a number on the board. ";
         }
         else if (board.isOccupied(parseSelection(selectedSpace))) {

@@ -1,5 +1,6 @@
 import com.TTT.Board;
 import com.TTT.Line;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,7 +44,7 @@ public class BoardTests {
     @Test
     public void canReturnARow() {
         Line row = board.getRow(0);
-        assertEquals(2,row.getSpaceIndex(2));
+        assertEquals(2, row.getSpaceIndex(2));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class BoardTests {
     }
 
     @Test
-    public void canReturnSideLength(){
+    public void canReturnSideLength() {
         assertEquals(3, board.sideLength());
     }
 
@@ -116,9 +117,15 @@ public class BoardTests {
     public void cloneSelf() {
         board.placeMarker(2, "X");
         board.placeMarker(3, "O");
-        Board clonedBoard = (Board)board.clone();
+        Board clonedBoard = (Board) board.clone();
         assertEquals((clonedBoard == board), false);
         assertEquals(clonedBoard.markerAt(2), "X");
         assertEquals(clonedBoard.markerAt(3), "O");
     }
+
+    @Test
+    public void checkSelectionIsOnTheBoard() {
+        assertEquals(true, board.selectionOnBoard(5));
+    }
+
 }

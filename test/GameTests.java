@@ -33,10 +33,7 @@ public class GameTests {
         assertEquals(false, game.selectionOnBoard(-1));
     }
 
-    @Test
-    public void checkSelectionIsOnTheBoard() {
-        assertEquals(true, game.selectionOnBoard(5));
-    }
+
 
     @Test
     public void detectsAWinner() {

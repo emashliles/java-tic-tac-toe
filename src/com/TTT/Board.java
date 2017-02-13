@@ -112,4 +112,11 @@ public class Board {
 
         return clone;
     }
+
+    public boolean selectionOnBoard(int space) {
+        if(space > (size() - 1) || space < 0) {
+            return false;
+        }
+        return true;
+    }
 }
