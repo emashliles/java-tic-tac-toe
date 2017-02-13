@@ -10,40 +10,74 @@ public class TurnUI {
     private BoardPrinter printer;
     private Scanner scanner;
     private String inputPrompt = "Please choose a space: ";
+    private int currentPlayer;
+    private String player1Marker;
+    private String player2Marker;
 
     public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
         this.out = out;
         scanner = new Scanner(in);
         scanner.useDelimiter("\n");
+        currentPlayer =1;
+        player1Marker = PlayerMarkers.X.symbol();
+        player2Marker = PlayerMarkers.O.symbol();
     }
 
-    public void takeTurn(Board board, Game game) {
+    public void takeTurn(Board board) {
         String selectedSpace = getPlayerInput(board, inputPrompt);
-        String winningMarker = game.getPlayerMarker(game.currentPlayer());
+        String winningMarker = getPlayerMarker(currentPlayer);
 
-        while(!validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
-            selectedSpace = getPlayerInput(board,  invalidReasonText(board, game, selectedSpace) + inputPrompt);
+        while(!validSelection(selectedSpace) || !selectionOnBoard(parseSelection(selectedSpace), board) || board.isOccupied(parseSelection(selectedSpace))) {
+            selectedSpace = getPlayerInput(board,  invalidReasonText(board, selectedSpace) + inputPrompt);
         }
 
-        game.doTurn(parseSelection(selectedSpace));
+        doTurn(parseSelection(selectedSpace), board);
 
-        if(game.isOver() == GameState.Win) {
+        if(isOver(board) == GameState.Win) {
             printer.printBoard(board);
             out.print("Player " + winningMarker + " is the winner.\n");
         }
 
-        if (game.isOver() == GameState.Tie){
+        if (isOver(board) == GameState.Tie){
             printer.printBoard(board);
             out.print("This game is a tie.\n");
         }
     }
 
-    private String invalidReasonText(Board board, Game game, String selectedSpace) {
+    public void doTurn(int space, Board board) {
+        if(currentPlayer == 1) {
+            board.placeMarker(space, player1Marker);
+            currentPlayer = 2;
+        }
+        else {
+            board.placeMarker(space, player2Marker);
+            currentPlayer = 1;
+        }
+    }
+
+    public String getPlayerMarker(int playerNumber) {
+        if(currentPlayer == 1)
+            return player1Marker;
+
+        return player2Marker;
+    }
+    public GameState isOver(Board board) {
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+        return evaluator.evaluate();
+    }
+
+    public boolean selectionOnBoard(int selection, Board board) {
+        if(selection > (board.size() - 1) || selection < 0) {
+            return false;
+        }
+        return true;
+    }
+    private String invalidReasonText(Board board, String selectedSpace) {
         if (!validSelection(selectedSpace)) {
             return "Invalid input - you must enter a number. ";
         }
-        else if (!game.selectionOnBoard(parseSelection(selectedSpace))) {
+        else if (!selectionOnBoard(parseSelection(selectedSpace), board)) {
             return "Invalid input - your choice must be a number on the board. ";
         }
         else if (board.isOccupied(parseSelection(selectedSpace))) {
@@ -80,9 +114,9 @@ public class TurnUI {
         }
     }
 
-    public void takeTurns(Board board, Game game) {
-        while(game.isOver() == GameState.NoWinner) {
-            takeTurn(board, game);
+    public void takeTurns(Board board) {
+        while(isOver(board) == GameState.NoWinner) {
+            takeTurn(board);
         }
     }
 }

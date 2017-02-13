@@ -3,12 +3,14 @@ package com.TTT;
 public class Game {
 
     private Board board;
+    private TurnUI turns;
     private int currentPlayer;
     private String player1Marker;
     private String player2Marker;
 
     public Game(Board board) {
         this.board = board;
+        this.turns = turns;
         currentPlayer = 1;
         player1Marker = PlayerMarkers.X.symbol();
         player2Marker = PlayerMarkers.O.symbol();
@@ -46,5 +48,9 @@ public class Game {
             return player1Marker;
 
         return player2Marker;
+    }
+
+    public void play() {
+        turns.takeTurns(board);
     }
 }
