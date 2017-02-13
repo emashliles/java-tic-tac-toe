@@ -5,15 +5,13 @@ public class MiniMax {
         int bestScore = 0;
         int bestMove = -1;
 
-        Board clonedBoard = (Board) board.clone();
-
         for(int move : board.availableMoves()) {
+            Board clonedBoard = (Board) board.clone();
             if (getScoreForMove(move, clonedBoard) > bestScore){
                 bestMove = move;
                 bestScore = getScoreForMove(move, clonedBoard);
             }
         }
-
         return bestMove;
     }
 
