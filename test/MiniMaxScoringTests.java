@@ -41,4 +41,12 @@ public class MiniMaxScoringTests {
 
         assertEquals(10, miniMax.getScoreForMove(6, board));
     }
+
+    @Test
+    public void calculatesminus10forLoosingMove() {
+        board.placeMarker(0, "O");
+        board.placeMarker(1, "O");
+
+        assertEquals(-10, miniMax.getScoreForMove(7, board));
+    }
 }

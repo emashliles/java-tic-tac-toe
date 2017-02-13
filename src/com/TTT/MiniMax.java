@@ -14,6 +14,10 @@ public class MiniMax {
             return 10;
         }
 
-       return 0;
+        if(evaluator.evaluate() == GameState.Tie) {
+            return 0;
+        }
+
+        return -10;
     }
 }
