@@ -56,7 +56,7 @@ public class MiniMaxAcceptanceTests {
     public void createTwoPotenialWinningMoves() {
         board.placeMarker(4, "O");
 
-        assertEquals(2, miniMax.nextMove(board));
+        assertEquals(0, miniMax.nextMove(board));
     }
 
     @Test

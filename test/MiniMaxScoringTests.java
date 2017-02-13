@@ -1,5 +1,6 @@
 import com.TTT.Board;
 import com.TTT.MiniMax;
+import com.TTT.PlayerMarkers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +28,7 @@ public class MiniMaxScoringTests {
         board.placeMarker(6, "O");
         board.placeMarker(8, "O");
 
-        assertEquals(0, miniMax.getScoreForMove(7,board));
+        assertEquals(0, miniMax.getScoreForMove(7,board, PlayerMarkers.X.symbol()));
     }
 
     @Test
@@ -39,14 +40,6 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "O");
         board.placeMarker(5, "X");
 
-        assertEquals(10, miniMax.getScoreForMove(6, board));
-    }
-
-    @Test
-    public void calculatesminus10forLoosingMove() {
-        board.placeMarker(0, "O");
-        board.placeMarker(1, "O");
-
-        assertEquals(-10, miniMax.getScoreForMove(7, board));
+        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol()));
     }
 }
