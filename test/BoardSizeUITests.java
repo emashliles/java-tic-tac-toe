@@ -1,4 +1,4 @@
-import com.TTT.GameOptionsUI;
+import com.TTT.BoardSizeUI;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class GameOptionsUITests {
+public class BoardSizeUITests {
 
     private ByteArrayOutputStream outputStream;
     private PrintStream out;
@@ -23,7 +23,7 @@ public class GameOptionsUITests {
     @Test
     public void getUserBoardSizeSelection() {
         ByteArrayInputStream in = new ByteArrayInputStream("4".getBytes());
-        GameOptionsUI ui = new GameOptionsUI(out, in);
+        BoardSizeUI ui = new BoardSizeUI(out, in);
 
         assertEquals(4 ,ui.boardSize());
     }
@@ -31,7 +31,7 @@ public class GameOptionsUITests {
     @Test
     public void askUserForBoardSizeSelection() {
         in = new ByteArrayInputStream("4".getBytes());
-        GameOptionsUI ui = new GameOptionsUI(out, in);
+        BoardSizeUI ui = new BoardSizeUI(out, in);
 
         ui.boardSize();
 
@@ -41,7 +41,7 @@ public class GameOptionsUITests {
     @Test
     public void askAgainifSizeNotAvailable() {
         ByteArrayInputStream in = new ByteArrayInputStream("99\n3".getBytes());
-        GameOptionsUI ui = new GameOptionsUI(out, in);
+        BoardSizeUI ui = new BoardSizeUI(out, in);
         ui.boardSize();
 
         assertEquals("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: You must choose 3 for a 3x3 board or 4 for a 4x4 board.", outputStream.toString());
@@ -50,7 +50,7 @@ public class GameOptionsUITests {
     @Test
     public void askAgainIfInvalidInputEntered() {
         ByteArrayInputStream in = new ByteArrayInputStream("InvalidInput\n3".getBytes());
-        GameOptionsUI ui = new GameOptionsUI(out, in);
+        BoardSizeUI ui = new BoardSizeUI(out, in);
         ui.boardSize();
 
         assertEquals("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: You must choose 3 for a 3x3 board or 4 for a 4x4 board.", outputStream.toString());
