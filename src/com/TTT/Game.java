@@ -45,10 +45,6 @@ public class Game {
         return turns.currentPlayer();
     }
 
-    public String getPlayerMarker(int playerNumber) {
-        return turns.getPlayerMarker(playerNumber);
-    }
-
     public void takeTurns(Board board) {
         while(isOver(board) == GameState.NoWinner) {
             doTurn();

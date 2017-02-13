@@ -26,7 +26,6 @@ public class TurnUI {
 
     public int takeTurn(Board board) {
         String selectedSpace = getPlayerInput(board, inputPrompt);
-        String winningMarker = getPlayerMarker(currentPlayer);
 
         while(!validSelection(selectedSpace) || !board.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
             selectedSpace = getPlayerInput(board,  invalidReasonText(board, selectedSpace) + inputPrompt);
@@ -47,12 +46,13 @@ public class TurnUI {
         }
     }
 
-    public String getPlayerMarker(int playerNumber) {
+    public String getPlayerMarker() {
         if(currentPlayer == 1)
             return player1Marker;
 
         return player2Marker;
     }
+
     public GameState isOver(Board board) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         return evaluator.evaluate();

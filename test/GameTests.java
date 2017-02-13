@@ -33,19 +33,12 @@ public class GameTests {
         assertEquals(false, game.selectionOnBoard(-1));
     }
 
-
-
     @Test
     public void detectsAWinner() {
         board.placeMarker(0, "X");
         board.placeMarker(3, "X");
         board.placeMarker(6, "X");
         assertThat(game.isOver(board), is(GameState.Win));
-    }
-
-    @Test
-    public void canReturnMarkerForCurrentPlayer() {
-        assertEquals(game.getPlayerMarker(1), "X");
     }
 
     @Test
