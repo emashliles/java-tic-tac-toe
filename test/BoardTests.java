@@ -111,4 +111,14 @@ public class BoardTests {
 
         assertEquals(7, availableMoves.size());
     }
+
+    @Test
+    public void cloneSelf() {
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "O");
+        Board clonedBoard = (Board)board.clone();
+        assertEquals((clonedBoard == board), false);
+        assertEquals(clonedBoard.markerAt(2), "X");
+        assertEquals(clonedBoard.markerAt(3), "O");
+    }
 }
