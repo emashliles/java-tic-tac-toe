@@ -6,6 +6,14 @@ public class MiniMax {
     }
 
     public int getScoreForMove(int move, Board board) {
+        board.placeMarker(move, PlayerMarkers.X.symbol());
+
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+
+        if(evaluator.evaluate() == GameState.Win) {
+            return 10;
+        }
+
        return 0;
     }
 }
