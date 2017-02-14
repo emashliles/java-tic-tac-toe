@@ -15,8 +15,7 @@ public class Main {
         Player player2 = new ComputerPlayer();
         Game game = new Game(board, player1, player2);
 
-       game.play();
+        game.play();
 
-       printer.printBoard(board);
     }
 }

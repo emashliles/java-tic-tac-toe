@@ -9,7 +9,7 @@ public class MiniMax {
         List<Integer> scores = new ArrayList<>();
         List<Integer> moves = new ArrayList<>();
 
-        for(int move : board.availableMoves()) {
+        for (int move : board.availableMoves()) {
             Board clonedBoard = (Board) board.clone();
 
             clonedBoard.placeMarker(move, currentPlayerSymbol);
@@ -18,14 +18,14 @@ public class MiniMax {
             moves.add(move);
         }
 
-        if(moves.size() == 1) {
+        if (moves.size() == 1) {
             return moves.get(0);
         }
 
         int winningMove = -200;
         int winningScore = -200;
-        for (int i = 0; i < moves.size(); i ++) {
-            if(scores.get(i) > winningScore) {
+        for (int i = 0; i < moves.size(); i++) {
+            if (scores.get(i) > winningScore) {
                 winningMove = moves.get(i);
                 winningScore = scores.get(i);
             }
@@ -52,7 +52,7 @@ public class MiniMax {
             return depth - 10;
         }
 
-        if(evaluator.evaluate() == GameState.Tie && playerSymbol.equals(minimizingPlayerSymbol)) {
+        if (evaluator.evaluate() == GameState.Tie && playerSymbol.equals(minimizingPlayerSymbol)) {
             return 0;
         }
 
@@ -60,7 +60,9 @@ public class MiniMax {
             Board clonedBoard = (Board) board.clone();
             int score = getScoreForMove(nextMove, clonedBoard, changePlayerSymbol(playerSymbol), maxingPlayerSymbol, minimizingPlayerSymbol, depth++);
             bestScore = score;
+
         }
+
 
         return bestScore;
     }
