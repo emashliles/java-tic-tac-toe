@@ -103,7 +103,7 @@ public class Board {
     }
 
     @Override
-    public Object clone() {
+    public Board clone() {
         Board clone = new Board(this.sideLength());
         for (int i = 0; i < this.size(); i++){
             if(isOccupied(i)){

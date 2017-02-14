@@ -10,7 +10,7 @@ public class MiniMax {
         List<Integer> moves = new ArrayList<>();
 
         for (int move : board.availableMoves()) {
-            Board clonedBoard = (Board) board.clone();
+            Board clonedBoard = board.clone();
 
             clonedBoard.placeMarker(move, currentPlayerSymbol);
 
@@ -57,7 +57,7 @@ public class MiniMax {
         }
 
         for (int nextMove : board.availableMoves()) {
-            Board clonedBoard = (Board) board.clone();
+            Board clonedBoard = board.clone();
             int score = getScoreForMove(nextMove, clonedBoard, changePlayerSymbol(playerSymbol), maxingPlayerSymbol, minimizingPlayerSymbol, depth++);
             bestScore = score;
 

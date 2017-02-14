@@ -117,7 +117,7 @@ public class BoardTests {
     public void cloneSelf() {
         board.placeMarker(2, "X");
         board.placeMarker(3, "O");
-        Board clonedBoard = (Board) board.clone();
+        Board clonedBoard = board.clone();
         assertEquals((clonedBoard == board), false);
         assertEquals(clonedBoard.markerAt(2), "X");
         assertEquals(clonedBoard.markerAt(3), "O");
