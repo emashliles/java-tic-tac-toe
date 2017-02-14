@@ -28,7 +28,7 @@ public class MiniMaxScoringTests {
         board.placeMarker(6, "O");
         board.placeMarker(8, "O");
 
-        assertEquals(0, miniMax.getScoreForMove(7,board, PlayerMarkers.X.symbol()));
+        assertEquals(0, miniMax.getScoreForMove(7,board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
     }
 
     @Test
@@ -40,6 +40,18 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "O");
         board.placeMarker(5, "X");
 
-        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol()));
+        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
+    }
+
+    @Test
+    public void calculateMinus10ForOpponentWinningMove() {
+        board.placeMarker(0, "O");
+        board.placeMarker(1, "X");
+        board.placeMarker(2, "O");
+        board.placeMarker(3, "O");
+        board.placeMarker(4, "X");
+        board.placeMarker(5, "O");
+
+        assertEquals(-10, miniMax.getScoreForMove(6, board, PlayerMarkers.O.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
     }
 }
