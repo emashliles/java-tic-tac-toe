@@ -4,12 +4,12 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class GameOptionsUI {
+public class BoardSizeUI {
     private PrintStream out;
     private InputStream in;
     private Scanner scanner;
 
-    public GameOptionsUI(PrintStream out, InputStream in) {
+    public BoardSizeUI(PrintStream out, InputStream in) {
         this.out = out;
         this.in = in;
         scanner = new Scanner(in);

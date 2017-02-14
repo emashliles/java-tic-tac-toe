@@ -7,12 +7,14 @@ public class Main {
     }
 
     private static void run() {
-        GameOptionsUI optionsUI = new GameOptionsUI(System.out, System.in);
+        BoardSizeUI optionsUI = new BoardSizeUI(System.out, System.in);
         Board board = new Board(optionsUI.boardSize());
         BoardPrinter printer = new BoardPrinter(System.out);
-        Game game = new Game(board);
         TurnUI turns = new TurnUI(printer, System.out, System.in);
+        Player player1 = new HumanPlayer(turns);
+        Player player2 = new ComputerPlayer();
+        Game game = new Game(board, player1, player2);
 
-        turns.takeTurns(board, game);
+       game.play();
     }
 }

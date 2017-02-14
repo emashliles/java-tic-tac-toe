@@ -18,32 +18,38 @@ public class TurnUI {
         scanner.useDelimiter("\n");
     }
 
-    public void takeTurn(Board board, Game game) {
+    public int takeTurn(Board board) {
         String selectedSpace = getPlayerInput(board, inputPrompt);
-        String winningMarker = game.getPlayerMarker(game.currentPlayer());
 
-        while(!validSelection(selectedSpace) || !game.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
-            selectedSpace = getPlayerInput(board,  invalidReasonText(board, game, selectedSpace) + inputPrompt);
+        while(!validSelection(selectedSpace) || !board.selectionOnBoard(parseSelection(selectedSpace)) || board.isOccupied(parseSelection(selectedSpace))) {
+            selectedSpace = getPlayerInput(board,  invalidReasonText(board, selectedSpace) + inputPrompt);
         }
 
-        game.doTurn(parseSelection(selectedSpace));
+        return parseSelection(selectedSpace);
+    }
 
-        if(game.isOver() == GameState.Win) {
+    public void checkForEndOfGame(Board board, String winningMarker) {
+        if(isOver(board) == GameState.Win) {
             printer.printBoard(board);
             out.print("Player " + winningMarker + " is the winner.\n");
         }
 
-        if (game.isOver() == GameState.Tie){
+        if (isOver(board) == GameState.Tie){
             printer.printBoard(board);
             out.print("This game is a tie.\n");
         }
     }
 
-    private String invalidReasonText(Board board, Game game, String selectedSpace) {
+    public GameState isOver(Board board) {
+        BoardEvaluator evaluator = new BoardEvaluator(board);
+        return evaluator.evaluate();
+    }
+
+    private String invalidReasonText(Board board, String selectedSpace) {
         if (!validSelection(selectedSpace)) {
             return "Invalid input - you must enter a number. ";
         }
-        else if (!game.selectionOnBoard(parseSelection(selectedSpace))) {
+        else if (!board.selectionOnBoard(parseSelection(selectedSpace))) {
             return "Invalid input - your choice must be a number on the board. ";
         }
         else if (board.isOccupied(parseSelection(selectedSpace))) {
@@ -77,12 +83,6 @@ public class TurnUI {
         }
         catch(NumberFormatException e){
             return false;
-        }
-    }
-
-    public void takeTurns(Board board, Game game) {
-        while(game.isOver() == GameState.NoWinner) {
-            takeTurn(board, game);
         }
     }
 }

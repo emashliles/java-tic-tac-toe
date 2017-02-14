@@ -7,44 +7,42 @@ public class Game {
     private String player1Marker;
     private String player2Marker;
 
-    public Game(Board board) {
+    private Player player1;
+    private Player player2;
+
+    public Game(Board board, Player player1, Player player2) {
         this.board = board;
         currentPlayer = 1;
         player1Marker = PlayerMarkers.X.symbol();
         player2Marker = PlayerMarkers.O.symbol();
+
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
-    public GameState isOver() {
+    public GameState isOver(Board board) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         return evaluator.evaluate();
     }
 
-    public void doTurn(int space) {
+    public void doTurn() {
         if(currentPlayer == 1) {
-            board.placeMarker(space, player1Marker);
+            player1.doTurn(board, player1Marker);
             currentPlayer = 2;
         }
         else {
-            board.placeMarker(space, player2Marker);
+            player2.doTurn(board, player2Marker);
             currentPlayer = 1;
         }
     }
 
-    public boolean selectionOnBoard(int selection) {
-       if(selection > (board.size() - 1) || selection < 0) {
-           return false;
-       }
-       return true;
+    public void takeTurns(Board board) {
+        while(isOver(board) == GameState.NoWinner) {
+            doTurn();
+        }
     }
 
-    public int currentPlayer() {
-        return currentPlayer;
-    }
-
-    public String getPlayerMarker(int playerNumber) {
-        if(currentPlayer == 1)
-            return player1Marker;
-
-        return player2Marker;
+    public void play() {
+        takeTurns(board);
     }
 }

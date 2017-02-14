@@ -1,5 +1,6 @@
 import com.TTT.Board;
 import com.TTT.Line;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,7 +44,7 @@ public class BoardTests {
     @Test
     public void canReturnARow() {
         Line row = board.getRow(0);
-        assertEquals(2,row.getSpaceIndex(2));
+        assertEquals(2, row.getSpaceIndex(2));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class BoardTests {
     }
 
     @Test
-    public void canReturnSideLength(){
+    public void canReturnSideLength() {
         assertEquals(3, board.sideLength());
     }
 
@@ -100,5 +101,35 @@ public class BoardTests {
         Board board = new Board(4);
 
         assertEquals(board.allLines().size(), 10);
+    }
+
+    @Test
+    public void findAllAvailableMoves() {
+        Board board = new Board(3);
+        board.placeMarker(1, "X");
+        board.placeMarker(5, "O");
+        List<Integer> availableMoves = board.availableMoves();
+
+        assertEquals(7, availableMoves.size());
+    }
+
+    @Test
+    public void cloneSelf() {
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "O");
+        Board clonedBoard = (Board) board.clone();
+        assertEquals((clonedBoard == board), false);
+        assertEquals(clonedBoard.markerAt(2), "X");
+        assertEquals(clonedBoard.markerAt(3), "O");
+    }
+
+    @Test
+    public void checkSelectionIsOnTheBoard() {
+        assertEquals(true, board.selectionOnBoard(5));
+    }
+
+    @Test
+    public void checksSelectionIsGreaterThan0() {
+        assertEquals(false, board.selectionOnBoard(-1));
     }
 }
