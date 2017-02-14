@@ -28,7 +28,7 @@ public class MiniMaxScoringTests {
         board.placeMarker(6, "O");
         board.placeMarker(8, "O");
 
-        assertEquals(0, miniMax.getScoreForMove(7,board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
+        assertEquals(0, miniMax.getScoreForMove(7,board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol(), 1));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "O");
         board.placeMarker(5, "X");
 
-        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
+        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol(), 1));
     }
 
     @Test
@@ -52,6 +52,6 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "X");
         board.placeMarker(5, "O");
 
-        assertEquals(-10, miniMax.getScoreForMove(6, board, PlayerMarkers.O.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol()));
+        assertEquals(-10, miniMax.getScoreForMove(6, board, PlayerMarkers.O.symbol(), PlayerMarkers.X.symbol(), PlayerMarkers.O.symbol(), 1));
     }
 }
