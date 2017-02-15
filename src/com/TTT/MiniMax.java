@@ -31,7 +31,6 @@ public class MiniMax {
     }
 
     public int miniMax(PlayerMarkers currentPlayer, Board board) {
-
         BoardEvaluator evaluator = new BoardEvaluator(board);
         if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
             return 10;
@@ -47,11 +46,13 @@ public class MiniMax {
 
         List<Integer> scores = new ArrayList<>();
 
+        currentPlayer = changePlayer(currentPlayer);
+
         if(currentPlayer == maxPlayer){
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                int score = miniMax(changePlayer(currentPlayer), clone);
+                int score = miniMax(currentPlayer, clone);
                 scores.add(score);
             }
             return bestScore(scores, true);
@@ -60,7 +61,7 @@ public class MiniMax {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                scores.add(miniMax(changePlayer(currentPlayer), clone));
+                scores.add(miniMax(currentPlayer, clone));
             }
             return bestScore(scores, false);
         }
