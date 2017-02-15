@@ -11,8 +11,8 @@ public class Main {
         Board board = new Board(optionsUI.boardSize());
         PlayerOptionUI players = new PlayerOptionUI(System.out, System.in);
         players.introduce();
-        Player player1 = players.playerOption(1);
-        Player player2 = players.playerOption(2);
+        Player player1 = players.playerOption();
+        Player player2 = players.playerOption();
         Game game = new Game(board, player1, player2);
 
         game.play();

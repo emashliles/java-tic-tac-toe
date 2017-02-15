@@ -22,8 +22,8 @@ public class PlayerOptionUI {
                 "You can choose human by entering h or computer by entering c.\n");
     }
 
-    public Player playerOption(int playerNumber) {
-        out.print("Player " + playerNumber + " (h/c): ");
+    public Player playerOption() {
+        out.print("Please enter your choice: ");
 
         String option = sc.nextLine();
         option = validateSelection(option);
@@ -33,7 +33,7 @@ public class PlayerOptionUI {
 
     private String validateSelection(String option) {
         while(!"h".equals(option) && !"c".equals(option)) {
-            out.print("Please try that again - enter h for human player or c for computer player :");
+            out.print("Please try that again: ");
             option = sc.nextLine();
         }
         return option;
