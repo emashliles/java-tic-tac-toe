@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class GameTests {
@@ -30,5 +31,11 @@ public class GameTests {
         board.placeMarker(3, "X");
         board.placeMarker(6, "X");
         assertThat(game.isOver(board), is(GameState.Win));
+    }
+
+    @Test
+    public void knowsOpponent() {
+        assertEquals(true, game.isOpponent(PlayerMarkers.O));
+        assertEquals(false, game.isOpponent(PlayerMarkers.X));
     }
 }

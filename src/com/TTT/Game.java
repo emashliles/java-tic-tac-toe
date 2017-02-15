@@ -45,4 +45,19 @@ public class Game {
     public void play() {
         takeTurns(board);
     }
+
+    public boolean isOpponent(PlayerMarkers player) {
+        if(currentPlayer == 1 && player == PlayerMarkers.X) {
+            return false;
+        }
+        else if(currentPlayer == 1 && player == PlayerMarkers.O) {
+            return true;
+        }
+        else if(currentPlayer == 2 && player == PlayerMarkers.O) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
