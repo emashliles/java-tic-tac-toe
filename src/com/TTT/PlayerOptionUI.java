@@ -17,10 +17,15 @@ public class PlayerOptionUI {
         sc.useDelimiter("\n");
     }
 
+    public void introduce() {
+        out.print("Please Select a player type for each player.\n" +
+                "You can choose human by entering h or computer by entering c.\n");
+    }
+
     public Player playerOption(int playerNumber) {
         out.print("Player " + playerNumber + " (h/c): ");
-        String option = sc.nextLine();
 
+        String option = sc.nextLine();
         option = validateSelection(option);
 
         return playerSelection(option);
@@ -38,10 +43,8 @@ public class PlayerOptionUI {
         if(option.equals("h")) {
             return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
         }
-
-        if(option.equals("c")) {
+        else {
             return new ComputerPlayer();
         }
-        return null;
     }
 }

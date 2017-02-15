@@ -70,4 +70,16 @@ public class PlayerOptionUITests {
 
         assertEquals("Player 1 (h/c): Please try that again - enter h for human player or c for computer player :", outStream.toString());
     }
+
+    @Test
+    public void introduceOptions() {
+        ByteArrayInputStream in = new ByteArrayInputStream("hello\nh".getBytes());
+
+        optionUI = new PlayerOptionUI(out, in);
+
+        optionUI.introduce();
+        assertEquals("Please Select a player type for each player." +
+                "\nYou can choose human by entering h or computer by entering c.\n", outStream.toString());
+
+    }
 }
