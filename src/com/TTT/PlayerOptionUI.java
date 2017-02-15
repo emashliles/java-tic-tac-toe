@@ -1,16 +1,16 @@
 package com.TTT;
 
-import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public class PlayerOptionUI {
 
     private PrintStream out;
-    private ByteArrayInputStream in;
+    private InputStream in;
     private Scanner sc;
 
-    public PlayerOptionUI(PrintStream out, ByteArrayInputStream in) {
+    public PlayerOptionUI(PrintStream out, InputStream in) {
         this.out = out;
         this.in = in;
         sc = new Scanner(in);
