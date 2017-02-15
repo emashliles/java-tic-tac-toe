@@ -28,7 +28,7 @@ public class PlayerOptionUI {
         String option = sc.nextLine();
         option = validateSelection(option);
 
-        return playerSelection(option);
+        return createPlayerSelection(option);
     }
 
     private String validateSelection(String option) {
@@ -39,7 +39,7 @@ public class PlayerOptionUI {
         return option;
     }
 
-    private Player playerSelection(String option) {
+    private Player createPlayerSelection(String option) {
         if(option.equals("h")) {
             return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
         }

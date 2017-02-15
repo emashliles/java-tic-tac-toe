@@ -43,7 +43,7 @@ public class PlayerOptionUITests {
     }
 
     @Test
-    public void returnHumanPlayerIfUserRequests() {
+    public void returnHumanPlayer() {
         ByteArrayInputStream in = new ByteArrayInputStream("h\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
@@ -52,7 +52,7 @@ public class PlayerOptionUITests {
     }
 
     @Test
-    public void returnComputerPlayerIfUserRequests() {
+    public void returnComputerPlayer() {
         ByteArrayInputStream in = new ByteArrayInputStream("c\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
@@ -61,9 +61,8 @@ public class PlayerOptionUITests {
     }
 
     @Test
-    public void askForSelectionAgainIfInputInvalid() {
+    public void ensureValidInput() {
         ByteArrayInputStream in = new ByteArrayInputStream("hello\nh".getBytes());
-
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption(1);
@@ -76,8 +75,8 @@ public class PlayerOptionUITests {
         ByteArrayInputStream in = new ByteArrayInputStream("hello\nh".getBytes());
 
         optionUI = new PlayerOptionUI(out, in);
-
         optionUI.introduce();
+
         assertEquals("Please Select a player type for each player." +
                 "\nYou can choose human by entering h or computer by entering c.\n", outStream.toString());
 
