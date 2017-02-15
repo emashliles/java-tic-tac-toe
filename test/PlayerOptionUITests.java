@@ -1,11 +1,14 @@
+import com.TTT.HumanPlayer;
 import com.TTT.Player;
 import com.TTT.PlayerOptionUI;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class PlayerOptionUITests {
@@ -18,11 +21,12 @@ public class PlayerOptionUITests {
     public void setUp() {
         outStream = new ByteArrayOutputStream();
         out = new PrintStream(outStream);
-        optionUI = new PlayerOptionUI(out);
     }
 
     @Test
     public void askUserForPlayer1Option() {
+        ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
+        optionUI = new PlayerOptionUI(out, in);
         optionUI.getPlayerOption(1);
 
         assertEquals("Player 1 (h/c)", outStream.toString());
@@ -30,8 +34,19 @@ public class PlayerOptionUITests {
 
     @Test
     public void askUserForPlayer2Option() {
+        ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
+        optionUI = new PlayerOptionUI(out, in);
         optionUI.getPlayerOption(2);
 
         assertEquals("Player 2 (h/c)", outStream.toString());
+    }
+
+    @Test
+    public void returnHumanPlayerIfUserRequests() {
+        ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
+        optionUI = new PlayerOptionUI(out, in);
+
+        Player player = optionUI.getPlayerOption(1);
+        assertTrue(player instanceof HumanPlayer);
     }
 }
