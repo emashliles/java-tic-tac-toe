@@ -1,6 +1,5 @@
 import com.TTT.ComputerPlayer;
 import com.TTT.HumanPlayer;
-import com.TTT.Player;
 import com.TTT.PlayerOptionUI;
 import org.junit.Before;
 import org.junit.Test;
@@ -39,10 +38,8 @@ public class PlayerOptionUITests {
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
-        Player player1 = optionUI.getPlayer(1);
-        Player player2 = optionUI.getPlayer(2);
-        assertTrue(player1 instanceof HumanPlayer);
-        assertTrue(player2 instanceof HumanPlayer);
+        assertTrue(optionUI.player(1) instanceof HumanPlayer);
+        assertTrue(optionUI.player(2) instanceof HumanPlayer);
     }
 
     @Test
@@ -52,11 +49,8 @@ public class PlayerOptionUITests {
 
         optionUI.playerOption();
 
-        Player player1 = optionUI.getPlayer(1);
-        Player player2 = optionUI.getPlayer(2);
-
-        assertTrue(player1 instanceof ComputerPlayer);
-        assertTrue(player2 instanceof ComputerPlayer);
+        assertTrue(optionUI.player(1) instanceof ComputerPlayer);
+        assertTrue(optionUI.player(2) instanceof ComputerPlayer);
     }
 
     @Test
@@ -66,11 +60,8 @@ public class PlayerOptionUITests {
 
         optionUI.playerOption();
 
-        Player player1 = optionUI.getPlayer(1);
-        Player player2 = optionUI.getPlayer(2);
-
-        assertTrue(player1 instanceof ComputerPlayer);
-        assertTrue(player2 instanceof HumanPlayer);
+        assertTrue(optionUI.player(1) instanceof ComputerPlayer);
+        assertTrue(optionUI.player(2) instanceof HumanPlayer);
     }
 
     @Test

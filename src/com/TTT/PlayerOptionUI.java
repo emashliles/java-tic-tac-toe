@@ -77,7 +77,7 @@ public class PlayerOptionUI {
         }
     }
 
-    public Player getPlayer(int playerNumber) {
+    public Player player(int playerNumber) {
         return players[playerNumber - 1];
     }
 }
