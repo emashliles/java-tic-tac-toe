@@ -16,12 +16,20 @@ public class PlayerOptionUI {
         sc = new Scanner(in);
     }
 
-    public Player getPlayerOption(int playerNumber) {
+    public Player playerOption(int playerNumber) {
         out.print("Player " + playerNumber + " (h/c)");
         String option = sc.nextLine();
 
+        return playerSelection(option);
+    }
+
+    private Player playerSelection(String option) {
         if(option.equals("h")) {
             return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
+        }
+
+        if(option.equals("c")) {
+            return new ComputerPlayer();
         }
         return null;
     }

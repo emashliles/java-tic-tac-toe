@@ -1,3 +1,4 @@
+import com.TTT.ComputerPlayer;
 import com.TTT.HumanPlayer;
 import com.TTT.Player;
 import com.TTT.PlayerOptionUI;
@@ -27,7 +28,7 @@ public class PlayerOptionUITests {
     public void askUserForPlayer1Option() {
         ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
         optionUI = new PlayerOptionUI(out, in);
-        optionUI.getPlayerOption(1);
+        optionUI.playerOption(1);
 
         assertEquals("Player 1 (h/c)", outStream.toString());
     }
@@ -36,7 +37,7 @@ public class PlayerOptionUITests {
     public void askUserForPlayer2Option() {
         ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
         optionUI = new PlayerOptionUI(out, in);
-        optionUI.getPlayerOption(2);
+        optionUI.playerOption(2);
 
         assertEquals("Player 2 (h/c)", outStream.toString());
     }
@@ -46,7 +47,16 @@ public class PlayerOptionUITests {
         ByteArrayInputStream in = new ByteArrayInputStream("h".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
-        Player player = optionUI.getPlayerOption(1);
+        Player player = optionUI.playerOption(1);
         assertTrue(player instanceof HumanPlayer);
+    }
+
+    @Test
+    public void returnComputerPlayerIfUserRequests() {
+        ByteArrayInputStream in = new ByteArrayInputStream("c".getBytes());
+        optionUI = new PlayerOptionUI(out, in);
+
+        Player player = optionUI.playerOption(1);
+        assertTrue(player instanceof ComputerPlayer);
     }
 }
