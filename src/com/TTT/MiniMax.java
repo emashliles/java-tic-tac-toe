@@ -44,7 +44,7 @@ public class MiniMax {
             return 10 - depth;
         }
 
-        if (evaluator.evaluate() == GameState.Tie && playerSymbol.equals(maxingPlayerSymbol)) {
+        if (evaluator.evaluate() == GameState.Tie) {
             return 0;
         }
 
@@ -52,15 +52,10 @@ public class MiniMax {
             return depth - 10;
         }
 
-        if (evaluator.evaluate() == GameState.Tie && playerSymbol.equals(minimizingPlayerSymbol)) {
-            return 0;
-        }
-
         for (int nextMove : board.availableMoves()) {
             Board clonedBoard = board.clone();
             int score = getScoreForMove(nextMove, clonedBoard, changePlayerSymbol(playerSymbol), maxingPlayerSymbol, minimizingPlayerSymbol, depth++);
             bestScore = score;
-
         }
 
 
@@ -68,10 +63,9 @@ public class MiniMax {
     }
 
     private String changePlayerSymbol(String currentPlayerSymbol) {
-        if(currentPlayerSymbol == PlayerMarkers.X.symbol()) {
+        if (currentPlayerSymbol == PlayerMarkers.X.symbol()) {
             return PlayerMarkers.O.symbol();
-        }
-        else {
+        } else {
             return PlayerMarkers.X.symbol();
         }
     }
