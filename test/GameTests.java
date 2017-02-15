@@ -32,10 +32,4 @@ public class GameTests {
         board.placeMarker(6, "X");
         assertThat(game.isOver(board), is(GameState.Win));
     }
-
-    @Test
-    public void knowsOpponent() {
-        assertEquals(true, game.isOpponent(PlayerMarkers.O));
-        assertEquals(false, game.isOpponent(PlayerMarkers.X));
-    }
 }

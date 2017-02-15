@@ -40,7 +40,7 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "O");
         board.placeMarker(5, "X");
 
-        assertEquals(9, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol()));
+        assertEquals(10, miniMax.getScoreForMove(6, board, PlayerMarkers.X.symbol()));
     }
 
     @Test
@@ -52,6 +52,6 @@ public class MiniMaxScoringTests {
         board.placeMarker(4, "X");
         board.placeMarker(5, "O");
 
-        assertEquals(-9, miniMax.getScoreForMove(6, board, PlayerMarkers.O.symbol()));
+        assertEquals(-10, miniMax.getScoreForMove(6, board, PlayerMarkers.O.symbol()));
     }
 }
