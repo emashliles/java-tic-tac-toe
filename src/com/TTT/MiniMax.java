@@ -88,10 +88,6 @@ public class MiniMax {
         }
     }
 
-    public int getScoreForMove(int move, Board board, String symbol) {
-        return 0;
-    }
-
     private PlayerMarkers changePlayer(PlayerMarkers currentPlayer) {
         if (currentPlayer == PlayerMarkers.X) {
             return PlayerMarkers.O;
