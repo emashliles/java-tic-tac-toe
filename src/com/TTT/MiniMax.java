@@ -6,11 +6,9 @@ import java.util.List;
 public class MiniMax {
 
     private PlayerMarkers maxPlayer;
-    private PlayerMarkers minPlayer;
 
     public int nextMove(Board board, PlayerMarkers maxPlayer){
         this.maxPlayer = maxPlayer;
-        this.minPlayer = changePlayer(maxPlayer);
 
         List<Integer> moves = board.availableMoves();
         List<Integer> scores = new ArrayList<>();
@@ -29,15 +27,18 @@ public class MiniMax {
                 bestMove = moves.get(i);
             }
         }
-
         return bestMove;
     }
 
     public int miniMax(PlayerMarkers currentPlayer, Board board) {
 
         BoardEvaluator evaluator = new BoardEvaluator(board);
-        if(evaluator.evaluate().equals(GameState.Win)) {
+        if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
             return 10;
+        }
+
+        if(evaluator.evaluate().equals(GameState.Win) && currentPlayer != maxPlayer) {
+            return -10;
         }
 
         if(evaluator.evaluate().equals(GameState.Tie)) {
