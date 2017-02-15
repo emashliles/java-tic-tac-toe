@@ -26,7 +26,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void promptUserForOption() {
-        ByteArrayInputStream in = new ByteArrayInputStream("h\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("hh\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
         optionUI.playerOption();
 
@@ -34,26 +34,48 @@ public class PlayerOptionUITests {
     }
 
     @Test
-    public void returnHumanPlayer() {
-        ByteArrayInputStream in = new ByteArrayInputStream("h\n".getBytes());
+    public void return2HumanPlayers() {
+        ByteArrayInputStream in = new ByteArrayInputStream("hh\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
-        Player player = optionUI.playerOption();
-        assertTrue(player instanceof HumanPlayer);
+        optionUI.playerOption();
+        Player player1 = optionUI.getPlayer(1);
+        Player player2 = optionUI.getPlayer(2);
+        assertTrue(player1 instanceof HumanPlayer);
+        assertTrue(player2 instanceof HumanPlayer);
     }
 
     @Test
-    public void returnComputerPlayer() {
-        ByteArrayInputStream in = new ByteArrayInputStream("c\n".getBytes());
+    public void return2ComputerPlayers() {
+        ByteArrayInputStream in = new ByteArrayInputStream("cc\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
-        Player player = optionUI.playerOption();
-        assertTrue(player instanceof ComputerPlayer);
+        optionUI.playerOption();
+
+        Player player1 = optionUI.getPlayer(1);
+        Player player2 = optionUI.getPlayer(2);
+
+        assertTrue(player1 instanceof ComputerPlayer);
+        assertTrue(player2 instanceof ComputerPlayer);
+    }
+
+    @Test
+    public void return1ComputerPlayer1HumanPlayer() {
+        ByteArrayInputStream in = new ByteArrayInputStream("ch\n".getBytes());
+        optionUI = new PlayerOptionUI(out, in);
+
+        optionUI.playerOption();
+
+        Player player1 = optionUI.getPlayer(1);
+        Player player2 = optionUI.getPlayer(2);
+
+        assertTrue(player1 instanceof ComputerPlayer);
+        assertTrue(player2 instanceof HumanPlayer);
     }
 
     @Test
     public void ensureValidInput() {
-        ByteArrayInputStream in = new ByteArrayInputStream("hello\nh".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("hello\nhh".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
@@ -63,13 +85,16 @@ public class PlayerOptionUITests {
 
     @Test
     public void introduceOptions() {
-        ByteArrayInputStream in = new ByteArrayInputStream("hello\nh".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("hello\nhh".getBytes());
 
         optionUI = new PlayerOptionUI(out, in);
         optionUI.introduce();
 
-        assertEquals("Please select a player type for each player." +
-                "\nYou can choose human by entering h or computer by entering c.\n", outStream.toString());
+        assertEquals("Please select what players you would like.\n" +
+                "For Human v Human enter hh\n" +
+                "For Human v Computer enter hc\n" +
+                "For Computer v Human enter ch\n" +
+                "For Computer v Computer enter cc\n", outStream.toString());
 
     }
 }
