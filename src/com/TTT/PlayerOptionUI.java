@@ -18,7 +18,7 @@ public class PlayerOptionUI {
     }
 
     public void introduce() {
-        out.print("Please Select a player type for each player.\n" +
+        out.print("Please select a player type for each player.\n" +
                 "You can choose human by entering h or computer by entering c.\n");
     }
 

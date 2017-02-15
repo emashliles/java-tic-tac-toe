@@ -77,7 +77,7 @@ public class PlayerOptionUITests {
         optionUI = new PlayerOptionUI(out, in);
         optionUI.introduce();
 
-        assertEquals("Please Select a player type for each player." +
+        assertEquals("Please select a player type for each player." +
                 "\nYou can choose human by entering h or computer by entering c.\n", outStream.toString());
 
     }
