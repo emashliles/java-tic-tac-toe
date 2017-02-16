@@ -22,6 +22,7 @@ public class GameUITests {
         outputStream = new ByteArrayOutputStream();
         out = new PrintStream(outputStream);
     }
+
     @Test
     public void announceWinner() {
         ByteArrayInputStream in = new ByteArrayInputStream(("").getBytes());

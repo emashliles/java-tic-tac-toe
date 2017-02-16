@@ -78,7 +78,7 @@ public class PlayerOptionUI {
     }
 
     private Player computerPlayer() {
-        return new ComputerPlayer();
+        return new ComputerPlayer(new GameUI(out, in, new BoardPrinter(out)));
     }
 
     private Player humanPlayer() {

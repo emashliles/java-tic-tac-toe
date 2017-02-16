@@ -11,7 +11,6 @@ public class HumanPlayer implements Player {
         int space = turns.takeTurn(board);
 
         board.placeMarker(space, marker.symbol());
-
         turns.announceWinner(board, marker.symbol());
 
         return board;
