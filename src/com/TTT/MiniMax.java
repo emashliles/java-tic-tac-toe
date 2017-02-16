@@ -5,6 +5,13 @@ import java.util.List;
 
 public class MiniMax {
 
+    public static final int DEFAULT_MAX_SCORE = 200;
+    public static final int DEFAULT_BEST_MOVE = -1;
+    public static final int DEFAULT_MIN_SCORE = -200;
+    
+    public static final int MAX_PLAYER_WIN_SCORE = 10;
+    public static final int MIN_PLAYER_WIN_SCORE = -10;
+    public static final int TIE_SCORE = 0;
     private PlayerMarkers maxPlayer;
 
     public int nextMove(Board board, PlayerMarkers maxPlayer){
@@ -19,8 +26,8 @@ public class MiniMax {
             scores.add(miniMax(maxPlayer, clone));
         }
 
-        int bestScore = -200;
-        int bestMove = -1;
+        int bestScore = DEFAULT_MIN_SCORE;
+        int bestMove = DEFAULT_BEST_MOVE;
         for(int i = 0; i < scores.size(); i++) {
             if(scores.get(i) > bestScore) {
                 bestScore = scores.get(i);
@@ -33,15 +40,15 @@ public class MiniMax {
     public int miniMax(PlayerMarkers currentPlayer, Board board) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
-            return 10;
+            return MAX_PLAYER_WIN_SCORE;
         }
 
         if(evaluator.evaluate().equals(GameState.Win) && currentPlayer != maxPlayer) {
-            return -10;
+            return MIN_PLAYER_WIN_SCORE;
         }
 
         if(evaluator.evaluate().equals(GameState.Tie)) {
-            return 0;
+            return TIE_SCORE;
         }
 
         List<Integer> scores = new ArrayList<>();
@@ -69,7 +76,7 @@ public class MiniMax {
 
     private int bestScore(List<Integer> scores, boolean maximize) {
         if(maximize) {
-            int maxScore = -200;
+            int maxScore = DEFAULT_MIN_SCORE;
             for (int score : scores) {
                 if(score > maxScore) {
                     maxScore = score;
@@ -78,7 +85,7 @@ public class MiniMax {
             return maxScore;
         }
         else {
-            int minScore = 200;
+            int minScore = DEFAULT_MAX_SCORE;
             for (int score : scores) {
                 if (score < minScore) {
                     minScore = score;
