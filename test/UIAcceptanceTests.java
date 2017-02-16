@@ -1,4 +1,5 @@
 import com.TTT.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,19 +10,27 @@ import static org.junit.Assert.assertEquals;
 
 public class UIAcceptanceTests {
 
+    private ByteArrayOutputStream printerOutStream;
+    private PrintStream printerOut;
+    private BoardPrinter printer;
+    private ByteArrayOutputStream outStream;
+    private PrintStream out;
+    private Board board;
+
+    @Before
+    public void setUp() {
+        printerOutStream = new ByteArrayOutputStream();
+        printerOut = new PrintStream(printerOutStream);
+        outStream = new ByteArrayOutputStream();
+        out = new PrintStream(outStream);
+        printer = new BoardPrinter(printerOut);
+        board = new Board(3);
+    }
+
     @Test
     public void announceComputerPlayerWin() {
-
-        ByteArrayOutputStream printerOutStream = new ByteArrayOutputStream();
-        PrintStream printerOut = new PrintStream(printerOutStream);
-        BoardPrinter printer = new BoardPrinter(printerOut);
-
         ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-        PrintStream out = new PrintStream(outStream);
         Player computer = new ComputerPlayer(new GameUI(out, in, printer));
-
-        Board board = new Board(3);
 
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
