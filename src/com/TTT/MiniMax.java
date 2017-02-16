@@ -8,7 +8,7 @@ public class MiniMax {
     public static final int DEFAULT_MAX_SCORE = 200;
     public static final int DEFAULT_BEST_MOVE = -1;
     public static final int DEFAULT_MIN_SCORE = -200;
-    
+
     public static final int MAX_PLAYER_WIN_SCORE = 10;
     public static final int MIN_PLAYER_WIN_SCORE = -10;
     public static final int TIE_SCORE = 0;

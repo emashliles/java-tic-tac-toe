@@ -54,7 +54,7 @@ public class MiniMaxAcceptanceTests {
     }
 
     @Test
-    public void blockOpponetRightToLeftWinningDiagonal() {
+    public void blockOpponentRightToLeftWinningDiagonal() {
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
         board.placeMarker(2, "O");
@@ -64,7 +64,7 @@ public class MiniMaxAcceptanceTests {
     }
 
     @Test
-    public void blockOpponetLeftToRightWinningDiagonal() {
+    public void blockOpponentLeftToRightWinningDiagonal() {
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
         board.placeMarker(2, "X");
@@ -75,7 +75,7 @@ public class MiniMaxAcceptanceTests {
     }
 
     @Test
-    public void createTwoPotenialWinningMoves() {
+    public void createTwoPotentialWinningMoves() {
         board.placeMarker(4, "O");
 
         assertEquals(0, miniMax.nextMove(board, PlayerMarkers.X));
