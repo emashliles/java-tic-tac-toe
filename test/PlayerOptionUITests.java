@@ -82,10 +82,10 @@ public class PlayerOptionUITests {
         optionUI.introduce();
 
         assertEquals("Please select what players you would like.\n" +
-                "For Human v Human enter hh\n" +
-                "For Human v Computer enter hc\n" +
-                "For Computer v Human enter ch\n" +
-                "For Computer v Computer enter cc\n", outStream.toString());
+                "\u001B[31m 1 \u001B[0m- Human v Human\n" +
+                "\u001B[31m 2 \u001B[0m- Human v Computer\n" +
+                "\u001B[31m 3 \u001B[0m- Computer v Human\n" +
+                "\u001B[31m 4 \u001B[0m- Computer v Computer\n", outStream.toString());
 
     }
 }
