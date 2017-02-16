@@ -21,10 +21,10 @@ public class PlayerOptionUI {
         sc.useDelimiter("\n");
         players = new Player[2];
         playerCombinations = new ArrayList<>();
-        playerCombinations.add("hh");
-        playerCombinations.add("cc");
-        playerCombinations.add("hc");
-        playerCombinations.add("ch");
+        playerCombinations.add("1");
+        playerCombinations.add("2");
+        playerCombinations.add("3");
+        playerCombinations.add("4");
     }
 
     public void introduce() {
@@ -37,28 +37,38 @@ public class PlayerOptionUI {
 
     public void playerOption() {
         out.print("Please enter your choice: ");
-
         String option = sc.nextLine();
-        String[] options = validateSelection(option);
-
-        createPlayers(options);
+        createPlayers(validateSelection(option));
     }
 
-    private void createPlayers(String[] options) {
-        for(int i = 0; i < options.length; i++) {
-            players[i] = createPlayer(options[i]);
+    private void createPlayers(String option) {
+        switch (option) {
+            case "1" :
+                players[0] = humanPlayer();
+                players[1] = humanPlayer();
+                break;
+            case "2" :
+                players[0] = humanPlayer();
+                players[1] = computerPlayer();
+                break;
+            case "3" :
+                players[0] = computerPlayer();
+                players[1] = humanPlayer();
+                break;
+            case "4" :
+                players[0] = computerPlayer();
+                players[1] = computerPlayer();
+                break;
+
         }
     }
 
-    private String[] validateSelection(String option) {
-        String options[] = option.split("");
-
+    private String validateSelection(String option) {
         while(!validSelection(option)) {
             out.print("Please try that again: ");
             option = sc.nextLine();
-            options = option.split("");
         }
-        return options;
+        return option;
     }
 
     private boolean validSelection(String option) {
@@ -68,13 +78,12 @@ public class PlayerOptionUI {
         return false;
     }
 
-    private Player createPlayer(String option) {
-        if(option.equals("h")) {
-            return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
-        }
-        else {
-            return new ComputerPlayer();
-        }
+    private Player computerPlayer() {
+        return new ComputerPlayer();
+    }
+
+    private Player humanPlayer() {
+        return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
     }
 
     public Player player(int playerNumber) {

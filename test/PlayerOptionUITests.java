@@ -25,7 +25,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void promptUserForOption() {
-        ByteArrayInputStream in = new ByteArrayInputStream("hh\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
         optionUI.playerOption();
 
@@ -34,7 +34,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void return2HumanPlayers() {
-        ByteArrayInputStream in = new ByteArrayInputStream("hh\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
@@ -44,7 +44,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void return2ComputerPlayers() {
-        ByteArrayInputStream in = new ByteArrayInputStream("cc\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("4\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
@@ -55,7 +55,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void return1ComputerPlayer1HumanPlayer() {
-        ByteArrayInputStream in = new ByteArrayInputStream("ch\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("3\n".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
@@ -66,7 +66,7 @@ public class PlayerOptionUITests {
 
     @Test
     public void ensureValidInput() {
-        ByteArrayInputStream in = new ByteArrayInputStream("hello\nhh".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("hello\n2".getBytes());
         optionUI = new PlayerOptionUI(out, in);
 
         optionUI.playerOption();
