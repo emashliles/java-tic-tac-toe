@@ -30,4 +30,8 @@ public class GameUI {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         return evaluator.evaluate();
     }
+
+    public void printBoard(Board board) {
+        printer.printBoard(board);
+    }
 }
