@@ -11,13 +11,15 @@ public class PlayerOptionUI {
     private PrintStream out;
     private InputStream in;
     private Scanner sc;
+    private GameUI gameUI;
     private Player[] players;
     private List<String> playerCombinations;
 
-    public PlayerOptionUI(PrintStream out, InputStream in) {
+    public PlayerOptionUI(PrintStream out, InputStream in, GameUI gameUI) {
         this.out = out;
         this.in = in;
         sc = new Scanner(in);
+        this.gameUI = gameUI;
         sc.useDelimiter("\n");
         players = new Player[2];
         playerCombinations = new ArrayList<>();
@@ -28,6 +30,7 @@ public class PlayerOptionUI {
     }
 
     public void introduce() {
+        gameUI.clearScreen();
         out.print("Please select what players you would like.\n" +
                 "\u001B[31m 1 \u001B[0m- Human v Human\n" +
                 "\u001B[31m 2 \u001B[0m- Human v Computer\n" +
