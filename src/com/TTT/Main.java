@@ -8,7 +8,7 @@ public class Main {
 
     private static void run() {
         GameUI gameUI = new GameUI(System.out, new BoardPrinter(System.out));
-        BoardSizeUI optionsUI = new BoardSizeUI(System.out, System.in);
+        BoardSizeUI optionsUI = new BoardSizeUI(System.out, System.in, gameUI);
         Board board = new Board(optionsUI.boardSize());
         PlayerOptionUI players = new PlayerOptionUI(System.out, System.in, gameUI);
         players.introduce();
