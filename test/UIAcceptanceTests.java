@@ -33,7 +33,6 @@ public class UIAcceptanceTests {
 
     @Test
     public void announceComputerPlayerWin() {
-        ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
         Player computer = new ComputerPlayer(new GameUI(out, printer));
 
         board.placeMarker(0, "X");
@@ -46,12 +45,11 @@ public class UIAcceptanceTests {
 
         computer.doTurn(board, PlayerMarkers.X);
 
-        assertEquals("\033[H\033[2J\033[H\033[2JPlayer X is the winner.\n", outStream.toString());
+        assertEquals("\033[H\033[2JPlayer X's turn...\033[H\033[2JPlayer X is the winner.\n", outStream.toString());
     }
 
     @Test
     public void announceTie() {
-        ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
         Player computer = new ComputerPlayer(new GameUI(out, printer));
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
@@ -64,7 +62,7 @@ public class UIAcceptanceTests {
 
         computer.doTurn(board, PlayerMarkers.X);
 
-        assertEquals("\033[H\033[2J\033[H\033[2JThis game is a tie.\n", outStream.toString());
+        assertEquals("\033[H\033[2JPlayer X's turn...\033[H\033[2JThis game is a tie.\n", outStream.toString());
 
     }
 

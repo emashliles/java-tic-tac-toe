@@ -46,6 +46,12 @@ public class GameUITests {
         GameUI turns = new GameUI(out, printer);
         turns.clearScreen();
         assertEquals("\033[H\033[2J", outputStream.toString());
+    }
 
+    @Test
+    public void printPlayersTurn() {
+        GameUI gameUI = new GameUI(out, printer);
+        gameUI.printPlayerTurn(PlayerMarkers.X);
+        assertEquals("Player X's turn...", outputStream.toString());
     }
 }

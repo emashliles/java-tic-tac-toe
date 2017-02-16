@@ -1,6 +1,5 @@
 package com.TTT;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 
 public class GameUI {
@@ -37,6 +36,9 @@ public class GameUI {
 
     public void clearScreen() {
         out.print("\033[H\033[2J");
-        //out.flush();
+    }
+
+    public void printPlayerTurn(PlayerMarkers player) {
+        out.print("Player " + player.symbol() +"'s turn...");
     }
 }
