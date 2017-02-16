@@ -1,9 +1,9 @@
 package com.TTT;
 
 public class HumanPlayer implements Player {
-    private TurnUI turns;
+    private HumanTurnUI turns;
 
-    public HumanPlayer(TurnUI turns) {
+    public HumanPlayer(HumanTurnUI turns) {
         this.turns = turns;
     }
 
@@ -12,7 +12,7 @@ public class HumanPlayer implements Player {
 
         board.placeMarker(space, marker.symbol());
 
-        turns.checkForEndOfGame(board, marker.symbol());
+        turns.announceWinner(board, marker.symbol());
 
         return board;
     }

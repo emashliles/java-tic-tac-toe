@@ -4,18 +4,20 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class TurnUI {
+public class HumanTurnUI {
 
     private PrintStream out;
     private BoardPrinter printer;
     private Scanner scanner;
     private String inputPrompt = "Please choose a space: ";
+    private final GameUI gameUI;
 
-    public TurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
+    public HumanTurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
         this.printer = printer;
         this.out = out;
         scanner = new Scanner(in);
         scanner.useDelimiter("\n");
+        gameUI = new GameUI(out, in, printer);
     }
 
     public int takeTurn(Board board) {
@@ -28,21 +30,8 @@ public class TurnUI {
         return parseSelection(selectedSpace);
     }
 
-    public void checkForEndOfGame(Board board, String winningMarker) {
-        if(isOver(board) == GameState.Win) {
-            printer.printBoard(board);
-            out.print("Player " + winningMarker + " is the winner.\n");
-        }
-
-        if (isOver(board) == GameState.Tie){
-            printer.printBoard(board);
-            out.print("This game is a tie.\n");
-        }
-    }
-
-    public GameState isOver(Board board) {
-        BoardEvaluator evaluator = new BoardEvaluator(board);
-        return evaluator.evaluate();
+    public void announceWinner(Board board, String winningMarker) {
+        gameUI.announceWinner(board, winningMarker);
     }
 
     private String invalidReasonText(Board board, String selectedSpace) {

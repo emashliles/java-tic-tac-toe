@@ -59,7 +59,6 @@ public class PlayerOptionUI {
                 players[0] = computerPlayer();
                 players[1] = computerPlayer();
                 break;
-
         }
     }
 
@@ -83,7 +82,7 @@ public class PlayerOptionUI {
     }
 
     private Player humanPlayer() {
-        return new HumanPlayer(new TurnUI(new BoardPrinter(out), out, in));
+        return new HumanPlayer(new HumanTurnUI(new BoardPrinter(out), out, in));
     }
 
     public Player player(int playerNumber) {

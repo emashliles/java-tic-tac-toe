@@ -8,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class TurnUITests {
+public class HumanTurnUITests {
 
     private Board board;
     private BoardPrinter printer;
@@ -26,7 +26,7 @@ public class TurnUITests {
     @Test
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
-        TurnUI turns = new TurnUI(printer, System.out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, System.out, in);
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
         Game game = new Game(board, player1, player2);
@@ -38,22 +38,9 @@ public class TurnUITests {
     }
 
     @Test
-    public void canPlayAFullGame() {
-        ByteArrayInputStream in = new ByteArrayInputStream(("1\n2\n3\n4\n5\n6\n7\n").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
-        Game game = new Game(board, player1, player2);
-
-        game.takeTurns(board);
-
-        assertEquals(outputStream.toString().contains("winner"), true);
-    }
-
-    @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
 
         turns.takeTurn(board);
 
@@ -63,7 +50,7 @@ public class TurnUITests {
     @Test
     public void asksForInputAgainIfInputIsNotOnBoard() {
         ByteArrayInputStream in = new ByteArrayInputStream(("10\n7").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
 
         turns.takeTurn(board);
 
@@ -74,7 +61,7 @@ public class TurnUITests {
     public void asksForInputAgainIfSelectionTaken() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
         board.placeMarker(4, "X");
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
 
         turns.takeTurn(board);
 
@@ -87,7 +74,7 @@ public class TurnUITests {
         board.placeMarker(3, "X");
 
         ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
 
@@ -110,7 +97,7 @@ public class TurnUITests {
         board.placeMarker(8, "O");
 
         ByteArrayInputStream in = new ByteArrayInputStream(("8").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
 
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
@@ -124,7 +111,7 @@ public class TurnUITests {
     @Test
     public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
-        TurnUI turns = new TurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
 
@@ -137,16 +124,16 @@ public class TurnUITests {
 
     @Test
     public void checkSelectionIsValid() {
-        assertEquals(true, TurnUI.validSelection("1"));
+        assertEquals(true, HumanTurnUI.validSelection("1"));
     }
 
     @Test
     public void checksSelectionIsNotString() {
-        assertEquals(false, TurnUI.validSelection("one"));
+        assertEquals(false, HumanTurnUI.validSelection("one"));
     }
 
     @Test
     public void checksSelectionIsValidInteger() {
-        assertEquals(false, TurnUI.validSelection("9999999999999999999999999999999999999"));
+        assertEquals(false, HumanTurnUI.validSelection("9999999999999999999999999999999999999"));
     }
 }
