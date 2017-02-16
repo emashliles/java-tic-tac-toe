@@ -5,7 +5,6 @@ public class ComputerPlayer implements Player {
     private GameUI gameUI;
 
     public ComputerPlayer(GameUI gameUI) {
-
         this.gameUI = gameUI;
     }
 
@@ -18,6 +17,7 @@ public class ComputerPlayer implements Player {
         MiniMax miniMax = new MiniMax();
         board.placeMarker(miniMax.nextMove(board, marker), marker.symbol());
 
+        gameUI.pause();
         gameUI.announceWinner(board, marker.symbol());
         return board;
     }

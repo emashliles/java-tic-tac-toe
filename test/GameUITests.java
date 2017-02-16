@@ -54,4 +54,15 @@ public class GameUITests {
         gameUI.printPlayerTurn(PlayerMarkers.X);
         assertEquals("Player X's turn...", outputStream.toString());
     }
+
+    @Test
+    public void pauseFor1second() {
+        GameUI gameUI = new GameUI(out, printer);
+
+        long startTime = System.currentTimeMillis();
+        gameUI.pause();
+        long stopTime = System.currentTimeMillis();
+
+        assertEquals(1000, stopTime - startTime, 5);
+    }
 }

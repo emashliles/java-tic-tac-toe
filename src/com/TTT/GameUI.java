@@ -41,4 +41,12 @@ public class GameUI {
     public void printPlayerTurn(PlayerMarkers player) {
         out.print("Player " + player.symbol() +"'s turn...");
     }
+
+    public void pause() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
