@@ -4,8 +4,8 @@ public class Game {
 
     private Board board;
     private int currentPlayer;
-    private String player1Marker;
-    private String player2Marker;
+    private PlayerMarkers player1Marker;
+    private PlayerMarkers player2Marker;
 
     private Player player1;
     private Player player2;
@@ -13,8 +13,8 @@ public class Game {
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
         currentPlayer = 1;
-        player1Marker = PlayerMarkers.X.symbol();
-        player2Marker = PlayerMarkers.O.symbol();
+        player1Marker = PlayerMarkers.X;
+        player2Marker = PlayerMarkers.O;
 
         this.player1 = player1;
         this.player2 = player2;

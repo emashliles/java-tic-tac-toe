@@ -9,10 +9,11 @@ public class Main {
     private static void run() {
         BoardSizeUI optionsUI = new BoardSizeUI(System.out, System.in);
         Board board = new Board(optionsUI.boardSize());
-        BoardPrinter printer = new BoardPrinter(System.out);
-        TurnUI turns = new TurnUI(printer, System.out, System.in);
-        Player player1 = new HumanPlayer(turns);
-        Player player2 = new ComputerPlayer();
+        PlayerOptionUI players = new PlayerOptionUI(System.out, System.in);
+        players.introduce();
+        players.playerOption();
+        Player player1 = players.player(1);
+        Player player2 = players.player(2);
         Game game = new Game(board, player1, player2);
 
         game.play();

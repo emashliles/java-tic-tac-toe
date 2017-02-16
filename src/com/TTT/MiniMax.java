@@ -5,68 +5,100 @@ import java.util.List;
 
 public class MiniMax {
 
-    public int nextMove(Board board, String currentPlayerSymbol) {
+    public static final int DEFAULT_MAX_SCORE = 200;
+    public static final int DEFAULT_BEST_MOVE = -1;
+    public static final int DEFAULT_MIN_SCORE = -200;
+
+    public static final int MAX_PLAYER_WIN_SCORE = 10;
+    public static final int MIN_PLAYER_WIN_SCORE = -10;
+    public static final int TIE_SCORE = 0;
+    private PlayerMarkers maxPlayer;
+
+    public int nextMove(Board board, PlayerMarkers maxPlayer){
+        this.maxPlayer = maxPlayer;
+
+        List<Integer> moves = board.availableMoves();
         List<Integer> scores = new ArrayList<>();
-        List<Integer> moves = new ArrayList<>();
 
-        for (int move : board.availableMoves()) {
-            Board clonedBoard = board.clone();
-
-            clonedBoard.placeMarker(move, currentPlayerSymbol);
-
-            scores.add(getScoreForMove(move, clonedBoard, currentPlayerSymbol, currentPlayerSymbol, changePlayerSymbol(currentPlayerSymbol), 1));
-            moves.add(move);
+        for(int move : moves) {
+            Board clone = board.clone();
+            clone.placeMarker(move, maxPlayer.symbol());
+            scores.add(miniMax(maxPlayer, clone));
         }
 
-        if (moves.size() == 1) {
-            return moves.get(0);
-        }
-
-        int winningMove = -200;
-        int winningScore = -200;
-        for (int i = 0; i < moves.size(); i++) {
-            if (scores.get(i) > winningScore) {
-                winningMove = moves.get(i);
-                winningScore = scores.get(i);
+        int bestScore = DEFAULT_MIN_SCORE;
+        int bestMove = DEFAULT_BEST_MOVE;
+        for(int i = 0; i < scores.size(); i++) {
+            if(scores.get(i) > bestScore) {
+                bestScore = scores.get(i);
+                bestMove = moves.get(i);
             }
         }
-
-        return winningMove;
+        return bestMove;
     }
 
-    public int getScoreForMove(int move, Board board, String playerSymbol, String maxingPlayerSymbol, String minimizingPlayerSymbol, int depth) {
-        int bestScore = -200;
-
-        board.placeMarker(move, playerSymbol);
+    public int miniMax(PlayerMarkers currentPlayer, Board board) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
-
-        if (evaluator.evaluate() == GameState.Win && playerSymbol.equals(maxingPlayerSymbol)) {
-            return 10 - depth;
+        if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
+            return MAX_PLAYER_WIN_SCORE;
         }
 
-        if (evaluator.evaluate() == GameState.Tie) {
-            return 0;
+        if(evaluator.evaluate().equals(GameState.Win) && currentPlayer != maxPlayer) {
+            return MIN_PLAYER_WIN_SCORE;
         }
 
-        if (evaluator.evaluate() == GameState.Win && playerSymbol.equals(minimizingPlayerSymbol)) {
-            return depth - 10;
+        if(evaluator.evaluate().equals(GameState.Tie)) {
+            return TIE_SCORE;
         }
 
-        for (int nextMove : board.availableMoves()) {
-            Board clonedBoard = board.clone();
-            int score = getScoreForMove(nextMove, clonedBoard, changePlayerSymbol(playerSymbol), maxingPlayerSymbol, minimizingPlayerSymbol, depth++);
-            bestScore = score;
+        List<Integer> scores = new ArrayList<>();
+
+        currentPlayer = changePlayer(currentPlayer);
+
+        if(currentPlayer == maxPlayer){
+            for(int move : board.availableMoves()) {
+                Board clone = board.clone();
+                clone.placeMarker(move, currentPlayer.symbol());
+                scores.add( miniMax(currentPlayer, clone));
+            }
+            return bestScore(scores, true);
         }
-
-
-        return bestScore;
+        else {
+            for(int move : board.availableMoves()) {
+                Board clone = board.clone();
+                clone.placeMarker(move, currentPlayer.symbol());
+                scores.add(miniMax(currentPlayer, clone));
+            }
+            return bestScore(scores, false);
+        }
     }
 
-    private String changePlayerSymbol(String currentPlayerSymbol) {
-        if (currentPlayerSymbol == PlayerMarkers.X.symbol()) {
-            return PlayerMarkers.O.symbol();
+    private int bestScore(List<Integer> scores, boolean maximize) {
+        if(maximize) {
+            int maxScore = DEFAULT_MIN_SCORE;
+            for (int score : scores) {
+                if(score > maxScore) {
+                    maxScore = score;
+                }
+            }
+            return maxScore;
+        }
+        else {
+            int minScore = DEFAULT_MAX_SCORE;
+            for (int score : scores) {
+                if (score < minScore) {
+                    minScore = score;
+                }
+            }
+            return minScore;
+        }
+    }
+
+    private PlayerMarkers changePlayer(PlayerMarkers currentPlayer) {
+        if (currentPlayer == PlayerMarkers.X) {
+            return PlayerMarkers.O;
         } else {
-            return PlayerMarkers.X.symbol();
+            return PlayerMarkers.X;
         }
     }
 }
