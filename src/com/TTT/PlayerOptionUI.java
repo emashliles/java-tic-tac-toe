@@ -82,7 +82,7 @@ public class PlayerOptionUI {
     }
 
     private Player humanPlayer() {
-        return new HumanPlayer(new HumanTurnUI(new BoardPrinter(out), out, in));
+        return new HumanPlayer(new HumanTurnUI(new BoardPrinter(out), out, in, new GameUI(out, in, new BoardPrinter(out))));
     }
 
     public Player player(int playerNumber) {

@@ -12,12 +12,12 @@ public class HumanTurnUI {
     private String inputPrompt = "Please choose a space: ";
     private final GameUI gameUI;
 
-    public HumanTurnUI(BoardPrinter printer, PrintStream out, InputStream in) {
+    public HumanTurnUI(BoardPrinter printer, PrintStream out, InputStream in, GameUI gameUI) {
         this.printer = printer;
         this.out = out;
         scanner = new Scanner(in);
         scanner.useDelimiter("\n");
-        gameUI = new GameUI(out, in, printer);
+        this.gameUI = gameUI;
     }
 
     public int takeTurn(Board board) {

@@ -13,10 +13,10 @@ public class GameTests {
     @Before
     public void setUp() {
        board = new Board(3);
-       HumanTurnUI turns = new HumanTurnUI(new BoardPrinter(System.out),System.out, System.in);
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
-        game = new Game(board, player1, player2);
+       HumanTurnUI turns = new HumanTurnUI(new BoardPrinter(System.out),System.out, System.in, new GameUI(System.out, System.in, new BoardPrinter(System.out)));
+       HumanPlayer player1 = new HumanPlayer(turns);
+       HumanPlayer player2 = new HumanPlayer(turns);
+       game = new Game(board, player1, player2);
     }
 
     @Test

@@ -14,6 +14,7 @@ public class HumanTurnUITests {
     private BoardPrinter printer;
     private PrintStream out;
     private ByteArrayOutputStream outputStream;
+    private GameUI gameUI;
 
     @Before
     public void setUp() {
@@ -21,12 +22,15 @@ public class HumanTurnUITests {
         printer = new BoardPrinter(new PrintStream(new ByteArrayOutputStream()));
         outputStream = new ByteArrayOutputStream();
         out = new PrintStream(outputStream);
+        ByteArrayOutputStream gameUiOutStream = new ByteArrayOutputStream();
+        PrintStream gameUiOut = new PrintStream(gameUiOutStream);
+        gameUI = new GameUI(gameUiOut, new ByteArrayInputStream("".getBytes()), printer);
     }
 
     @Test
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, System.out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, System.out, in, gameUI);
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
         Game game = new Game(board, player1, player2);
@@ -40,7 +44,7 @@ public class HumanTurnUITests {
     @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
 
         turns.takeTurn(board);
 
@@ -50,7 +54,7 @@ public class HumanTurnUITests {
     @Test
     public void asksForInputAgainIfInputIsNotOnBoard() {
         ByteArrayInputStream in = new ByteArrayInputStream(("10\n7").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
 
         turns.takeTurn(board);
 
@@ -61,7 +65,7 @@ public class HumanTurnUITests {
     public void asksForInputAgainIfSelectionTaken() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
         board.placeMarker(4, "X");
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
 
         turns.takeTurn(board);
 
@@ -69,49 +73,9 @@ public class HumanTurnUITests {
     }
 
     @Test
-    public void declaresAWinner() {
-        board.placeMarker(0, "X");
-        board.placeMarker(3, "X");
-
-        ByteArrayInputStream in = new ByteArrayInputStream(("7").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
-
-        Game game = new Game(board, player1, player2);
-
-        game.doTurn();
-
-        assertEquals(outputStream.toString(), "Please choose a space: Player X is the winner.\n");
-    }
-
-    @Test
-    public void declaresATie() {
-        board.placeMarker(0, "X");
-        board.placeMarker(1, "O");
-        board.placeMarker(2, "X");
-        board.placeMarker(3, "X");
-        board.placeMarker(4, "O");
-        board.placeMarker(5, "X");
-        board.placeMarker(6, "O");
-        board.placeMarker(8, "O");
-
-        ByteArrayInputStream in = new ByteArrayInputStream(("8").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
-
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
-
-        Game game = new Game(board, player1, player2);
-        game.doTurn();
-
-        assertEquals(outputStream.toString(), "Please choose a space: This game is a tie.\n");
-    }
-
-    @Test
     public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in);
+        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
         HumanPlayer player1 = new HumanPlayer(turns);
         HumanPlayer player2 = new HumanPlayer(turns);
 

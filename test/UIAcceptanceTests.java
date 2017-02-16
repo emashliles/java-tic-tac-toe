@@ -16,6 +16,7 @@ public class UIAcceptanceTests {
     private ByteArrayOutputStream outStream;
     private PrintStream out;
     private Board board;
+    private GameUI gameUI;
 
     @Before
     public void setUp() {
@@ -25,6 +26,9 @@ public class UIAcceptanceTests {
         out = new PrintStream(outStream);
         printer = new BoardPrinter(printerOut);
         board = new Board(3);
+        ByteArrayOutputStream gameUiOutStream = new ByteArrayOutputStream();
+        PrintStream gameUiOut = new PrintStream(gameUiOutStream);
+        gameUI = new GameUI(gameUiOut, new ByteArrayInputStream("".getBytes()), printer);
     }
 
     @Test
@@ -46,10 +50,29 @@ public class UIAcceptanceTests {
     }
 
     @Test
+    public void announceTie() {
+        ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
+        Player computer = new ComputerPlayer(new GameUI(out, in, printer));
+        board.placeMarker(0, "X");
+        board.placeMarker(1, "O");
+        board.placeMarker(2, "X");
+        board.placeMarker(3, "X");
+        board.placeMarker(4, "O");
+        board.placeMarker(5, "X");
+        board.placeMarker(6, "O");
+        board.placeMarker(8, "O");
+
+        computer.doTurn(board, PlayerMarkers.X);
+
+        assertEquals("\033[H\033[2JThis game is a tie.\n", outStream.toString());
+
+    }
+
+    @Test
     public void printBoardAtTheStartOfEachPlayerTurn() {
         ByteArrayInputStream in = new ByteArrayInputStream("5\n".getBytes());
         Player computer = new ComputerPlayer(new GameUI(out, in, printer));
-        Player human = new HumanPlayer(new HumanTurnUI(printer, out, in));
+        Player human = new HumanPlayer(new HumanTurnUI(printer, out, in, gameUI));
 
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
