@@ -42,7 +42,7 @@ public class UIAcceptanceTests {
 
         computer.doTurn(board, PlayerMarkers.X);
 
-        assertEquals("Player X is the winner.\n", outStream.toString());
+        assertEquals("\033[H\033[2JPlayer X is the winner.\n", outStream.toString());
     }
 
     @Test

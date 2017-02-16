@@ -11,6 +11,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public Board doTurn(Board board, PlayerMarkers marker) {
+        gameUI.clearScreen();
         gameUI.printBoard(board);
 
         MiniMax miniMax = new MiniMax();

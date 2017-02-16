@@ -40,4 +40,12 @@ public class GameUITests {
 
         assertEquals(outputStream.toString().contains("Player X is the winner."), true);
     }
+
+    @Test
+    public void clearScreen() {
+        GameUI turns = new GameUI(out, System.in, printer);
+        turns.clearScreen();
+        assertEquals("\033[H\033[2J", outputStream.toString());
+
+    }
 }

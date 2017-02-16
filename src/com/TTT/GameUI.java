@@ -34,4 +34,9 @@ public class GameUI {
     public void printBoard(Board board) {
         printer.printBoard(board);
     }
+
+    public void clearScreen() {
+        out.print("\033[H\033[2J");
+        out.flush();
+    }
 }
