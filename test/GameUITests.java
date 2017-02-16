@@ -26,7 +26,7 @@ public class GameUITests {
     @Test
     public void announceWinner() {
         ByteArrayInputStream in = new ByteArrayInputStream(("").getBytes());
-        GameUI turns = new GameUI(out, in, printer);
+        GameUI turns = new GameUI(out, printer);
 
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
@@ -43,7 +43,7 @@ public class GameUITests {
 
     @Test
     public void clearScreen() {
-        GameUI turns = new GameUI(out, System.in, printer);
+        GameUI turns = new GameUI(out, printer);
         turns.clearScreen();
         assertEquals("\033[H\033[2J", outputStream.toString());
 

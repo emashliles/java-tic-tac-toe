@@ -28,13 +28,13 @@ public class UIAcceptanceTests {
         board = new Board(3);
         ByteArrayOutputStream gameUiOutStream = new ByteArrayOutputStream();
         PrintStream gameUiOut = new PrintStream(gameUiOutStream);
-        gameUI = new GameUI(gameUiOut, new ByteArrayInputStream("".getBytes()), printer);
+        gameUI = new GameUI(gameUiOut, printer);
     }
 
     @Test
     public void announceComputerPlayerWin() {
         ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
-        Player computer = new ComputerPlayer(new GameUI(out, in, printer));
+        Player computer = new ComputerPlayer(new GameUI(out, printer));
 
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
@@ -46,13 +46,13 @@ public class UIAcceptanceTests {
 
         computer.doTurn(board, PlayerMarkers.X);
 
-        assertEquals("\033[H\033[2JPlayer X is the winner.\n", outStream.toString());
+        assertEquals("\033[H\033[2J\033[H\033[2JPlayer X is the winner.\n", outStream.toString());
     }
 
     @Test
     public void announceTie() {
         ByteArrayInputStream in = new ByteArrayInputStream("".getBytes());
-        Player computer = new ComputerPlayer(new GameUI(out, in, printer));
+        Player computer = new ComputerPlayer(new GameUI(out, printer));
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
         board.placeMarker(2, "X");
@@ -64,14 +64,14 @@ public class UIAcceptanceTests {
 
         computer.doTurn(board, PlayerMarkers.X);
 
-        assertEquals("\033[H\033[2JThis game is a tie.\n", outStream.toString());
+        assertEquals("\033[H\033[2J\033[H\033[2JThis game is a tie.\n", outStream.toString());
 
     }
 
     @Test
     public void printBoardAtTheStartOfEachPlayerTurn() {
         ByteArrayInputStream in = new ByteArrayInputStream("5\n".getBytes());
-        Player computer = new ComputerPlayer(new GameUI(out, in, printer));
+        Player computer = new ComputerPlayer(new GameUI(out, printer));
         Player human = new HumanPlayer(new HumanTurnUI(printer, out, in, gameUI));
 
         board.placeMarker(0, "X");

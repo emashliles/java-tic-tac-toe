@@ -5,22 +5,22 @@ import java.io.PrintStream;
 
 public class GameUI {
     private PrintStream out;
-    private InputStream in;
     private BoardPrinter printer;
 
-    public GameUI(PrintStream out, InputStream in, BoardPrinter printer) {
+    public GameUI(PrintStream out, BoardPrinter printer) {
         this.out = out;
-        this.in = in;
         this.printer = printer;
     }
 
     public void announceWinner(Board board, String winningMarker) {
         if(isOver(board) == GameState.Win) {
+            clearScreen();
             printer.printBoard(board);
             out.print("Player " + winningMarker + " is the winner.\n");
         }
 
         if (isOver(board) == GameState.Tie){
+            clearScreen();
             printer.printBoard(board);
             out.print("This game is a tie.\n");
         }
@@ -37,6 +37,6 @@ public class GameUI {
 
     public void clearScreen() {
         out.print("\033[H\033[2J");
-        out.flush();
+        //out.flush();
     }
 }

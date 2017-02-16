@@ -50,6 +50,7 @@ public class HumanTurnUI {
     }
 
     private String getPlayerInput(Board board, String text) {
+        gameUI.clearScreen();
         printer.printBoard(board);
         out.print(text);
         String selection = scanner.nextLine();

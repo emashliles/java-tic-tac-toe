@@ -24,7 +24,7 @@ public class HumanTurnUITests {
         out = new PrintStream(outputStream);
         ByteArrayOutputStream gameUiOutStream = new ByteArrayOutputStream();
         PrintStream gameUiOut = new PrintStream(gameUiOutStream);
-        gameUI = new GameUI(gameUiOut, new ByteArrayInputStream("".getBytes()), printer);
+        gameUI = new GameUI(gameUiOut, printer);
     }
 
     @Test
