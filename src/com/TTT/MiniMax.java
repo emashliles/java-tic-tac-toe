@@ -59,8 +59,7 @@ public class MiniMax {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                int score = miniMax(currentPlayer, clone);
-                scores.add(score);
+                scores.add( miniMax(currentPlayer, clone));
             }
             return bestScore(scores, true);
         }
