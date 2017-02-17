@@ -25,7 +25,7 @@ public class GameUITests {
 
     @Test
     public void announceWinner() {
-        GameUI turns = new GameUI(out, printer);
+        GameUI gameUI = new GameUI(out, printer);
 
         board.placeMarker(0, "X");
         board.placeMarker(1, "O");
@@ -35,15 +35,15 @@ public class GameUITests {
         board.placeMarker(5, "O");
         board.placeMarker(6, "X");
 
-        turns.announceWinner(board, PlayerMarkers.X.symbol());
+        gameUI.announceWinner(board, PlayerMarkers.X.symbol());
 
         assertEquals(outputStream.toString().contains("Player X is the winner."), true);
     }
 
     @Test
     public void clearScreen() {
-        GameUI turns = new GameUI(out, printer);
-        turns.clearScreen();
+        GameUI gameUI = new GameUI(out, printer);
+        gameUI.clearScreen();
         assertEquals("\033[H\033[2J", outputStream.toString());
     }
 

@@ -30,9 +30,9 @@ public class HumanTurnUITests {
     @Test
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, System.out, in, gameUI);
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
+        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, System.out, in, gameUI);
+        HumanPlayer player1 = new HumanPlayer(humanTurnUI);
+        HumanPlayer player2 = new HumanPlayer(humanTurnUI);
         Game game = new Game(board, player1, player2);
 
         game.doTurn();
@@ -44,9 +44,9 @@ public class HumanTurnUITests {
     @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
+        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, out, in, gameUI);
 
-        turns.takeTurn(board);
+        humanTurnUI.takeTurn(board);
 
         assertEquals(outputStream.toString(), "Please choose a space: Invalid input - you must enter a number. Please choose a space: ");
     }
@@ -54,9 +54,9 @@ public class HumanTurnUITests {
     @Test
     public void asksForInputAgainIfInputIsNotOnBoard() {
         ByteArrayInputStream in = new ByteArrayInputStream(("10\n7").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
+        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, out, in, gameUI);
 
-        turns.takeTurn(board);
+        humanTurnUI.takeTurn(board);
 
         assertEquals(outputStream.toString(), "Please choose a space: Invalid input - your choice must be a number on the board. Please choose a space: ");
     }
@@ -65,9 +65,9 @@ public class HumanTurnUITests {
     public void asksForInputAgainIfSelectionTaken() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5\n2").getBytes());
         board.placeMarker(4, "X");
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
+        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, out, in, gameUI);
 
-        turns.takeTurn(board);
+        humanTurnUI.takeTurn(board);
 
         assertEquals(outputStream.toString(), "Please choose a space: Invalid input - your choice must not be already taken. Please choose a space: ");
     }
@@ -75,9 +75,9 @@ public class HumanTurnUITests {
     @Test
     public void makesSelectionZeroIndex() {
         ByteArrayInputStream in = new ByteArrayInputStream(("5").getBytes());
-        HumanTurnUI turns = new HumanTurnUI(printer, out, in, gameUI);
-        HumanPlayer player1 = new HumanPlayer(turns);
-        HumanPlayer player2 = new HumanPlayer(turns);
+        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, out, in, gameUI);
+        HumanPlayer player1 = new HumanPlayer(humanTurnUI);
+        HumanPlayer player2 = new HumanPlayer(humanTurnUI);
 
         Game game = new Game(board, player1, player2);
 

@@ -2,17 +2,17 @@ package com.TTT;
 
 public class HumanPlayer implements Player {
 
-    private HumanTurnUI turns;
+    private HumanTurnUI humanTurnUI;
 
-    public HumanPlayer(HumanTurnUI turns) {
-        this.turns = turns;
+    public HumanPlayer(HumanTurnUI humanTurnUI) {
+        this.humanTurnUI = humanTurnUI;
     }
 
     public Board doTurn(Board board, PlayerMarkers marker) {
-        int space = turns.takeTurn(board);
+        int space = humanTurnUI.takeTurn(board);
 
         board.placeMarker(space, marker.symbol());
-        turns.announceWinner(board, marker.symbol());
+        humanTurnUI.announceWinner(board, marker.symbol());
 
         return board;
     }

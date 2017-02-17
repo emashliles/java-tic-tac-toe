@@ -13,9 +13,9 @@ public class GameTests {
     @Before
     public void setUp() {
        board = new Board(3);
-       HumanTurnUI turns = new HumanTurnUI(new BoardPrinter(System.out),System.out, System.in, new GameUI(System.out, new BoardPrinter(System.out)));
-       HumanPlayer player1 = new HumanPlayer(turns);
-       HumanPlayer player2 = new HumanPlayer(turns);
+       HumanTurnUI humanTurnUI = new HumanTurnUI(new BoardPrinter(System.out),System.out, System.in, new GameUI(System.out, new BoardPrinter(System.out)));
+       HumanPlayer player1 = new HumanPlayer(humanTurnUI);
+       HumanPlayer player2 = new HumanPlayer(humanTurnUI);
        game = new Game(board, player1, player2);
     }
 
