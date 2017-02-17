@@ -23,7 +23,7 @@ public class MiniMax {
         for(int move : moves) {
             Board clone = board.clone();
             clone.placeMarker(move, maxPlayer.symbol());
-            scores.add(miniMax(maxPlayer, clone));
+            scores.add(miniMax(maxPlayer, clone, -200, 200));
         }
 
         int bestScore = DEFAULT_MIN_SCORE;
@@ -37,7 +37,7 @@ public class MiniMax {
         return bestMove;
     }
 
-    public int miniMax(PlayerMarkers currentPlayer, Board board) {
+    public int miniMax(PlayerMarkers currentPlayer, Board board, int alpha, int beta) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
             return MAX_PLAYER_WIN_SCORE;
@@ -59,7 +59,15 @@ public class MiniMax {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                scores.add( miniMax(currentPlayer, clone));
+                int score = miniMax(currentPlayer, clone, alpha, beta);
+                scores.add(score);
+                if(score > alpha) {
+                    alpha = score;
+                }
+                if(alpha >= beta) {
+                    return alpha;
+                }
+
             }
             return bestScore(scores, true);
         }
@@ -67,7 +75,14 @@ public class MiniMax {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                scores.add(miniMax(currentPlayer, clone));
+                int score = miniMax(currentPlayer, clone, alpha, beta);
+                scores.add(score);
+                if(score < beta) {
+                    beta = score;
+                }
+                if(alpha >= beta) {
+                    return beta;
+                }
             }
             return bestScore(scores, false);
         }
