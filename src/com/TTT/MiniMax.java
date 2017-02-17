@@ -65,11 +65,10 @@ public class MiniMax {
                     alpha = score;
                 }
                 if(alpha >= beta) {
-                    return alpha;
+                    break;
                 }
-
             }
-            return bestScore(scores, true);
+            return alpha;
         }
         else {
             for(int move : board.availableMoves()) {
@@ -81,10 +80,10 @@ public class MiniMax {
                     beta = score;
                 }
                 if(alpha >= beta) {
-                    return beta;
+                    break;
                 }
             }
-            return bestScore(scores, false);
+            return beta;
         }
     }
 
