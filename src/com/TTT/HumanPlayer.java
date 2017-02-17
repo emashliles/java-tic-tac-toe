@@ -1,6 +1,7 @@
 package com.TTT;
 
 public class HumanPlayer implements Player {
+
     private HumanTurnUI turns;
 
     public HumanPlayer(HumanTurnUI turns) {

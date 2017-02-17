@@ -3,6 +3,9 @@ package com.TTT;
 import java.io.PrintStream;
 
 public class GameUI {
+
+    public static final int ONE_SECOND = 1000;
+    public static final String CLEAR_SCREEN = "\033[H\033[2J";
     private PrintStream out;
     private BoardPrinter printer;
 
@@ -35,7 +38,7 @@ public class GameUI {
     }
 
     public void clearScreen() {
-        out.print("\033[H\033[2J");
+        out.print(CLEAR_SCREEN);
     }
 
     public void printPlayerTurn(PlayerMarkers player) {
@@ -44,7 +47,7 @@ public class GameUI {
 
     public void pause() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(ONE_SECOND);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

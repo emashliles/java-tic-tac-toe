@@ -25,7 +25,6 @@ public class GameUITests {
 
     @Test
     public void announceWinner() {
-        ByteArrayInputStream in = new ByteArrayInputStream(("").getBytes());
         GameUI turns = new GameUI(out, printer);
 
         board.placeMarker(0, "X");

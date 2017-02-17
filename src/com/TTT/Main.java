@@ -18,6 +18,5 @@ public class Main {
         Game game = new Game(board, player1, player2);
 
         game.play();
-
     }
 }

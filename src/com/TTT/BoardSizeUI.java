@@ -5,14 +5,13 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class BoardSizeUI {
+
     private PrintStream out;
-    private InputStream in;
     private Scanner scanner;
     private GameUI gameUI;
 
     public BoardSizeUI(PrintStream out, InputStream in, GameUI gameUI) {
         this.out = out;
-        this.in = in;
         scanner = new Scanner(in);
         this.gameUI = gameUI;
         scanner.useDelimiter("\n");

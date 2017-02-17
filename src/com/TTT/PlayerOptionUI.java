@@ -65,6 +65,10 @@ public class PlayerOptionUI {
         }
     }
 
+    public Player player(int playerNumber) {
+        return players[playerNumber - 1];
+    }
+
     private String validateSelection(String option) {
         while(!validSelection(option)) {
             out.print("Please try that again: ");
@@ -86,9 +90,5 @@ public class PlayerOptionUI {
 
     private Player humanPlayer() {
         return new HumanPlayer(new HumanTurnUI(new BoardPrinter(out), out, in, new GameUI(out, new BoardPrinter(out))));
-    }
-
-    public Player player(int playerNumber) {
-        return players[playerNumber - 1];
     }
 }

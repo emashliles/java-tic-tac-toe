@@ -56,7 +56,7 @@ public class BoardSizeUITests {
     }
 
     @Test
-    public void askAgainifSizeNotAvailable() {
+    public void askAgainIfSizeNotAvailable() {
         ByteArrayInputStream in = new ByteArrayInputStream("99\n3".getBytes());
         BoardSizeUI ui = new BoardSizeUI(out, in, gameUI);
         ui.boardSize();

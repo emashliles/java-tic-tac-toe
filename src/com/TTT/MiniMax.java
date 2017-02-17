@@ -14,7 +14,7 @@ public class MiniMax {
     public static final int TIE_SCORE = 0;
     private PlayerMarkers maxPlayer;
 
-    public int nextMove(Board board, PlayerMarkers maxPlayer){
+    public int nextMove(Board board, PlayerMarkers maxPlayer) {
         this.maxPlayer = maxPlayer;
 
         List<Integer> moves = board.availableMoves();
