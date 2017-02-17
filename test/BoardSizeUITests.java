@@ -68,6 +68,7 @@ public class BoardSizeUITests {
     public void askAgainIfInvalidInputEntered() {
         ByteArrayInputStream in = new ByteArrayInputStream("InvalidInput\n3".getBytes());
         BoardSizeUI ui = new BoardSizeUI(out, in, gameUI);
+
         ui.boardSize();
 
         assertEquals("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: You must choose 3 for a 3x3 board or 4 for a 4x4 board.", outputStream.toString());

@@ -28,20 +28,6 @@ public class HumanTurnUITests {
     }
 
     @Test
-    public void canAlternateTurns() {
-        ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
-        HumanTurnUI humanTurnUI = new HumanTurnUI(printer, System.out, in, gameUI);
-        HumanPlayer player1 = new HumanPlayer(humanTurnUI);
-        HumanPlayer player2 = new HumanPlayer(humanTurnUI);
-        Game game = new Game(board, player1, player2);
-
-        game.doTurn();
-        game.doTurn();
-
-        assertEquals(board.markerAt(1), "O");
-    }
-
-    @Test
     public void asksForInputAgainIfInputIsText() {
         ByteArrayInputStream in = new ByteArrayInputStream(("invalidInput\n2").getBytes());
         HumanTurnUI humanTurnUI = new HumanTurnUI(printer, out, in, gameUI);

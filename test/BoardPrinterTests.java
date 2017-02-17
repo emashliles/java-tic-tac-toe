@@ -41,8 +41,8 @@ public class BoardPrinterTests {
     @Test
     public void canPrint4x4Board() {
         board = new Board(4);
-
         ui.printBoard(board);
+
         assertEquals(outBytes.toString(), "  1 |  2 |  3 |  4 \n===================\n  5 |  6 |  7 |  8 \n===================\n  9 | 10 | 11 | 12 \n===================\n 13 | 14 | 15 | 16 \n");
     }
 }
