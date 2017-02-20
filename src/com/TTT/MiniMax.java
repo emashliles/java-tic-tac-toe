@@ -20,7 +20,7 @@ public class MiniMax {
         List<Integer> moves = board.availableMoves();
         List<Integer> scores = new ArrayList<>();
 
-        if((board.sideLength() > 3) && board.availableMoves().size() > (board.size() - 5)) {
+        if(nonCalculatedMove(board)) {
             return board.availableMoves().get(0);
         }
 
@@ -97,5 +97,9 @@ public class MiniMax {
         } else {
             return PlayerMarkers.X;
         }
+    }
+
+    private boolean nonCalculatedMove(Board board) {
+        return (board.sideLength() > 3) && board.availableMoves().size() > (board.size() - 5);
     }
 }
