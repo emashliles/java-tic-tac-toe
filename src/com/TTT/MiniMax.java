@@ -20,10 +20,14 @@ public class MiniMax {
         List<Integer> moves = board.availableMoves();
         List<Integer> scores = new ArrayList<>();
 
+        if(nonCalculatedMove(board)) {
+            return board.availableMoves().get(0);
+        }
+
         for(int move : moves) {
             Board clone = board.clone();
             clone.placeMarker(move, maxPlayer.symbol());
-            scores.add(miniMax(maxPlayer, clone));
+            scores.add(miniMax(maxPlayer, clone, DEFAULT_MIN_SCORE, DEFAULT_MAX_SCORE, 1));
         }
 
         int bestScore = DEFAULT_MIN_SCORE;
@@ -37,7 +41,7 @@ public class MiniMax {
         return bestMove;
     }
 
-    public int miniMax(PlayerMarkers currentPlayer, Board board) {
+    public int miniMax(PlayerMarkers currentPlayer, Board board, int alpha, int beta, int depth) {
         BoardEvaluator evaluator = new BoardEvaluator(board);
         if(evaluator.evaluate().equals(GameState.Win) && currentPlayer == maxPlayer) {
             return MAX_PLAYER_WIN_SCORE;
@@ -51,7 +55,9 @@ public class MiniMax {
             return TIE_SCORE;
         }
 
-        List<Integer> scores = new ArrayList<>();
+        if(depth >= 5) {
+            return -1;
+        }
 
         currentPlayer = changePlayer(currentPlayer);
 
@@ -59,38 +65,29 @@ public class MiniMax {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                scores.add( miniMax(currentPlayer, clone));
+                int score = miniMax(currentPlayer, clone, alpha, beta, depth++);
+                if(score > alpha) {
+                    alpha = score;
+                }
+                if(alpha >= beta) {
+                    break;
+                }
             }
-            return bestScore(scores, true);
+            return alpha;
         }
         else {
             for(int move : board.availableMoves()) {
                 Board clone = board.clone();
                 clone.placeMarker(move, currentPlayer.symbol());
-                scores.add(miniMax(currentPlayer, clone));
-            }
-            return bestScore(scores, false);
-        }
-    }
-
-    private int bestScore(List<Integer> scores, boolean maximize) {
-        if(maximize) {
-            int maxScore = DEFAULT_MIN_SCORE;
-            for (int score : scores) {
-                if(score > maxScore) {
-                    maxScore = score;
+                int score = miniMax(currentPlayer, clone, alpha, beta, depth++);
+                if(score < beta) {
+                    beta = score;
+                }
+                if(alpha >= beta) {
+                    break;
                 }
             }
-            return maxScore;
-        }
-        else {
-            int minScore = DEFAULT_MAX_SCORE;
-            for (int score : scores) {
-                if (score < minScore) {
-                    minScore = score;
-                }
-            }
-            return minScore;
+            return beta;
         }
     }
 
@@ -100,5 +97,9 @@ public class MiniMax {
         } else {
             return PlayerMarkers.X;
         }
+    }
+
+    private boolean nonCalculatedMove(Board board) {
+        return (board.sideLength() > 3) && board.availableMoves().size() > (board.size() - 5);
     }
 }
