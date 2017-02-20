@@ -1,5 +1,3 @@
-package com.TTT;
-
 public class Game {
 
     private Board board;

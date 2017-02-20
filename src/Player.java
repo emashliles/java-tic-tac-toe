@@ -1,5 +1,3 @@
-package com.TTT;
-
 public interface Player {
     Board doTurn(Board board, PlayerMarkers marker);
 }

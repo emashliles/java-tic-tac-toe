@@ -1,5 +1,3 @@
-package com.TTT;
-
 public class ComputerPlayer implements Player {
 
     private GameUI gameUI;

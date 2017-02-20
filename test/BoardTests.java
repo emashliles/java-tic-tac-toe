@@ -1,6 +1,3 @@
-import com.TTT.Board;
-import com.TTT.Line;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

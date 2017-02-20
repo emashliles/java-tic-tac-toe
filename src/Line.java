@@ -1,5 +1,3 @@
-package com.TTT;
-
 import java.util.List;
 
 public class Line {

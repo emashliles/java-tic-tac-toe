@@ -1,7 +1,3 @@
-import com.TTT.Board;
-import com.TTT.BoardEvaluator;
-import com.TTT.GameState;
-import com.TTT.Line;
 import org.junit.Before;
 import org.junit.Test;
 

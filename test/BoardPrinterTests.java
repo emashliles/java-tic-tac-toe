@@ -1,5 +1,3 @@
-import com.TTT.Board;
-import com.TTT.BoardPrinter;
 import org.junit.Before;
 import org.junit.Test;
 

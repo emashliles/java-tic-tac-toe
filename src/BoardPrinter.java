@@ -1,5 +1,3 @@
-package com.TTT;
-
 import java.io.PrintStream;
 
 public class BoardPrinter {

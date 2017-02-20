@@ -1,6 +1,3 @@
-import com.TTT.BoardPrinter;
-import com.TTT.BoardSizeUI;
-import com.TTT.GameUI;
 import org.junit.Before;
 import org.junit.Test;
 

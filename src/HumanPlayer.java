@@ -1,5 +1,3 @@
-package com.TTT;
-
 public class HumanPlayer implements Player {
 
     private HumanTurnUI humanTurnUI;

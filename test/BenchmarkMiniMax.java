@@ -1,6 +1,3 @@
-import com.TTT.Board;
-import com.TTT.MiniMax;
-import com.TTT.PlayerMarkers;
 import org.junit.Before;
 import org.junit.Test;
 

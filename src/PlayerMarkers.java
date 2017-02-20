@@ -1,5 +1,3 @@
-package com.TTT;
-
 public enum PlayerMarkers {
 
     X ("X", "\u001B[31m  X \u001B[0m"),
