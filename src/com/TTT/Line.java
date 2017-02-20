@@ -3,10 +3,10 @@ package com.TTT;
 import java.util.List;
 
 public class Line {
+
     private List<Integer> spaces;
 
     public Line(List<Integer> spaces) {
-
         this.spaces = spaces;
     }
 

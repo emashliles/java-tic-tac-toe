@@ -5,18 +5,20 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class BoardSizeUI {
-    private PrintStream out;
-    private InputStream in;
-    private Scanner scanner;
 
-    public BoardSizeUI(PrintStream out, InputStream in) {
+    private PrintStream out;
+    private Scanner scanner;
+    private GameUI gameUI;
+
+    public BoardSizeUI(PrintStream out, InputStream in, GameUI gameUI) {
         this.out = out;
-        this.in = in;
         scanner = new Scanner(in);
+        this.gameUI = gameUI;
         scanner.useDelimiter("\n");
     }
 
     public int boardSize() {
+        gameUI.clearScreen();
         out.print("Would you like a 3x3 or 4x4 board? Please enter 3 or 4: ");
 
         String selection = getBoardSizeSelection();

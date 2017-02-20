@@ -20,9 +20,7 @@ public class BoardEvaluator {
             }
         }
 
-        gameState = checkBoardIsTied(gameState);
-
-        return gameState;
+        return checkBoardIsTied(gameState);
     }
 
     private GameState checkBoardIsTied(GameState gameState) {
@@ -41,12 +39,11 @@ public class BoardEvaluator {
         boolean win = false;
         Set spaceMarkers = new HashSet();
 
-        for(int i = 0; i < line.size(); i++){
+        for(int i = 0; i < line.size(); i++) {
             spaceMarkers.add(board.markerAt(line.getSpaceIndex(i)));
         }
 
-        if (spaceMarkers.size() == 1)
-        {
+        if (spaceMarkers.size() == 1) {
             win = true;
         }
         return win;
