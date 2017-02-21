@@ -32,6 +32,7 @@ hs_err_pid*
  .idea/libraries
  /.gradle/
  .gradle/
+.gradle/**/*
 
  # Mongo Explorer plugin:
  .idea/mongoSettings.xml
@@ -62,3 +63,5 @@ hs_err_pid*
 
  #Build
  build/
+ build/**/*
+ ./build
