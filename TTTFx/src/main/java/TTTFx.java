@@ -14,11 +14,12 @@ public class TTTFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("BoardPrinter.fxml"));
-        Scene scene = new Scene(root, 300, 275);
-
-        stage.setTitle("Tic Tac Toe");
+        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("PlayerOptions.fxml"));
+        Scene scene = new Scene(parent, 300, 275);
+        stage.setTitle("Player Options");
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

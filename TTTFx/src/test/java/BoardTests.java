@@ -1,3 +1,6 @@
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -6,10 +9,12 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class BoardTests extends ApplicationTest {
+    
     public void start(Stage stage) throws Exception {
-
-        TTTFx ttt = new TTTFx();
-        ttt.start(stage);
+        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("BoardPrinter.fxml"));
+        Scene scene = new Scene(parent, 300, 275);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Test
