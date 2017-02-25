@@ -43,4 +43,13 @@ public class Game {
     public void play() {
         takeTurns(board);
     }
+
+    public PlayerMarkers getCurrentPlayer() {
+        if(currentPlayer == 1) {
+            return player1Marker;
+        }
+        else {
+            return player2Marker;
+        }
+    }
 }

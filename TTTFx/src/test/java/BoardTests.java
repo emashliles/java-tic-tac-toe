@@ -45,6 +45,8 @@ public class BoardTests extends ApplicationTest {
 
     @Test
     public void canPrintBoardWithMovesMade() {
+        clickOn("#Space_2");
+        clickOn("#Space_8");
         verifyThat("#Space_1", hasText(""));
         verifyThat("#Space_2", hasText("X"));
         verifyThat("#Space_3", hasText(""));

@@ -15,11 +15,12 @@ public class BoardPrinterController {
 
     @FXML
     protected void buttonPressed(ActionEvent actionEvent) {
+        PlayerMarkers marker = game.getCurrentPlayer();
         Button space = (Button)actionEvent.getSource();
         String s = space.getId();
         String spaceString = s.split("_")[1];
         humanFxPlayer.getUserInput(Integer.parseInt(spaceString) -1);
         game.doTurn();
-        space.setText(PlayerMarkers.X.symbol());
+        space.setText(marker.symbol());
     }
 }

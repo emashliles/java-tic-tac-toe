@@ -43,6 +43,11 @@ public class GameTests {
     }
 
     @Test
+    public void getCurrentPlayerMarker() {
+        assertThat(game.getCurrentPlayer(), is(PlayerMarkers.X));
+    }
+
+    @Test
     public void canAlternateTurns() {
         ByteArrayInputStream in = new ByteArrayInputStream("1\n2\n".getBytes());
         HumanTurnUI humanTurnUI = new HumanTurnUI(printer, System.out, in, gameUI);
