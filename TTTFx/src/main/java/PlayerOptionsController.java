@@ -14,8 +14,20 @@ public class PlayerOptionsController {
     private Button hvh;
 
     public void HumanvHuman(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
         Stage stage = (Stage) hvh.getScene().getWindow();
-        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("BoardPrinter.fxml"));
+        Parent parent = loader.load();
+
+
+        Board board = new Board(3);
+        HumanFxPlayer player1 = new HumanFxPlayer();
+        Player player2 = new HumanFxPlayer();
+        Game game = new Game(board, player1, player2);
+
+        BoardPrinterController controller =
+                loader.<BoardPrinterController>getController();
+        controller.initData(game, player1, board);
+
         Scene scene = new Scene(parent, 300, 275);
         stage.setTitle("Tic Tac Toe");
         stage.setScene(scene);
