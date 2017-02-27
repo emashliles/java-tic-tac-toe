@@ -97,4 +97,17 @@ public class BoardTests extends ApplicationTest {
         verifyThat("#GameOutcome", hasText("Space already selected."));
 
     }
+
+    @Test
+    public void markersCannotBePlacedWhenGameOver() {
+        clickOn("#Space_1");
+        clickOn("#Space_2");
+        clickOn("#Space_3");
+        clickOn("#Space_4");
+        clickOn("#Space_5");
+        clickOn("#Space_6");
+        clickOn("#Space_7");
+        clickOn("#Space_8");
+        verifyThat("#Space_8", hasText(""));
+    }
 }

@@ -32,6 +32,10 @@ public class BoardPrinterController {
             return;
         }
 
+        if(game.isOver(board) == GameState.Win|| game.isOver(board) == GameState.Tie) {
+            return;
+        }
+
         String s = space.getId();
         String spaceString = s.split("_")[1];
 
