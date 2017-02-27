@@ -4,7 +4,6 @@
 }
 
 .button {
-    -fx-padding: 20 42 20 42;
     -fx-border-color: #93b7be;
     -fx-border-width: 2;
     -fx-background-radius: 0;
@@ -15,8 +14,7 @@
 }
 
 .label {
-    -fx-font-size: 30pt;
+    -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: black;
-    -fx-text-fill: 	#9932CC;
+    -fx-text-fill: 	#93b7be;
 }

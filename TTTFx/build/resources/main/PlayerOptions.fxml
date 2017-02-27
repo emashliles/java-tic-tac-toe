@@ -1,6 +1,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
+<?import java.net.URL?>
 <GridPane
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="PlayerOptionsController" >
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="PlayerOptionsController" style="root">
     <Button text="Human v Human" onAction="#HumanvHuman" fx:id="hvh"/>
+    <stylesheets>
+        <URL value="@TTTStyle.css" />
+    </stylesheets>
 </GridPane>

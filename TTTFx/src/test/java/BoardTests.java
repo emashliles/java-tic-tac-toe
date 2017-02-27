@@ -76,4 +76,12 @@ public class BoardTests extends ApplicationTest {
         verifyThat("#GameOutcome", hasText("Player X is the winner."));
 
     }
+
+    @Test
+    public void displaysMessageWhenSameSpaceSelected() {
+        clickOn("#Space_2");
+        clickOn("#Space_2");
+        verifyThat("#GameOutcome", hasText("Space already selected."));
+
+    }
 }

@@ -20,8 +20,16 @@ public class BoardPrinterController {
 
     @FXML
     protected void buttonPressed(ActionEvent actionEvent) {
+        GameOutcome.setText("");
+
         PlayerMarkers marker = game.getCurrentPlayer();
         Button space = (Button)actionEvent.getSource();
+
+        if(space.getText() != "") {
+            GameOutcome.setText("Space already selected.");
+            return;
+        }
+
         String s = space.getId();
         String spaceString = s.split("_")[1];
 

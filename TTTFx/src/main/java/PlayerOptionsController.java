@@ -28,7 +28,7 @@ public class PlayerOptionsController {
                 loader.<BoardPrinterController>getController();
         controller.initData(game, player1, player2, board);
 
-        Scene scene = new Scene(parent, 400, 375);
+        Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
         stage.setScene(scene);
         stage.show();
