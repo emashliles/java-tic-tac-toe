@@ -55,6 +55,7 @@ public class BoardPrinterController {
         spaces.add(Space_7);
         spaces.add(Space_8);
         spaces.add(Space_9);
+        updateBoard();
     }
 
     @FXML
@@ -108,9 +109,7 @@ public class BoardPrinterController {
         }
     }
 
-
-
-    private void updateBoard() throws IOException {
+    private void updateBoard() {
         for(int i = 0; i < board.size(); i++) {
             if(board.markerAt(i) == PlayerMarkers.X.symbol() || board.markerAt(i) == PlayerMarkers.O.symbol()) {
                 Button space = spaces.get(i);

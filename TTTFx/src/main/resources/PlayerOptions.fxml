@@ -5,6 +5,7 @@
           xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="PlayerOptionsController" style="root">
     <Button text="Human v Human" onAction="#HumanvHuman" fx:id="hvh" GridPane.rowIndex="1"/>
     <Button text="Human v Computer" onAction="#HumanVComputer" fx:id="hvc" GridPane.rowIndex="2"/>
+    <Button text="Computer v Human" onAction="#ComputerVHuman" fx:id="cvh" GridPane.rowIndex="3"/>
     <stylesheets>
         <URL value="@TTTStyle.css" />
     </stylesheets>
