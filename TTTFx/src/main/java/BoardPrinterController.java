@@ -2,6 +2,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 public class BoardPrinterController {
     private Game game;
@@ -16,6 +17,7 @@ public class BoardPrinterController {
         this.game = game;
         this.player2 = player2;
         this.board = board;
+        GridPane.setColumnSpan(GameOutcome, GridPane.REMAINING);
     }
 
     @FXML
