@@ -10,11 +10,11 @@
     -fx-background-color: #87cde6;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
-    -fx-text-fill: #d8d8d8;
+    -fx-text-fill: #2F4F4F0;
 }
 
 .label {
     -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: 	#93b7be;
+    -fx-text-fill: 	#2F4F4F;
 }
