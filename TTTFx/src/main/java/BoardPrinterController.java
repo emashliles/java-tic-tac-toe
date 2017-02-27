@@ -10,8 +10,8 @@ import java.util.List;
 
 public class BoardPrinterController {
     private Game game;
-    private HumanFxPlayer player1;
-    private HumanFxPlayer player2;
+    private Player player1;
+    private Player player2;
     private Board board;
     @FXML
     private Label GameOutcome;
@@ -36,12 +36,14 @@ public class BoardPrinterController {
     private Button Space_9;
 
     private List<Button> spaces;
+    private TurnHandler turnHandler;
 
-    public void initData(Game game, HumanFxPlayer humanFxPlayer, HumanFxPlayer player2, Board board) {
-        this.player1 = humanFxPlayer;
+    public void initData(Game game, Player player1, Player player2, Board board, TurnHandler turnHandler) {
+        this.player1 = player1;
         this.game = game;
         this.player2 = player2;
         this.board = board;
+        this.turnHandler = turnHandler;
         GridPane.setColumnSpan(GameOutcome, GridPane.REMAINING);
         spaces = new ArrayList<>();
         spaces.add(Space_1);
@@ -66,13 +68,17 @@ public class BoardPrinterController {
 
         String spaceString = getButtonFxId(space);
 
-        getPlayerInput(spaceString);
+        turnHandler.getPlayerTurn(spaceString, player1, player2, game.getCurrentPlayer());
 
-        game.doTurn(board);
+        doTurn();
 
         setGameOverMessage(marker);
 
         updateBoard();
+    }
+
+    private void doTurn() {
+        turnHandler.doTurn(game, board);
     }
 
     private boolean checkForGameOver(Button space) {
@@ -102,14 +108,7 @@ public class BoardPrinterController {
         }
     }
 
-    private void getPlayerInput(String spaceString) {
-        if(game.getCurrentPlayer() == PlayerMarkers.X) {
-            player1.getUserInput(Integer.parseInt(spaceString) - 1);
-        }
-        else {
-            player2.getUserInput(Integer.parseInt(spaceString) - 1);
-        }
-    }
+
 
     private void updateBoard() throws IOException {
         for(int i = 0; i < board.size(); i++) {
