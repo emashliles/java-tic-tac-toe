@@ -17,12 +17,12 @@ public class BoardTests extends ApplicationTest {
 
         Board board = new Board(3);
         HumanFxPlayer player1 = new HumanFxPlayer();
-        Player player2 = new HumanFxPlayer();
-        Game game = new Game(board, player1, player2);
+        HumanFxPlayer player2 = new HumanFxPlayer();
+        Game game = new Game(player1, player2);
 
         BoardPrinterController controller =
                 loader.<BoardPrinterController>getController();
-        controller.initData(game, player1, board);
+        controller.initData(game, player1, player2, board);
 
         Scene scene = new Scene(parent, 300, 275);
         stage.setTitle("Tic Tac Toe");
@@ -62,5 +62,18 @@ public class BoardTests extends ApplicationTest {
     public void humanCanMakeMove() {
         clickOn("#Space_2");
         verifyThat("#Space_2", hasText("X"));
+    }
+
+    @Test
+    public void declaresWinner() {
+        clickOn("#Space_1");
+        clickOn("#Space_2");
+        clickOn("#Space_3");
+        clickOn("#Space_4");
+        clickOn("#Space_5");
+        clickOn("#Space_6");
+        clickOn("#Space_7");
+        verifyThat("#GameOutcome", hasText("Player X is the winner."));
+
     }
 }

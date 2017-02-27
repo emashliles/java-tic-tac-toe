@@ -9,7 +9,8 @@ public class HumanFxPlayer implements Player {
         return board;
     }
 
-    public void getUserInput(int space) {
+    public void getUserInput(int selection) {
+        this.selection = selection;
         moveMade = true;
     }
 }

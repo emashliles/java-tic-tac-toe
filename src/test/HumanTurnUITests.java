@@ -64,9 +64,9 @@ public class HumanTurnUITests {
         HumanPlayer player1 = new HumanPlayer(humanTurnUI);
         HumanPlayer player2 = new HumanPlayer(humanTurnUI);
 
-        Game game = new Game(board, player1, player2);
+        Game game = new Game(player1, player2);
 
-        game.doTurn();
+        game.doTurn(board);
 
         assertEquals(board.isOccupied(4), true);
     }

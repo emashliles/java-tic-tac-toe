@@ -21,14 +21,14 @@ public class PlayerOptionsController {
 
         Board board = new Board(3);
         HumanFxPlayer player1 = new HumanFxPlayer();
-        Player player2 = new HumanFxPlayer();
-        Game game = new Game(board, player1, player2);
+        HumanFxPlayer player2 = new HumanFxPlayer();
+        Game game = new Game(player1, player2);
 
         BoardPrinterController controller =
                 loader.<BoardPrinterController>getController();
-        controller.initData(game, player1, board);
+        controller.initData(game, player1, player2, board);
 
-        Scene scene = new Scene(parent, 300, 275);
+        Scene scene = new Scene(parent, 400, 375);
         stage.setTitle("Tic Tac Toe");
         stage.setScene(scene);
         stage.show();

@@ -13,8 +13,8 @@ public class Main {
         players.playerOption();
         Player player1 = players.player(1);
         Player player2 = players.player(2);
-        Game game = new Game(board, player1, player2);
+        Game game = new Game(player1, player2);
 
-        game.play();
+        game.play(board);
     }
 }

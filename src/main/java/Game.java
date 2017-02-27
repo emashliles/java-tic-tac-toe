@@ -1,6 +1,5 @@
 public class Game {
 
-    private Board board;
     private int currentPlayer;
     private PlayerMarkers player1Marker;
     private PlayerMarkers player2Marker;
@@ -8,8 +7,7 @@ public class Game {
     private Player player1;
     private Player player2;
 
-    public Game(Board board, Player player1, Player player2) {
-        this.board = board;
+    public Game(Player player1, Player player2) {
         currentPlayer = 1;
         player1Marker = PlayerMarkers.X;
         player2Marker = PlayerMarkers.O;
@@ -23,7 +21,7 @@ public class Game {
         return evaluator.evaluate();
     }
 
-    public void doTurn() {
+    public void doTurn(Board board) {
         if(currentPlayer == 1) {
             player1.doTurn(board, player1Marker);
             currentPlayer = 2;
@@ -36,11 +34,11 @@ public class Game {
 
     public void takeTurns(Board board) {
         while(isOver(board) == GameState.NoWinner) {
-            doTurn();
+            doTurn(board);
         }
     }
 
-    public void play() {
+    public void play(Board board) {
         takeTurns(board);
     }
 

@@ -1,7 +1,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.GridPane?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <GridPane
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="BoardPrinterController" >
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="BoardPrinterController" style="root" >
     <Button fx:id="Space_1" text="" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#buttonPressed"></Button>
     <Button fx:id="Space_2" text="" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#buttonPressed"></Button>
     <Button fx:id="Space_3" text="" GridPane.rowIndex="1" GridPane.columnIndex="3" onAction="#buttonPressed"></Button>
@@ -11,4 +13,8 @@
     <Button fx:id="Space_7" text="" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#buttonPressed"></Button>
     <Button fx:id="Space_8" text="" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#buttonPressed"></Button>
     <Button fx:id="Space_9" text="" GridPane.rowIndex="3" GridPane.columnIndex="3" onAction="#buttonPressed"></Button>
+    <Label fx:id="GameOutcome" text="" GridPane.rowIndex="4" GridPane.columnIndex="1"></Label>
+    <stylesheets>
+        <URL value="@TTTStyle.css" />
+    </stylesheets>
 </GridPane>

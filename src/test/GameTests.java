@@ -22,7 +22,7 @@ public class GameTests {
        HumanTurnUI humanTurnUI = new HumanTurnUI(new BoardPrinter(System.out),System.out, System.in, new GameUI(System.out, new BoardPrinter(System.out)));
        HumanPlayer player1 = new HumanPlayer(humanTurnUI);
        HumanPlayer player2 = new HumanPlayer(humanTurnUI);
-       game = new Game(board, player1, player2);
+       game = new Game(player1, player2);
        printer = new BoardPrinter(new PrintStream(new ByteArrayOutputStream()));
        ByteArrayOutputStream gameUiOutStream = new ByteArrayOutputStream();
        PrintStream gameUiOut = new PrintStream(gameUiOutStream);
@@ -53,10 +53,10 @@ public class GameTests {
         HumanTurnUI humanTurnUI = new HumanTurnUI(printer, System.out, in, gameUI);
         HumanPlayer player1 = new HumanPlayer(humanTurnUI);
         HumanPlayer player2 = new HumanPlayer(humanTurnUI);
-        Game game = new Game(board, player1, player2);
+        Game game = new Game(player1, player2);
 
-        game.doTurn();
-        game.doTurn();
+        game.doTurn(board);
+        game.doTurn(board);
 
         assertEquals(board.markerAt(1), "O");
     }
