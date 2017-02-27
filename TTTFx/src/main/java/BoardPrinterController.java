@@ -44,6 +44,10 @@ public class BoardPrinterController {
         if(game.isOver(board) == GameState.Win) {
             GameOutcome.setText("Player " + marker.symbol() + " is the winner.");
         }
+
+        if(game.isOver(board) == GameState.Tie) {
+            GameOutcome.setText("This game is a tie.");
+        }
         space.setText(marker.symbol());
     }
 }

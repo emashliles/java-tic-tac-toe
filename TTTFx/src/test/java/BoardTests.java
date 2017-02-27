@@ -74,7 +74,20 @@ public class BoardTests extends ApplicationTest {
         clickOn("#Space_6");
         clickOn("#Space_7");
         verifyThat("#GameOutcome", hasText("Player X is the winner."));
+    }
 
+    @Test
+    public void declaresTie() {
+        clickOn("#Space_1");
+        clickOn("#Space_2");
+        clickOn("#Space_3");
+        clickOn("#Space_5");
+        clickOn("#Space_4");
+        clickOn("#Space_7");
+        clickOn("#Space_6");
+        clickOn("#Space_9");
+        clickOn("#Space_8");
+        verifyThat("#GameOutcome", hasText("This game is a tie."));
     }
 
     @Test
