@@ -1,6 +1,5 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -63,27 +62,37 @@ public class BoardPrinterController {
         PlayerMarkers marker = game.getCurrentPlayer();
         Button space = (Button)actionEvent.getSource();
 
-        if(space.getText() != "") {
-            GameOutcome.setText("Space already selected.");
-            return;
-        }
+        if (checkForGameOver(space)) return;
 
-        if(game.isOver(board) == GameState.Win|| game.isOver(board) == GameState.Tie) {
-            return;
-        }
+        String spaceString = getButtonFxId(space);
 
-        String s = space.getId();
-        String spaceString = s.split("_")[1];
-
-        if(game.getCurrentPlayer() == PlayerMarkers.X) {
-            player1.getUserInput(Integer.parseInt(spaceString) - 1);
-        }
-        else {
-            player2.getUserInput(Integer.parseInt(spaceString) - 1);
-        }
+        getPlayerInput(spaceString);
 
         game.doTurn(board);
 
+        setGameOverMessage(marker);
+
+        updateBoard();
+    }
+
+    private boolean checkForGameOver(Button space) {
+        if(space.getText() != "") {
+            GameOutcome.setText("Space already selected.");
+            return true;
+        }
+
+        if(game.isOver(board) == GameState.Win|| game.isOver(board) == GameState.Tie) {
+            return true;
+        }
+        return false;
+    }
+
+    private String getButtonFxId(Button space) {
+        String s = space.getId();
+        return s.split("_")[1];
+    }
+
+    private void setGameOverMessage(PlayerMarkers marker) {
         if(game.isOver(board) == GameState.Win) {
             GameOutcome.setText("Player " + marker.symbol() + " is the winner.");
         }
@@ -91,8 +100,15 @@ public class BoardPrinterController {
         if(game.isOver(board) == GameState.Tie) {
             GameOutcome.setText("This game is a tie.");
         }
+    }
 
-        updateBoard();
+    private void getPlayerInput(String spaceString) {
+        if(game.getCurrentPlayer() == PlayerMarkers.X) {
+            player1.getUserInput(Integer.parseInt(spaceString) - 1);
+        }
+        else {
+            player2.getUserInput(Integer.parseInt(spaceString) - 1);
+        }
     }
 
     private void updateBoard() throws IOException {
