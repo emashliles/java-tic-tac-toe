@@ -13,11 +13,15 @@ import java.io.IOException;
 public class PlayerOptionsController {
 
     @FXML
-    private Button hvh;
+    private Stage stage;
+
+    public void initData(Stage stage) {
+        this.stage = stage;
+    }
+
 
     public void HumanvHuman(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Stage stage = (Stage) hvh.getScene().getWindow();
         Parent parent = loader.load();
 
 
@@ -38,10 +42,8 @@ public class PlayerOptionsController {
         stage.show();
     }
 
-
     public void HumanVComputer(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Stage stage = (Stage) hvh.getScene().getWindow();
         Parent parent = loader.load();
 
 
@@ -65,7 +67,6 @@ public class PlayerOptionsController {
 
     public void ComputerVHuman(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Stage stage = (Stage) hvh.getScene().getWindow();
         Parent parent = loader.load();
 
 
@@ -91,7 +92,6 @@ public class PlayerOptionsController {
 
     public void ComputerVComputer(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Stage stage = (Stage) hvh.getScene().getWindow();
         Parent parent = loader.load();
 
 

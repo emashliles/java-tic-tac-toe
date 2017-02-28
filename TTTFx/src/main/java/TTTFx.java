@@ -14,8 +14,11 @@ public class TTTFx extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getClassLoader().getResource("PlayerOptions.fxml"));
-        Scene scene = new Scene(parent, 600, 475);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PlayerOptions.fxml"));
+        Parent PlayerOptions = loader.load();
+        PlayerOptionsController controller = loader.getController();
+        controller.initData(stage);
+        Scene scene = new Scene(PlayerOptions, 600, 475);
         stage.setTitle("Player Options");
         stage.setScene(scene);
         stage.show();
