@@ -6,6 +6,7 @@
     <Button text="Human v Human" onAction="#HumanvHuman" fx:id="hvh" GridPane.rowIndex="1"/>
     <Button text="Human v Computer" onAction="#HumanVComputer" fx:id="hvc" GridPane.rowIndex="2"/>
     <Button text="Computer v Human" onAction="#ComputerVHuman" fx:id="cvh" GridPane.rowIndex="3"/>
+    <Button text="Computer v Computer" onAction="#ComputerVComputer" fx:id="cvc" GridPane.rowIndex="4"/>
     <stylesheets>
         <URL value="@TTTStyle.css" />
     </stylesheets>

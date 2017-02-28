@@ -17,5 +17,7 @@ public class PlayerOptionsTests extends ApplicationTest {
     public void displayOptionsForPlayerCombinations() {
         verifyThat("#hvh", hasText("Human v Human"));
         verifyThat("#hvc", hasText("Human v Computer"));
+        verifyThat("#cvh", hasText("Computer v Human"));
+        verifyThat("#cvc", hasText("Computer v Computer"));
     }
 }

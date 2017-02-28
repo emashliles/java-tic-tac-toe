@@ -23,7 +23,7 @@ public class BoardTests extends ApplicationTest {
         BoardPrinterController controller =
                 loader.getController();
         HumanvHumanTurnHandler turnHandler = new HumanvHumanTurnHandler();
-        controller.initData(game, player1, player2, board, turnHandler);
+        controller.initData(game, player1, player2, board, turnHandler, stage);
 
         Scene scene = new Scene(parent, 300, 275);
         stage.setTitle("Tic Tac Toe");

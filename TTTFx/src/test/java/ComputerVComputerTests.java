@@ -8,7 +8,7 @@ import org.testfx.framework.junit.ApplicationTest;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-public class ComputerVHumanTests extends ApplicationTest {
+public class ComputerVComputerTests extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -18,14 +18,14 @@ public class ComputerVHumanTests extends ApplicationTest {
 
         Board board = new Board(3);
         ComputerFxPlayer player1 = new ComputerFxPlayer();
-        HumanFxPlayer player2 = new HumanFxPlayer();
+        ComputerFxPlayer player2 = new ComputerFxPlayer();
         Game game = new Game(player1, player2);
 
         game.doTurn(board);
 
         BoardPrinterController controller =
                 loader.getController();
-        ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
+        ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler, stage);
 
         Scene scene = new Scene(parent, 300, 275);
@@ -35,8 +35,15 @@ public class ComputerVHumanTests extends ApplicationTest {
     }
 
     @Test
-    public void computerMoveIsDisplayedFirst() {
+    public void computerMovesAreAllDisplayed() {
         verifyThat("#Space_1", hasText("X"));
+        verifyThat("#Space_2", hasText("O"));
+        verifyThat("#Space_3", hasText("X"));
+        verifyThat("#Space_4", hasText("O"));
+        verifyThat("#Space_5", hasText("O"));
+        verifyThat("#Space_6", hasText("X"));
+        verifyThat("#Space_7", hasText("O"));
+        verifyThat("#Space_8", hasText("X"));
+        verifyThat("#Space_9", hasText("X"));
     }
-
 }
