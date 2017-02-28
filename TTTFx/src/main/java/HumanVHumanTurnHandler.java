@@ -1,4 +1,4 @@
-public class HumanvHumanTurnHandler implements TurnHandler {
+public class HumanVHumanTurnHandler implements TurnHandler {
 
     public void getPlayerTurn(String spaceString, Player player1, Player player2, PlayerMarkers currentPlayer) {
 

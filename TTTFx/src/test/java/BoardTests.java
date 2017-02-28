@@ -22,7 +22,7 @@ public class BoardTests extends ApplicationTest {
 
         BoardController controller =
                 loader.getController();
-        HumanvHumanTurnHandler turnHandler = new HumanvHumanTurnHandler();
+        HumanVHumanTurnHandler turnHandler = new HumanVHumanTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 300, 275);
