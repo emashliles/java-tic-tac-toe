@@ -65,12 +65,7 @@ public class BoardController {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        doTurns();
-                    }
-                });
+                Platform.runLater(() -> doTurns());
 
             }
         }, 1000, 1000);
@@ -92,7 +87,7 @@ public class BoardController {
 
         turnHandler.doTurn(game, board);
 
-        setGameOverMessage(marker);
+        setGameOverMessage(turnHandler.lastPlayerToMove());
 
         updateBoard();
     }
@@ -120,7 +115,7 @@ public class BoardController {
             return true;
         }
 
-        if(game.isOver(board) == GameState.Win|| game.isOver(board) == GameState.Tie) {
+        if(game.isOver(board) == GameState.Win || game.isOver(board) == GameState.Tie) {
             return true;
         }
         return false;

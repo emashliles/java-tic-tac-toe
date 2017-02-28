@@ -23,4 +23,13 @@ public class HumanVComputerTests extends ApplicationTest {
         clickOn("#Space_5");
         verifyThat("#Space_1", hasText("O"));
     }
+
+    @Test
+    public void displaysWinner() {
+        clickOn("#Space_1");
+        clickOn("#Space_4");
+        clickOn("#Space_3");
+        clickOn("#Space_6");
+        verifyThat("#InfoText", hasText("Player O is the winner."));
+    }
 }

@@ -82,7 +82,6 @@ public class HumanVHumanTests extends ApplicationTest {
         clickOn("#Space_2");
         clickOn("#Space_2");
         verifyThat("#InfoText", hasText("Space already selected."));
-
     }
 
     @Test
