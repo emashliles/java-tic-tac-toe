@@ -18,6 +18,7 @@ public class TTTFx extends Application {
         Parent PlayerOptions = loader.load();
         PlayerOptionsController controller = loader.getController();
         controller.initData(stage);
+
         Scene scene = new Scene(PlayerOptions, 600, 475);
         stage.setTitle("Player Options");
         stage.setScene(scene);
