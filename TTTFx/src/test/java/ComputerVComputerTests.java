@@ -36,6 +36,7 @@ public class ComputerVComputerTests extends ApplicationTest {
 
     @Test
     public void computerMovesAreAllDisplayed() {
+        sleep(10000);
         verifyThat("#Space_1", hasText("X"));
         verifyThat("#Space_2", hasText("O"));
         verifyThat("#Space_3", hasText("X"));
