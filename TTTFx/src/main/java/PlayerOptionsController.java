@@ -38,24 +38,14 @@ public class PlayerOptionsController {
     public void ComputerVHuman(ActionEvent actionEvent) throws IOException {
         BoardController controller = setUpController(loader, new ComputerFxPlayer(), new HumanFxPlayer(), new ComputerVHumanTurnHandler());
 
-        stage.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                controller.doTurn();
-            }
-        });
+        stage.setOnShown(event -> controller.doTurn());
         showScene(parent);
     }
 
     public void ComputerVComputer(ActionEvent actionEvent) throws IOException {
         BoardController controller = setUpController(loader, new ComputerFxPlayer(), new ComputerFxPlayer(), new ComputerVComputerTurnHandler());
 
-        stage.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                controller.runComputerTurns();
-            }
-        });
+        stage.setOnShown(event -> controller.runComputerTurns());
         showScene(parent);
     }
 
