@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BoardPrinterController{
     private Game game;
@@ -67,11 +70,7 @@ public class BoardPrinterController{
         stage.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                try {
-                    doTurns();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                doTurns();
             }
         });
     }
@@ -136,11 +135,24 @@ public class BoardPrinterController{
         }
     }
 
-    public void doTurns() throws InterruptedException {
-        while (game.isOver(board) == GameState.NoWinner) {
-            game.doTurn(board);
-            updateBoard();
-            setGameOverMessage(game.getCurrentPlayer());
-        }
+    public void doTurns() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (game.isOver(board) == GameState.NoWinner) {
+                        game.doTurn(board);
+                        updateBoard();
+                        setGameOverMessage(game.getCurrentPlayer());
+                    }
+                }
+            });
+
+            }
+        }, 1000, 1000);
+
     }
 }
