@@ -1,4 +1,5 @@
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.junit.Test;
@@ -95,5 +96,19 @@ public class HumanVHumanTests extends ApplicationTest {
         clickOn("#Space_7");
         clickOn("#Space_8");
         verifyThat("#Space_8", hasText(""));
+    }
+
+    @Test
+    public void canReplayGame() {
+        clickOn("#Space_1");
+        clickOn("#Space_2");
+        clickOn("#Space_3");
+        clickOn("#Space_4");
+        clickOn("#Space_5");
+        clickOn("#Space_6");
+        clickOn("#Space_7");
+        verifyThat("#Replay", Node::isVisible);
+        clickOn("#Replay");
+        verifyThat("hvh", hasText("Human v Human"));
     }
 }

@@ -16,7 +16,7 @@ public class BoardSceneCreator {
         Game game = new Game(player1, player2);
 
         BoardController controller = loader.getController();
-        controller.initData(game, player1, player2, board, turnHandler);
+        controller.initData(game, player1, player2, board, turnHandler, new PlayerOptionsSceneCreator(stage));
 
         return controller;
     }

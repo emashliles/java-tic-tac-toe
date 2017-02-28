@@ -14,6 +14,7 @@
     <Button fx:id="Space_8" text="" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#spaceSelected" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Button fx:id="Space_9" text="" GridPane.rowIndex="3" GridPane.columnIndex="3" onAction="#spaceSelected" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Label fx:id="InfoText" text="" GridPane.rowIndex="4" ></Label>
+    <Button fx:id="Replay" GridPane.rowIndex="5" GridPane.columnIndex="2" visible="false" onAction="#replay" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"/>
     <stylesheets>
         <URL value="@TTTStyle.css" />
     </stylesheets>

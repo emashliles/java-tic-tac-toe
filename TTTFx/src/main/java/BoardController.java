@@ -1,6 +1,9 @@
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -19,6 +22,9 @@ public class BoardController {
 
     @FXML
     private Label InfoText;
+
+    @FXML
+    private Button Replay;
 
     @FXML
     private Button Space_1;
@@ -41,13 +47,15 @@ public class BoardController {
 
     private List<Button> spaces;
     private TurnHandler turnHandler;
+    private PlayerOptionsSceneCreator playerOptionsSceneCreator;
 
-    public void initData(Game game, Player player1, Player player2, Board board, TurnHandler turnHandler) {
+    public void initData(Game game, Player player1, Player player2, Board board, TurnHandler turnHandler, PlayerOptionsSceneCreator playerOptionsSceneCreator) {
         this.player1 = player1;
         this.game = game;
         this.player2 = player2;
         this.board = board;
         this.turnHandler = turnHandler;
+        this.playerOptionsSceneCreator = playerOptionsSceneCreator;
         spaces = new ArrayList<>();
         addSpacesToList();
 
@@ -58,6 +66,7 @@ public class BoardController {
 
     private void allowTextToSpanMultipleColumns() {
         GridPane.setColumnSpan(InfoText, GridPane.REMAINING);
+       // GridPane.setColumnSpan(Replay, GridPane.REMAINING);
     }
 
     public void runComputerTurns() {
@@ -129,10 +138,12 @@ public class BoardController {
     private void setGameOverMessage(PlayerMarkers marker) {
         if(game.isOver(board) == GameState.Win) {
             setInfoText("Player " + marker.symbol() + " is the winner.");
+            Replay.setVisible(true);
         }
 
         if(game.isOver(board) == GameState.Tie) {
             setInfoText("This game is a tie.");
+            Replay.setVisible(true);
         }
     }
 
@@ -155,5 +166,9 @@ public class BoardController {
         spaces.add(Space_7);
         spaces.add(Space_8);
         spaces.add(Space_9);
+    }
+
+    public void replay(ActionEvent actionEvent) throws IOException {
+        playerOptionsSceneCreator.create();
     }
 }
