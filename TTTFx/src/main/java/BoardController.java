@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BoardPrinterController{
+public class BoardController {
     private Game game;
     private Player player1;
     private Player player2;
@@ -78,7 +78,7 @@ public class BoardPrinterController{
     }
 
     @FXML
-    protected void buttonPressed(ActionEvent actionEvent) throws IOException {
+    protected void spaceSelected(ActionEvent actionEvent) throws IOException {
         setInfoText("");
 
         PlayerMarkers marker = game.getCurrentPlayer();

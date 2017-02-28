@@ -21,7 +21,7 @@ public class HumanVComputerTests extends ApplicationTest {
         ComputerFxPlayer player2 = new ComputerFxPlayer();
         Game game = new Game(player1, player2);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
         HumanVComputerTurnHandler turnHandler = new HumanVComputerTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler);

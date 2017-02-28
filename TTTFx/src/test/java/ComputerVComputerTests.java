@@ -1,7 +1,9 @@
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -23,7 +25,7 @@ public class ComputerVComputerTests extends ApplicationTest {
 
         game.doTurn(board);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
         ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler);
@@ -31,6 +33,13 @@ public class ComputerVComputerTests extends ApplicationTest {
         Scene scene = new Scene(parent, 300, 275);
         stage.setTitle("Tic Tac Toe");
         stage.setScene(scene);
+
+        stage.setOnShown(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                controller.runComputerTurns();
+            }
+        });
         stage.show();
     }
 

@@ -23,7 +23,7 @@ public class ComputerVHumanTests extends ApplicationTest {
 
         game.doTurn(board);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
         ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler);

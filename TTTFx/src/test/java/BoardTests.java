@@ -20,7 +20,7 @@ public class BoardTests extends ApplicationTest {
         HumanFxPlayer player2 = new HumanFxPlayer();
         Game game = new Game(player1, player2);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
         HumanvHumanTurnHandler turnHandler = new HumanvHumanTurnHandler();
         controller.initData(game, player1, player2, board, turnHandler);
@@ -74,7 +74,7 @@ public class BoardTests extends ApplicationTest {
         clickOn("#Space_5");
         clickOn("#Space_6");
         clickOn("#Space_7");
-        verifyThat("#GameOutcome", hasText("Player X is the winner."));
+        verifyThat("#InfoText", hasText("Player X is the winner."));
     }
 
     @Test
@@ -88,14 +88,14 @@ public class BoardTests extends ApplicationTest {
         clickOn("#Space_6");
         clickOn("#Space_9");
         clickOn("#Space_8");
-        verifyThat("#GameOutcome", hasText("This game is a tie."));
+        verifyThat("#InfoText", hasText("This game is a tie."));
     }
 
     @Test
     public void displaysMessageWhenSameSpaceSelected() {
         clickOn("#Space_2");
         clickOn("#Space_2");
-        verifyThat("#GameOutcome", hasText("Space already selected."));
+        verifyThat("#InfoText", hasText("Space already selected."));
 
     }
 

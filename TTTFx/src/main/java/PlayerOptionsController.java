@@ -28,7 +28,7 @@ public class PlayerOptionsController {
 
         HumanvHumanTurnHandler turnHandler = new HumanvHumanTurnHandler();
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
         controller.initData(game, player1, player2, board, turnHandler);
 
@@ -50,7 +50,7 @@ public class PlayerOptionsController {
         ComputerFxPlayer player2 = new ComputerFxPlayer();
         Game game = new Game(player1, player2);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
 
         HumanVComputerTurnHandler turnHandler = new HumanVComputerTurnHandler();
@@ -76,7 +76,7 @@ public class PlayerOptionsController {
 
         game.doTurn(board);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
 
         ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
@@ -100,7 +100,7 @@ public class PlayerOptionsController {
         ComputerFxPlayer player2 = new ComputerFxPlayer();
         Game game = new Game(player1, player2);
 
-        BoardPrinterController controller =
+        BoardController controller =
                 loader.getController();
 
         ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
