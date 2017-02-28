@@ -19,7 +19,6 @@ public class BoardController {
 
     @FXML
     private Label InfoText;
-
     @FXML
     private Button Replay;
 
