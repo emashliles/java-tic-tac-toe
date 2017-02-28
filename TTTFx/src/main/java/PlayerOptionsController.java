@@ -30,7 +30,7 @@ public class PlayerOptionsController {
 
         BoardPrinterController controller =
                 loader.getController();
-        controller.initData(game, player1, player2, board, turnHandler, stage);
+        controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
@@ -55,7 +55,7 @@ public class PlayerOptionsController {
 
         HumanVComputerTurnHandler turnHandler = new HumanVComputerTurnHandler();
 
-        controller.initData(game, player1, player2, board, turnHandler, stage);
+        controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
@@ -81,7 +81,7 @@ public class PlayerOptionsController {
 
         ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
 
-        controller.initData(game, player1, player2, board, turnHandler, stage);
+        controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
@@ -105,7 +105,7 @@ public class PlayerOptionsController {
 
         ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
 
-        controller.initData(game, player1, player2, board, turnHandler, stage);
+        controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
@@ -113,7 +113,7 @@ public class PlayerOptionsController {
         stage.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                controller.doTurns();
+                controller.runComputerTurns();
             }
         });
         stage.hide();

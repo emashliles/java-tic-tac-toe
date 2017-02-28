@@ -3,7 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <GridPane
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="BoardPrinterController" style="root" >
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" fx:controller="BoardPrinterController" style="root">
     <Button fx:id="Space_1" text="" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Button fx:id="Space_2" text="" GridPane.rowIndex="1" GridPane.columnIndex="2" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Button fx:id="Space_3" text="" GridPane.rowIndex="1" GridPane.columnIndex="3" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
@@ -13,7 +13,7 @@
     <Button fx:id="Space_7" text="" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Button fx:id="Space_8" text="" GridPane.rowIndex="3" GridPane.columnIndex="2" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
     <Button fx:id="Space_9" text="" GridPane.rowIndex="3" GridPane.columnIndex="3" onAction="#buttonPressed" minWidth="80" maxWidth="80" maxHeight="80" minHeight="80"></Button>
-    <Label fx:id="GameOutcome" text="" GridPane.rowIndex="4" ></Label>
+    <Label fx:id="InfoText" text="" GridPane.rowIndex="4" ></Label>
     <stylesheets>
         <URL value="@TTTStyle.css" />
     </stylesheets>

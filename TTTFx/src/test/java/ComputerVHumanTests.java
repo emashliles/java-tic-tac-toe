@@ -26,7 +26,7 @@ public class ComputerVHumanTests extends ApplicationTest {
         BoardPrinterController controller =
                 loader.getController();
         ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
-        controller.initData(game, player1, player2, board, turnHandler, stage);
+        controller.initData(game, player1, player2, board, turnHandler);
 
         Scene scene = new Scene(parent, 300, 275);
         stage.setTitle("Tic Tac Toe");
