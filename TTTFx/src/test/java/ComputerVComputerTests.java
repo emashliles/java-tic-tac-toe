@@ -1,9 +1,6 @@
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -16,36 +13,17 @@ public class ComputerVComputerTests extends ApplicationTest {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
         Parent parent = loader.load();
+        BoardSceneCreator boardSceneCreator = new BoardSceneCreator(stage);
 
+        BoardController controller = boardSceneCreator.setUpController(loader, new ComputerFxPlayer(), new ComputerFxPlayer(), new ComputerVComputerTurnHandler());
 
-        Board board = new Board(3);
-        ComputerFxPlayer player1 = new ComputerFxPlayer();
-        ComputerFxPlayer player2 = new ComputerFxPlayer();
-        Game game = new Game(player1, player2);
-
-        game.doTurn(board);
-
-        BoardController controller =
-                loader.getController();
-        ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 300, 275);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
-
-        stage.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                controller.runComputerTurns();
-            }
-        });
-        stage.show();
+        boardSceneCreator.doComputerTurns(controller);
+        boardSceneCreator.showScene(parent);
     }
 
     @Test
     public void computerMovesAreAllDisplayed() {
-        sleep(10000);
+        sleep(9000);
         verifyThat("#Space_1", hasText("X"));
         verifyThat("#Space_2", hasText("O"));
         verifyThat("#Space_3", hasText("X"));

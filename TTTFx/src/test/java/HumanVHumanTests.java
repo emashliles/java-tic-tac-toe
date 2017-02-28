@@ -1,6 +1,5 @@
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
@@ -8,27 +7,14 @@ import org.testfx.framework.junit.ApplicationTest;
 import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
-public class BoardTests extends ApplicationTest {
+public class HumanVHumanTests extends ApplicationTest {
 
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
         Parent parent = loader.load();
-
-
-        Board board = new Board(3);
-        HumanFxPlayer player1 = new HumanFxPlayer();
-        HumanFxPlayer player2 = new HumanFxPlayer();
-        Game game = new Game(player1, player2);
-
-        BoardController controller =
-                loader.getController();
-        HumanVHumanTurnHandler turnHandler = new HumanVHumanTurnHandler();
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 300, 275);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
-        stage.show();
+        BoardSceneCreator boardSceneCreator = new BoardSceneCreator(stage);
+        boardSceneCreator.setUpController(loader, new HumanFxPlayer(), new HumanFxPlayer(), new HumanVHumanTurnHandler());
+        boardSceneCreator.showScene(parent);
     }
 
     @Test
