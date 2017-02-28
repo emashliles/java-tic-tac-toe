@@ -1,9 +1,6 @@
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -64,28 +61,20 @@ public class BoardController {
         updateBoard();
     }
 
-    private void allowTextToSpanMultipleColumns() {
-        GridPane.setColumnSpan(InfoText, GridPane.REMAINING);
-       // GridPane.setColumnSpan(Replay, GridPane.REMAINING);
-    }
-
     public void runComputerTurns() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(() -> doTurns());
-
             }
         }, 1000, 1000);
-
     }
 
     @FXML
     protected void spaceSelected(ActionEvent actionEvent) throws IOException {
         setInfoText("");
 
-        PlayerMarkers marker = game.getCurrentPlayer();
         Button space = (Button)actionEvent.getSource();
 
         if (checkForGameOver(space)) return;
@@ -93,11 +82,9 @@ public class BoardController {
         String spaceString = getButtonFxId(space);
 
         turnHandler.getPlayerTurn(spaceString, player1, player2, game.getCurrentPlayer());
-
         turnHandler.doTurn(game, board);
 
         setGameOverMessage(turnHandler.lastPlayerToMove());
-
         updateBoard();
     }
 
@@ -112,6 +99,10 @@ public class BoardController {
     public void doTurn() {
         game.doTurn(board);
         updateBoard();
+    }
+
+    public void replay(ActionEvent actionEvent) throws IOException {
+        playerOptionsSceneCreator.create();
     }
 
     private void setInfoText(String value) {
@@ -168,7 +159,7 @@ public class BoardController {
         spaces.add(Space_9);
     }
 
-    public void replay(ActionEvent actionEvent) throws IOException {
-        playerOptionsSceneCreator.create();
+    private void allowTextToSpanMultipleColumns() {
+        GridPane.setColumnSpan(InfoText, GridPane.REMAINING);
     }
 }

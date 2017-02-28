@@ -5,7 +5,6 @@ public class ComputerVHumanTurnHandler implements TurnHandler{
     @Override
     public void getPlayerTurn(String spaceString, Player player1, Player player2, PlayerMarkers currentPlayer) {
         HumanFxPlayer player2Human = (HumanFxPlayer) player2;
-
         player2Human.getUserInput(Integer.parseInt(spaceString) - 1);
     }
 

@@ -3,7 +3,6 @@ public class HumanVHumanTurnHandler implements TurnHandler {
     private PlayerMarkers lastPlayerMoved;
 
     public void getPlayerTurn(String spaceString, Player player1, Player player2, PlayerMarkers currentPlayer) {
-
         HumanFxPlayer player1Human = (HumanFxPlayer) player1;
         HumanFxPlayer player2Human = (HumanFxPlayer) player2;
 
