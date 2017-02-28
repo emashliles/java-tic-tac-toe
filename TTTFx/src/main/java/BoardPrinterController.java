@@ -67,12 +67,6 @@ public class BoardPrinterController{
         spaces.add(Space_9);
         updateBoard();
         this.stage = stage;
-        stage.setOnShown(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                doTurns();
-            }
-        });
     }
 
     @FXML

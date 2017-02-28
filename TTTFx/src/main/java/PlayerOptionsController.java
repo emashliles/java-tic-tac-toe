@@ -110,6 +110,12 @@ public class PlayerOptionsController {
         Scene scene = new Scene(parent, 600, 475);
         stage.setTitle("Tic Tac Toe");
         stage.setScene(scene);
+        stage.setOnShown(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                controller.doTurns();
+            }
+        });
         stage.hide();
         stage.show();
     }
