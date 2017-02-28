@@ -105,6 +105,11 @@ public class BoardController {
         }
     }
 
+    public void doTurn() {
+        game.doTurn(board);
+        updateBoard();
+    }
+
     private void setInfoText(String value) {
         InfoText.setText(value);
     }

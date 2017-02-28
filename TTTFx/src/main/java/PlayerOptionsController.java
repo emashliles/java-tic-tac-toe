@@ -14,107 +14,67 @@ public class PlayerOptionsController {
     @FXML
     private Stage stage;
 
-    public void initData(Stage stage) {
+    private Parent parent;
+    private FXMLLoader loader;
+
+    public void initData(Stage stage) throws IOException {
         this.stage = stage;
+        this.loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
+        this.parent = loader.load();
     }
 
-
     public void HumanvHuman(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Parent parent = loader.load();
+        setUpController(loader, new HumanFxPlayer(), new HumanFxPlayer(), new HumanvHumanTurnHandler());
 
-
-        Board board = new Board(3);
-        HumanFxPlayer player1 = new HumanFxPlayer();
-        HumanFxPlayer player2 = new HumanFxPlayer();
-        Game game = new Game(player1, player2);
-
-        HumanvHumanTurnHandler turnHandler = new HumanvHumanTurnHandler();
-
-        BoardController controller =
-                loader.getController();
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 600, 475);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
-        stage.show();
+        showScene(parent);
     }
 
     public void HumanVComputer(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Parent parent = loader.load();
+        setUpController(loader, new HumanFxPlayer(), new ComputerFxPlayer(), new HumanVComputerTurnHandler());
 
-
-        Board board = new Board(3);
-        HumanFxPlayer player1 = new HumanFxPlayer();
-        ComputerFxPlayer player2 = new ComputerFxPlayer();
-        Game game = new Game(player1, player2);
-
-        BoardController controller =
-                loader.getController();
-
-        HumanVComputerTurnHandler turnHandler = new HumanVComputerTurnHandler();
-
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 600, 475);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
-        stage.show();
+        showScene(parent);
     }
 
     public void ComputerVHuman(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Parent parent = loader.load();
+        BoardController controller = setUpController(loader, new ComputerFxPlayer(), new HumanFxPlayer(), new ComputerVHumanTurnHandler());
 
-
-        Board board = new Board(3);
-        ComputerFxPlayer player1 = new ComputerFxPlayer();
-        HumanFxPlayer player2 = new HumanFxPlayer();
-        Game game = new Game(player1, player2);
-
-        game.doTurn(board);
-
-        BoardController controller =
-                loader.getController();
-
-        ComputerVHumanTurnHandler turnHandler = new ComputerVHumanTurnHandler();
-
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 600, 475);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
-        stage.show();
+        stage.setOnShown(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                controller.doTurn();
+            }
+        });
+        showScene(parent);
     }
 
     public void ComputerVComputer(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("BoardPrinter.fxml"));
-        Parent parent = loader.load();
+        BoardController controller = setUpController(loader, new ComputerFxPlayer(), new ComputerFxPlayer(), new ComputerVComputerTurnHandler());
 
-
-        Board board = new Board(3);
-        ComputerFxPlayer player1 = new ComputerFxPlayer();
-        ComputerFxPlayer player2 = new ComputerFxPlayer();
-        Game game = new Game(player1, player2);
-
-        BoardController controller =
-                loader.getController();
-
-        ComputerVComputerTurnHandler turnHandler = new ComputerVComputerTurnHandler();
-
-        controller.initData(game, player1, player2, board, turnHandler);
-
-        Scene scene = new Scene(parent, 600, 475);
-        stage.setTitle("Tic Tac Toe");
-        stage.setScene(scene);
         stage.setOnShown(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
                 controller.runComputerTurns();
             }
         });
+        showScene(parent);
+    }
+
+    private BoardController setUpController(FXMLLoader loader, Player player1, Player player2, TurnHandler turnHandler) {
+        Board board = new Board(3);
+        Game game = new Game(player1, player2);
+
+        BoardController controller =
+                loader.getController();
+
+        controller.initData(game, player1, player2, board, turnHandler);
+
+        return controller;
+    }
+
+    private void showScene(Parent parent) {
+        Scene scene = new Scene(parent, 600, 475);
+        stage.setTitle("Tic Tac Toe");
+        stage.setScene(scene);
         stage.hide();
         stage.show();
     }
