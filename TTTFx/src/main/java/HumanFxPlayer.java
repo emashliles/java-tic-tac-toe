@@ -1,6 +1,5 @@
 public class HumanFxPlayer implements Player {
 
-    boolean moveMade;
     private int selection;
 
     @Override
@@ -11,6 +10,5 @@ public class HumanFxPlayer implements Player {
 
     public void getUserInput(int selection) {
         this.selection = selection;
-        moveMade = true;
     }
 }

@@ -1,5 +1,4 @@
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.junit.Test;
@@ -107,8 +106,7 @@ public class HumanVHumanTests extends ApplicationTest {
         clickOn("#Space_5");
         clickOn("#Space_6");
         clickOn("#Space_7");
-        verifyThat("#Replay", Node::isVisible);
         clickOn("#Replay");
-        verifyThat("hvh", hasText("Human v Human"));
+        verifyThat("#hvh", hasText("Human v Human"));
     }
 }
