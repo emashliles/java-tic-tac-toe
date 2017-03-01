@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -13,10 +14,12 @@ public class MainTests {
     @Test
     public void offerReplayOption() {
         ByteArrayInputStream in = new ByteArrayInputStream("y\n".getBytes());
+        ReplayUi replay = new ReplayUi(in);
+
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outStream);
 
-        Main.replay(in, out);
+        replay.replay(out);
 
         assertEquals(outStream.toString(), "Replay? y/n ");
     }
@@ -24,34 +27,37 @@ public class MainTests {
     @Test
     public void canReplayIfRequested() {
         ByteArrayInputStream in = new ByteArrayInputStream("y\n".getBytes());
+        ReplayUi replay = new ReplayUi(in);
+
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outStream);
 
-        boolean replay = Main.replay(in, out);
+        boolean replayOption = replay.replay(out);
 
-        assertTrue(replay);
+        assertTrue(replayOption);
     }
 
     @Test
     public void noReplayIfNotRequested() {
         ByteArrayInputStream in = new ByteArrayInputStream("n\n".getBytes());
+        ReplayUi replay = new ReplayUi(in);
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outStream);
 
-        boolean replay = Main.replay(in, out);
+        boolean replayOption = replay.replay(out);
 
-        assertFalse(replay);
+        assertFalse(replayOption);
     }
 
     @Test
     public void handleInvalidInput() {
         ByteArrayInputStream in = new ByteArrayInputStream("hello\nn\n".getBytes());
+        ReplayUi replay = new ReplayUi(in);
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(outStream);
 
-        Main.replay(in, out);
+        replay.replay(out);
 
         assertEquals(outStream.toString(), "Replay? y/n Please try that again y/n");
-
     }
 }

@@ -1,6 +1,5 @@
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 public class Main {
 
@@ -9,10 +8,11 @@ public class Main {
     }
 
     public static void run() {
+        ReplayUi replayUi = new ReplayUi(System.in);
         boolean replay = true;
         while (replay) {
             startNewGame(System.in, System.out);
-            replay = replay(System.in, System.out);
+            replay = replayUi.replay(System.out);
         }
     }
 
@@ -28,23 +28,5 @@ public class Main {
         Game game = new Game(player1, player2);
 
         game.play(board);
-    }
-
-    public static boolean replay(InputStream in, PrintStream out) {
-        out.print("Replay? y/n ");
-
-        Scanner scanner = new Scanner(in);
-        scanner.useDelimiter("\n");
-        String selection = scanner.nextLine();
-        while (!selection.equals("y") && !selection.equals("n")) {
-            out.print("Please try that again y/n");
-            selection = scanner.nextLine();
-        }
-
-        if(selection.equals("y")) {
-            return true;
-        }
-
-        return false;
     }
 }
