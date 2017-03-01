@@ -1,4 +1,4 @@
-public class HumanVComputerTurnHandler implements TurnHandler{
+public class HumanVComputerTurnHandler implements TurnHandler {
 
     private PlayerMarkers lastPlayerMoved;
 
